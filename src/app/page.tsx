@@ -81,17 +81,17 @@ function humanizeFilename(filename: string) {
 }
 
 export default function HomePage() {
-  const clientLogos = getImageFiles('public/images/clients')
-  const platformLogos = getImageFiles('public/images/platforms').filter(
+  const clientLogos = getImageFiles('images/clients')
+  const platformLogos = getImageFiles('images/platforms').filter(
     (file) => !['ignitiongold.png', 'rockwell.png', 'screens.png', 'elec-drawings.png'].includes(file.toLowerCase()),
   )
   const certificationBadges = ['ignitiongold.png', 'rockwell.png']
-    .map((file) => resolveImagePath(file, ['public/images', 'public/images/platforms']))
+    .map((file) => resolveImagePath(file, ['images', 'images/platforms']))
     .filter((badge): badge is string => Boolean(badge))
   const workShowcaseImages = ['screens.png', 'elec-drawings.png']
-    .map((file) => resolveImagePath(file, ['public/images', 'public/images/platforms']))
+    .map((file) => resolveImagePath(file, ['images', 'images/platforms']))
     .filter((image): image is string => Boolean(image))
-  const hughRoddyImage = resolveImagePath('hugh-roddy.jpg', ['public/images', 'public/images/platforms'])
+  const hughRoddyImage = resolveImagePath('hugh-roddy.jpg', ['images', 'images/platforms'])
 
   return (
     <>
@@ -183,7 +183,7 @@ export default function HomePage() {
             {[...clientLogos, ...clientLogos].map((logo, idx) => (
               <div key={`${logo}-${idx}`} className="logo-marquee-item">
                 <Image
-                  src={`/public/images/clients/${logo}`}
+                  src={`/images/clients/${logo}`}
                   alt={`${humanizeFilename(logo)} client logo`}
                   width={160}
                   height={40}
@@ -507,7 +507,7 @@ export default function HomePage() {
               minHeight: '72px',
             }}>
               <Image
-                src={`/public/images/platforms/${logo}`}
+                src={`/images/platforms/${logo}`}
                 alt={`${humanizeFilename(logo)} platform logo`}
                 width={160}
                 height={36}
