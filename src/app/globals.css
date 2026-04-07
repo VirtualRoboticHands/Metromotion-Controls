@@ -127,3 +127,15 @@ body {
 @media (max-width: 1100px) and (min-width: 901px) {
   .footer-top { grid-template-columns: 1fr 1fr !important; }
 }
+
+.blog-content { font-size: 18px; line-height: 1.85; color: #4a4a4a; max-width: 720px; }
+.blog-content h2, .blog-content h3 { color: #1a1a1a; font-family: var(--font-serif); scroll-margin-top: 100px; }
+.blog-content h2 { font-size: 34px; margin-top: 40px; margin-bottom: 14px; }
+.blog-content h3 { font-size: 26px; margin-top: 30px; margin-bottom: 10px; }
+.blog-content p, .blog-content ul, .blog-content ol, .blog-content table, .blog-content blockquote { margin: 14px 0; }
+.blog-content a { color: var(--red); }
+.blog-content table { width: 100%; border-collapse: collapse; border: 1px solid var(--border); font-size: 16px; }
+.blog-content th, .blog-content td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; }
+.blog-content tbody tr:nth-child(even) { background: #f7f6f3; }
+.blog-content pre { background: #111827; border-radius: 12px; padding: 16px; overflow-x: auto; }
+.blog-content img { width: 100%; height: auto; border-radius: 14px; }
