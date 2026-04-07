@@ -230,14 +230,6 @@ export default function ContactPage() {
       </main>
       <Footer />
 
-      <style jsx global>{`
-        @media (max-width: 900px) {
-          .contact-header { padding: 60px 24px !important; }
-          .contact-grid { grid-template-columns: 1fr !important; }
-          .contact-form-col { padding: 48px 24px !important; border-right: none !important; }
-          .form-row { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </>
   )
 }

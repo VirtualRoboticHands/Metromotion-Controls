@@ -100,14 +100,6 @@ export default function Footer() {
           footer { padding: 48px 24px 24px !important; }
         }
       `}</style>
-      <style jsx global>{`
-        @media (max-width: 900px) {
-          .footer-top { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 1100px) and (min-width: 901px) {
-          .footer-top { grid-template-columns: 1fr 1fr !important; }
-        }
-      `}</style>
     </footer>
   )
 }

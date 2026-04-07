@@ -420,24 +420,6 @@ export default function HomePage() {
 
       <Footer />
 
-      <style jsx global>{`
-        @media (max-width: 1100px) {
-          .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .platform-grid { grid-template-columns: repeat(3, 1fr) !important; }
-        }
-        @media (max-width: 900px) {
-          .hero-grid { grid-template-columns: 1fr !important; }
-          .hero-left { padding: 56px 24px !important; border-right: none !important; }
-          .hero-right .hero-stat { border-bottom: none !important; border-right: 1px solid var(--border) !important; padding: 24px !important; }
-          .hero-right .hero-stat:last-child { border-right: none !important; }
-          .intro-grid, .cta-grid { grid-template-columns: 1fr !important; padding: 60px 24px !important; gap: 36px !important; }
-          .project-main { grid-template-columns: 1fr !important; }
-          .industry-grid, .services-grid, .cases-grid, .testimonial-grid, .why-grid { grid-template-columns: 1fr !important; }
-          .platform-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .testimonial-hero { grid-template-columns: 1fr !important; padding: 36px !important; gap: 16px !important; }
-          .clients-strip { flex-wrap: wrap !important; padding: 20px 24px !important; }
-        }
-      `}</style>
     </>
   )
 }
