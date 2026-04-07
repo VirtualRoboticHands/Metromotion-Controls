@@ -2,6 +2,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
 import { buildPageMetadata } from '@/lib/metadata'
+import ProjectScopingTool from '@/components/ProjectScopingTool'
 
 export const metadata = buildPageMetadata({
   title: 'Industrial Automation & Control Systems',
@@ -94,7 +95,10 @@ export default function HomePage() {
           </p>
           <div style={{ display: 'flex', gap: '12px', animation: 'fadeUp 0.6s 0.4s both' }}>
             <Link href="/#projects" className="btn-primary">View Our Work</Link>
-            <Link href="/contact" className="btn-outline">Start a Project</Link>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <Link href="/contact" className="btn-outline">Start a Project</Link>
+              <Link href="#scope" style={{ fontSize: '12px', color: 'var(--muted)', textDecoration: 'none' }}>Or scope your project first →</Link>
+            </div>
           </div>
         </div>
 
@@ -158,6 +162,17 @@ export default function HomePage() {
           </p>
         </div>
       </div>
+
+      <section id="scope" className="section" style={{ background: 'var(--off)' }}>
+        <div style={{ marginBottom: '32px' }}>
+          <div className="section-label">Project Scoping Tool</div>
+          <h2 className="section-headline">Start <em>scoping</em> your project</h2>
+          <p className="section-sub">Answer a few questions about your automation challenge. We&apos;ll generate a tailored scoping brief with the key questions worth discussing before you engage any integrator.</p>
+        </div>
+        <div style={{ background: '#f7f6f3' }}>
+          <ProjectScopingTool />
+        </div>
+      </section>
 
       {/* SERVICES */}
       <section className="section" id="services" style={{ background: 'var(--off)' }}>
@@ -286,6 +301,9 @@ export default function HomePage() {
             </div>
             <Link href="/contact" className="btn-primary" style={{ alignSelf: 'flex-start', marginTop: '4px' }}>
               Discuss a Similar Project
+            </Link>
+            <Link href="#scope" style={{ fontSize: '12px', color: 'var(--muted)', textDecoration: 'none' }}>
+              Or use the project scoping tool →
             </Link>
           </div>
         </div>
@@ -418,6 +436,7 @@ export default function HomePage() {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start', flexShrink: 0 }}>
           <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Start a Conversation</Link>
+          <Link href="#scope" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>Or scope your project online first →</Link>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
             <a href="tel:0398076896" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>(03) 9807 6896</a>
             <a href="mailto:info@metromotioncontrols.com.au" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>info@metromotioncontrols.com.au</a>
