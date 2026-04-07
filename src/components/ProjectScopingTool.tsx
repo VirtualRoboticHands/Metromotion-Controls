@@ -204,6 +204,7 @@ export default function ProjectScopingTool() {
   const [honeypot, setHoneypot] = useState('')
   const [contact, setContact] = useState({ name: '', company: '', email: '', phone: '' })
   const [report, setReport] = useState<Report | null>(null)
+  const [fallbackMode, setFallbackMode] = useState(false)
   const [loading, setLoading] = useState(false)
   const [loadingMsgIndex, setLoadingMsgIndex] = useState(0)
   const [error, setError] = useState<string | null>(null)
@@ -265,6 +266,7 @@ export default function ProjectScopingTool() {
   const submit = async () => {
     if (!currentChallenge) return
     setError(null)
+    setFallbackMode(false)
     setLoading(true)
     setStep(4)
 
@@ -292,7 +294,15 @@ export default function ProjectScopingTool() {
         throw new Error(payload?.error ?? 'Unable to generate scoping brief right now.')
       }
 
-      const payload = (await response.json()) as { report: Report }
+      const payload = (await response.json()) as { report?: Report; fallback?: boolean }
+      if (payload.fallback) {
+        setFallbackMode(true)
+        setReport(null)
+        return
+      }
+      if (!payload.report) {
+        throw new Error('Unable to generate scoping brief right now.')
+      }
       setReport(payload.report)
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : 'Unable to generate report.')
@@ -300,6 +310,20 @@ export default function ProjectScopingTool() {
     } finally {
       setLoading(false)
     }
+  }
+
+  const resetTool = () => {
+    setStep(0)
+    setChallenge(null)
+    setCAns({})
+    setIndustry(null)
+    setPlatform(null)
+    setTimeline(null)
+    setFreeText('')
+    setFiles([])
+    setContact({ name: '', company: '', email: '', phone: '' })
+    setReport(null)
+    setFallbackMode(false)
   }
 
   return (
@@ -544,14 +568,37 @@ export default function ProjectScopingTool() {
           </div>
         )}
 
-        {step === 4 && !report && (
+        {step === 4 && loading && !report && !fallbackMode && (
           <div className="flex min-h-[320px] flex-col items-center justify-center gap-6">
             <div className="h-10 w-10 animate-spin rounded-full border-4 border-[#e2e0db] border-t-[#c8281e]" />
             <p className="text-sm text-[#1a1a1a]">{loadingMessages[loadingMsgIndex]}</p>
           </div>
         )}
 
-        {step === 4 && report && currentChallenge && (
+        {step === 4 && fallbackMode && (
+          <div>
+            <h3 className="font-[var(--font-serif)] text-3xl leading-tight text-[#1a1a1a]">Thanks {contact.name}.</h3>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#1a1a1a]">
+              We weren&apos;t able to generate your scoping brief right now, but we&apos;ve received all your project details. One of our engineers will review what you&apos;ve shared and be in touch within one business day.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href="tel:0398076896"
+                className="rounded-sm bg-[#c8281e] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a8201a]"
+              >
+                Call us — (03) 9807 6896
+              </a>
+              <button
+                onClick={resetTool}
+                className="rounded-sm border border-[#e2e0db] px-5 py-2 text-sm font-semibold text-[#1a1a1a] transition hover:border-[#c8281e]"
+              >
+                Start Over
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 4 && !fallbackMode && report && currentChallenge && (
           <div>
             <div className="mb-7 border-b border-[#e2e0db] pb-5">
               <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#c8281e]">Scoping Brief — {currentChallenge.label}</span>
@@ -618,18 +665,7 @@ export default function ProjectScopingTool() {
               </a>
               <a href="tel:0398076896" className="text-sm text-[#7a7770] hover:text-[#1a1a1a]">Or call (03) 9807 6896</a>
               <button
-                onClick={() => {
-                  setStep(0)
-                  setChallenge(null)
-                  setCAns({})
-                  setIndustry(null)
-                  setPlatform(null)
-                  setTimeline(null)
-                  setFreeText('')
-                  setFiles([])
-                  setContact({ name: '', company: '', email: '', phone: '' })
-                  setReport(null)
-                }}
+                onClick={resetTool}
                 className="ml-auto text-sm text-[#7a7770] hover:text-[#1a1a1a]"
               >
                 Start Over
