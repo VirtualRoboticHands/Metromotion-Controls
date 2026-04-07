@@ -1,6 +1,7 @@
 'use client'
 
 import { FormEvent, useMemo, useState } from 'react'
+import { supabase } from '@/lib/supabase'
 
 type FormState = {
   name: string
@@ -76,22 +77,18 @@ export default function ContactForm() {
     setSubmitting(true)
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name.trim(),
-          company: form.company.trim(),
-          email: form.email.trim(),
-          phone: form.phone.trim(),
-          service: form.service,
-          message: form.message.trim(),
-        }),
+      const { error } = await supabase.from('enquiries').insert({
+        name: form.name.trim(),
+        company: form.company.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim() || null,
+        service: form.service,
+        message: form.message.trim(),
+        status: 'new',
       })
 
-      if (!response.ok) {
-        const payload = await response.json().catch(() => ({}))
-        throw new Error(payload.error || 'Something went wrong while sending your enquiry.')
+      if (error) {
+        throw new Error('Something went wrong while sending your enquiry.')
       }
 
       setForm(initialForm)
