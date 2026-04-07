@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { services } from '@/lib/services'
@@ -22,12 +23,22 @@ export default function ServicesIndexPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Nav />
       <main style={{ background: 'var(--off)', minHeight: '100vh', paddingTop: '72px' }}>
-        <section className="section" style={{ borderBottom: '1px solid var(--border)' }}>
-          <div className="section-label">Services</div>
-          <h1 className="section-headline">Automation services built for <em>industrial uptime</em></h1>
-          <p className="section-sub" style={{ maxWidth: '760px' }}>
-            Metromotion Controls is a Melbourne-based engineering team delivering control systems, integration and commissioning services across Australia.
-          </p>
+        <section className="section" style={{ borderBottom: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
+          <Image
+            src="/images/AutomationBanner-1.png"
+            alt="Industrial automation services with control systems and instrumentation in operation"
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <div className="section-label" style={{ color: 'var(--red)' }}>Services</div>
+            <h1 className="section-headline" style={{ color: 'white' }}>Automation services built for <em>industrial uptime</em></h1>
+            <p className="section-sub" style={{ maxWidth: '760px', color: 'rgba(255,255,255,0.85)' }}>
+              Metromotion Controls is a Melbourne-based engineering team delivering control systems, integration and commissioning services across Australia.
+            </p>
+          </div>
         </section>
 
         <section className="section" style={{ paddingTop: '56px' }}>

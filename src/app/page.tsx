@@ -1,6 +1,7 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import Image from 'next/image'
 import { buildPageMetadata } from '@/lib/metadata'
 import ProjectScopingTool from '@/components/ProjectScopingTool'
 import Reveal from '@/components/animations/Reveal'
@@ -63,11 +64,20 @@ export default function HomePage() {
 
       {/* HERO */}
       <section style={{
-        paddingTop: '72px', display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100vh',
+        paddingTop: '72px', display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100vh', position: 'relative', overflow: 'hidden',
       }} className="hero-grid">
+        <Image
+          src="/images/shutterstock_1038399151-scaled.jpg"
+          alt="Industrial automation control cabinets and piping in a modern processing facility"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover' }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
         <div style={{
           padding: '80px 52px', display: 'flex', flexDirection: 'column', justifyContent: 'center',
-          borderRight: '1px solid var(--border)',
+          borderRight: '1px solid rgba(255,255,255,0.25)', position: 'relative', zIndex: 1,
         }} className="hero-left">
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '10px',
@@ -81,18 +91,18 @@ export default function HomePage() {
           <h1 style={{
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(48px, 5.2vw, 72px)',
-            lineHeight: 1.02, letterSpacing: '-0.02em', color: 'var(--ink)',
+            lineHeight: 1.02, letterSpacing: '-0.02em', color: 'white',
             marginBottom: '28px',
             animation: 'fadeUp 0.6s 0.2s both',
           }}>
             Automation<br/>engineering<br/>for <em style={{ color: 'var(--red)', fontStyle: 'italic' }}>Australian</em><br/>industry
           </h1>
           <p style={{
-            fontSize: '17px', color: 'var(--muted)', lineHeight: 1.75,
+            fontSize: '17px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.75,
             maxWidth: '420px', marginBottom: '44px', fontWeight: 300,
             animation: 'fadeUp 0.6s 0.3s both',
           }}>
-            PLC, SCADA &amp; HMI specialists trusted by <strong style={{ color: 'var(--ink)', fontWeight: 500 }}>Chobani, Bulla, Arnott&apos;s</strong> and Australia&apos;s leading manufacturers. Delivering nationally from Melbourne since 2012.
+            PLC, SCADA &amp; HMI specialists trusted by <strong style={{ color: 'white', fontWeight: 500 }}>Chobani, Bulla, Arnott&apos;s</strong> and Australia&apos;s leading manufacturers. Delivering nationally from Melbourne since 2012.
           </p>
           <div style={{ display: 'flex', gap: '12px', animation: 'fadeUp 0.6s 0.4s both' }}>
             <Link href="/#projects" className="btn-primary">View Our Work</Link>
@@ -100,7 +110,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div style={{ background: 'var(--off)', display: 'flex', flexDirection: 'column' }} className="hero-right">
+        <div style={{ background: 'rgba(0,0,0,0.25)', display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }} className="hero-right">
           {[
             { num: '92', suffix: '%', label: 'Repeat customer rate' },
             { num: '14', suffix: '+', label: 'Years in operation' },
@@ -110,14 +120,14 @@ export default function HomePage() {
             <div key={i} style={{
               flex: 1, padding: '0 52px',
               display: 'flex', flexDirection: 'column', justifyContent: 'center',
-              borderBottom: i < 3 ? '1px solid var(--border)' : 'none',
+              borderBottom: i < 3 ? '1px solid rgba(255,255,255,0.2)' : 'none',
             }} className="hero-stat">
               <div>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '52px', color: 'var(--ink)', lineHeight: 1, marginBottom: '5px' }}>
+                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '52px', color: 'white', lineHeight: 1, marginBottom: '5px' }}>
                   {stat.num}
                   {stat.suffix && <em style={{ color: 'var(--red)', fontStyle: 'normal', fontSize: '38px' }}>{stat.suffix}</em>}
                 </div>
-                <div style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.05em', textTransform: 'uppercase', fontWeight: 400 }}>
+                <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.75)', letterSpacing: '0.05em', textTransform: 'uppercase', fontWeight: 400 }}>
                   {stat.label}
                 </div>
               </div>
