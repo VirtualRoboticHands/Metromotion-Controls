@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import { services, servicesBySlug } from '@/lib/services'
 import type { Metadata } from 'next'
 import { buildPageMetadata, serviceMetadataBySlug } from '@/lib/metadata'
+import { buildFaqPageSchema, buildOrganisationSchema, buildServiceBreadcrumbSchema, buildServiceSchema } from '@/lib/schema'
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }))
@@ -33,8 +34,17 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     notFound()
   }
 
+  const serviceSchema = buildServiceSchema({ name: service.name, description: service.heroDescription, slug: service.slug })
+  const breadcrumbSchema = buildServiceBreadcrumbSchema({ name: service.name, slug: service.slug })
+  const organisationSchema = buildOrganisationSchema()
+  const faqSchema = buildFaqPageSchema(service.faqs)
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Nav />
       <main style={{ background: 'var(--white)', minHeight: '100vh', paddingTop: '72px' }}>
         <section className="section" style={{ background: 'var(--off)', borderBottom: '1px solid var(--border)' }}>
@@ -72,8 +82,31 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             Industries served
           </h2>
           <p style={{ maxWidth: '900px', color: 'rgba(255,255,255,0.75)', fontSize: '16px', lineHeight: 1.8 }}>
-            As a Melbourne-based controls partner, we deliver this service for food &amp; beverage, water treatment, mining and manufacturing operations across Australia.
+            As a Melbourne-based controls partner, we deliver this service for food and beverage, water treatment, mining and manufacturing operations across Australia.
           </p>
+        </section>
+
+        <section className="section" style={{ background: 'var(--off)' }}>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(30px, 3vw, 42px)', lineHeight: 1.1, color: 'var(--ink)', marginBottom: '20px' }}>
+            How Metromotion Controls delivers this service
+          </h2>
+          <p style={{ maxWidth: '900px', color: 'var(--muted)', fontSize: '16px', lineHeight: 1.85 }}>
+            Every engagement is delivered through a structured workflow that combines technical depth with practical site coordination. We begin with a scoping workshop to confirm objectives, interfaces, risks and acceptance criteria. From there, we develop design artefacts, software and test documentation under revision control, with peer review checkpoints to keep quality high. During implementation, we coordinate closely with operations, electricians, OEMs and project managers so assumptions remain visible and decisions are made quickly. FAT, SAT and commissioning activities are documented with clear evidence, defect tracking and closure records. After handover, we can provide targeted training, optimisation support and managed follow-up actions so site teams can operate with confidence. This approach helps clients achieve reliable outcomes, maintain compliance expectations and build internal capability at the same time.
+          </p>
+        </section>
+
+        <section className="section" style={{ background: 'var(--white)' }}>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(30px, 3vw, 42px)', lineHeight: 1.1, color: 'var(--ink)', marginBottom: '20px' }}>
+            Frequently asked questions
+          </h2>
+          <div style={{ maxWidth: '920px', display: 'grid', gap: '24px' }}>
+            {service.faqs.map((faq) => (
+              <article key={faq.question}>
+                <h3 style={{ color: 'var(--ink)', fontSize: '20px', lineHeight: 1.4, marginBottom: '8px' }}>{faq.question}</h3>
+                <p style={{ color: 'var(--muted)', fontSize: '16px', lineHeight: 1.8 }}>{faq.answer}</p>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section className="section" style={{ background: 'var(--off)' }}>
