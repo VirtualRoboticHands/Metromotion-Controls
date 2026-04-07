@@ -21,7 +21,7 @@ export default function RootLayout({
           'Melbourne-based industrial automation and control systems integrator specialising in PLC programming, SCADA, HMI, IIoT and control panel engineering for manufacturers across Australia',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: '29-31 Sunhill Road',
+          streetAddress: '39 Sunhill Road',
           addressLocality: 'Mount Waverley',
           addressRegion: 'VIC',
           postalCode: '3149',
