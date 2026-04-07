@@ -213,10 +213,6 @@ export const services: ServiceDetail[] = [
       {
         heading: 'Platform migrations and retrofit delivery',
         body: 'Our team migrates obsolete PLC, SCADA and HMI platforms to current architectures with clear testing gates. Retrofits include documentation updates and training so site teams can operate confidently after handover.'
-      },
-      {
-        heading: 'Ongoing support and maintenance',
-        body: 'Metromotion Controls provides support contracts, fault finding and preventative maintenance to sustain system performance. We prioritise response quality and root-cause resolution, not temporary patches.'
       }
     ],
     capabilities: [
