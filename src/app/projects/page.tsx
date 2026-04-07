@@ -2,6 +2,14 @@ import Link from 'next/link'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { projectsByCategory } from '@/lib/projects'
+import { buildPageMetadata } from '@/lib/metadata'
+
+export const metadata = buildPageMetadata({
+  title: 'Automation Projects',
+  description:
+    'Browse automation projects delivered by our Melbourne controls engineers for manufacturers across Australia, from greenfield plants to targeted upgrades. View case studies.',
+  path: '/projects',
+})
 
 export default function ProjectsIndexPage() {
   return (

@@ -1,6 +1,14 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import { buildPageMetadata } from '@/lib/metadata'
+
+export const metadata = buildPageMetadata({
+  title: 'About Metromotion Controls',
+  description:
+    'Learn about Metromotion Controls, a Melbourne automation engineering team supporting manufacturers across Australia with PLC, SCADA and control systems expertise.',
+  path: '/about',
+})
 
 const timeline = [
   { year: '1995', title: 'Metromotion Founded', desc: 'Parent company Metromotion established, providing instrumentation and control services to Australian industry.' },

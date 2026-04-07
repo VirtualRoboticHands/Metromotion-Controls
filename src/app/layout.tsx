@@ -1,28 +1,61 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { defaultMetadata, siteUrl } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Metromotion Controls | Industrial Automation & Control Systems',
-  description: 'Melbourne-based industrial automation and control systems engineering. PLC, SCADA, HMI specialists trusted by Chobani, Bulla, Arnott\'s and Australia\'s leading manufacturers.',
-  keywords: 'industrial automation, control systems, PLC programming, SCADA, HMI, Melbourne, Australia, food and beverage automation',
-  openGraph: {
-    title: 'Metromotion Controls | Industrial Automation & Control Systems',
-    description: 'PLC, SCADA & HMI specialists delivering nationally from Melbourne since 2012.',
-    url: 'https://metromotioncontrols.com.au',
-    siteName: 'Metromotion Controls',
-    locale: 'en_AU',
-    type: 'website',
-  },
-}
+export const metadata: Metadata = defaultMetadata
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'LocalBusiness',
+        name: 'Metromotion Controls',
+        url: siteUrl,
+        logo: '/logo.png',
+        description:
+          'Melbourne-based industrial automation and control systems integrator specialising in PLC programming, SCADA, HMI, IIoT and control panel engineering for manufacturers across Australia',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '29-31 Sunhill Road',
+          addressLocality: 'Mount Waverley',
+          addressRegion: 'VIC',
+          postalCode: '3149',
+          addressCountry: 'Australia',
+        },
+        telephone: '+61398076896',
+        email: 'info@metromotioncontrols.com.au',
+        areaServed: 'Australia',
+        foundingDate: '2012',
+      },
+      {
+        '@type': 'ProfessionalService',
+        name: 'Metromotion Controls',
+        url: siteUrl,
+        serviceType: [
+          'Industrial Automation',
+          'Control Systems Integration',
+          'PLC Programming',
+          'SCADA Development',
+        ],
+        areaServed: 'Australia',
+      },
+    ],
+  }
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+        {children}
+      </body>
     </html>
   )
 }

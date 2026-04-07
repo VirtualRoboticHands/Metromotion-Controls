@@ -1,6 +1,14 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import { buildPageMetadata } from '@/lib/metadata'
+
+export const metadata = buildPageMetadata({
+  title: 'Industrial Automation & Control Systems',
+  description:
+    'Industrial automation and control systems experts in Melbourne delivering PLC, SCADA and HMI solutions across Australia. Start your next project with confidence.',
+  path: '/',
+})
 
 const services = [
   { num: '01', title: 'Project Management', desc: 'End-to-end delivery from scope and design through procurement, installation and handover. On time, on budget.', tags: ['Scope & Schedule', 'Procurement'], icon: <><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 3v18"/><circle cx="15" cy="15" r="2"/></> },
