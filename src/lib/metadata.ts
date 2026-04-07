@@ -10,6 +10,9 @@ const defaultOgImage = '/logo.png'
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+  },
   title: {
     default: siteName,
     template: `${siteName} | %s`,
