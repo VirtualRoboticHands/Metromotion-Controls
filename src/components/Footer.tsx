@@ -29,7 +29,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer style={{ background: 'var(--off)', borderTop: '1px solid var(--border)', padding: '64px 52px 36px' }}>
+    <footer className="site-footer" style={{ background: 'var(--off)', borderTop: '1px solid var(--border)', padding: '64px 52px 36px' }}>
       <div className="footer-top" style={{
         display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '48px',
         paddingBottom: '44px', borderBottom: '1px solid var(--border)',
@@ -95,11 +95,6 @@ export default function Footer() {
         </div>
       </div>
 
-      <style jsx>{`
-        @media (max-width: 900px) {
-          footer { padding: 48px 24px 24px !important; }
-        }
-      `}</style>
     </footer>
   )
 }

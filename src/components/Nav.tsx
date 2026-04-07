@@ -7,7 +7,7 @@ export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <nav style={{
+    <nav className="site-nav" style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       padding: '0 52px', height: '72px',
@@ -119,14 +119,6 @@ export default function Nav() {
         </div>
       )}
 
-      <style jsx global>{`
-        @media (max-width: 900px) {
-          .nav-links-desktop { display: none !important; }
-          .nav-cta-btn { display: none !important; }
-          .nav-mobile-toggle { display: flex !important; }
-          nav { padding: 0 24px !important; }
-        }
-      `}</style>
     </nav>
   )
 }
