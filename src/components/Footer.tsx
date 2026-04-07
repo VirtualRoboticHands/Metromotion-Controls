@@ -2,14 +2,15 @@ import Link from 'next/link'
 
 const footerLinks = {
   services: [
-    { href: '/services/plc-scada', label: 'PLC & SCADA' },
-    { href: '/services/hmi-development', label: 'HMI Development' },
-    { href: '/services/electrical-engineering', label: 'Electrical Engineering' },
-    { href: '/services/safety-systems', label: 'Safety Systems' },
-    { href: '/services/ot-services', label: 'OT Services' },
-    { href: '/services/data-analytics', label: 'Data Analytics & OEE' },
-    { href: '/services/commissioning', label: 'Commissioning' },
-    { href: '/services/ongoing-support', label: 'Ongoing Support' },
+    { href: '/services/industrial-automation', label: 'Industrial Automation & Control Systems' },
+    { href: '/services/plc-scada-hmi', label: 'PLC, SCADA & HMI Programming' },
+    { href: '/services/control-panel-engineering', label: 'Control Panel Engineering & Electrical Design' },
+    { href: '/services/systems-integration', label: 'Industrial Systems Integration' },
+    { href: '/services/industrial-data-iiot', label: 'Industrial Data, IIoT & Analytics' },
+    { href: '/services/ot-networks', label: 'OT Networks, Edge & Remote Access' },
+    { href: '/services/functional-safety', label: 'Functional Safety & Safety Systems' },
+    { href: '/services/automation-upgrades', label: 'Automation Upgrades, Retrofits & Support' },
+    { href: '/services/commissioning', label: 'Commissioning, FAT & SAT' },
   ],
   industries: [
     { href: '/industries/food-beverage', label: 'Food & Beverage' },
