@@ -33,6 +33,15 @@ export default function ServicesIndexPage() {
                 </Link>
               </article>
             ))}
+            <article style={{ background: 'var(--white)', padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '30px', lineHeight: 1.1, color: 'var(--ink)' }}>Automation Support &amp; Maintenance</h2>
+              <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.7, flex: 1 }}>
+                Expert on-site and remote support, 24/7 — backed by senior engineers with real commissioning experience.
+              </p>
+              <Link href="/services/support" className="btn-outline" style={{ width: 'fit-content' }}>
+                View service
+              </Link>
+            </article>
           </div>
         </section>
       </main>
