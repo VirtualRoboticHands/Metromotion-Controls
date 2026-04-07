@@ -69,16 +69,12 @@ const stripMarkdownCodeFences = (value: string): string =>
     .trim()
 
 const buildPrompt = (input: {
-  challengeLabel: string
-  challengeShort: string
+  challenge: string
   challengeAnswers: Record<string, string>
   industry: string
   platform: string
   timeline: string
   freeText: string
-  fileNames: string[]
-  contactName: string
-  contactCompany: string
 }) => {
   const answerLines = Object.entries(input.challengeAnswers)
     .map(([key, value]) => `- ${key}: ${value}`)
@@ -90,15 +86,15 @@ Output valid JSON only, no markdown.
 
 A prospective client has completed our project scoping tool. Generate a helpful scoping brief based on their inputs:
 
-What they're looking to do: ${input.challengeLabel} (${input.challengeShort})
+What they're looking to do: ${input.challenge}
 Their answers to scoping questions:
 ${answerLines || '- none provided'}
 
 Industry: ${input.industry}
 Current platform/s: ${input.platform}
+Desired timeline: ${input.timeline}
 Additional notes: ${input.freeText || 'None provided'}
-Attachments: ${input.fileNames.join(', ') || 'None'}
-Contact: ${input.contactName} at ${input.contactCompany}`
+`
 }
 
 const SYSTEM_PROMPT = `You are a project scoping assistant for Metromotion Controls, a Melbourne-based industrial automation and control systems integrator. Your role is to help prospective clients think through their automation project by highlighting the key considerations they should be aware of.
@@ -158,6 +154,7 @@ async function generateReport(prompt: string): Promise<ScopingReport | null> {
   }
 
   try {
+    // NOTE: Files are stored in Supabase only. Never send file contents to the AI API.
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -214,8 +211,6 @@ export async function POST(request: NextRequest) {
     }
 
     const challenge = String(formData.get('challenge') || '').trim()
-    const challengeLabel = String(formData.get('challengeLabel') || '').trim()
-    const challengeShort = String(formData.get('challengeShort') || '').trim()
     const industry = String(formData.get('industry') || '').trim()
     const platform = String(formData.get('platform') || '').trim()
     const timeline = String(formData.get('timeline') || '').trim()
@@ -307,16 +302,12 @@ export async function POST(request: NextRequest) {
 
     const report = await generateReport(
       buildPrompt({
-        challengeLabel,
-        challengeShort,
+        challenge,
         challengeAnswers,
         industry,
         platform,
         timeline,
         freeText: truncatedFreeText,
-        fileNames: uploadFiles.map((file) => file.name),
-        contactName,
-        contactCompany,
       }),
     )
 
