@@ -84,7 +84,12 @@ body {
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .section { padding: 64px 24px; }
+  .site-footer { padding: 48px 24px 24px !important; }
   .footer-top { grid-template-columns: 1fr !important; }
+  .nav-links-desktop { display: none !important; }
+  .nav-cta-btn { display: none !important; }
+  .nav-mobile-toggle { display: flex !important; }
+  .site-nav { padding: 0 24px !important; }
 
   .hero-grid { grid-template-columns: 1fr !important; }
   .hero-left { padding: 56px 24px !important; border-right: none !important; }
