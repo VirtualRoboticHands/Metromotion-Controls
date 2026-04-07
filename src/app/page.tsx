@@ -2,6 +2,8 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
 import Image from 'next/image'
+import fs from 'node:fs'
+import path from 'node:path'
 import { buildPageMetadata } from '@/lib/metadata'
 import ProjectScopingTool from '@/components/ProjectScopingTool'
 import Reveal from '@/components/animations/Reveal'
@@ -40,12 +42,6 @@ const caseStudies = [
   { type: 'Analytics', name: 'OEE Analytics Platform', desc: 'Real-time OEE dashboards and downtime tracking integrated into existing SCADA across three production lines.' },
 ]
 
-const platforms = [
-  'Rockwell\nAutomation', 'Siemens\nTIA Portal', 'Ignition\nSCADA', 'Wonderware\n/ AVEVA',
-  'Schneider\nElectric', 'Omron', 'Citect SCADA', 'ifm Sensors',
-  'SICK Sensors', 'OPC-UA / MQTT', 'SAP\nIntegration', 'Azure IIoT',
-]
-
 const whyCards = [
   { num: '92%', title: 'Repeat Business', desc: 'Over 92% of our work comes from existing clients. That\'s the result of delivering what we promise, and staying involved long after go-live.' },
   { num: '14+', title: 'Years Specialising', desc: 'Over a decade focused exclusively on industrial automation for food and beverage manufacturing. We know your equipment, your environment, and the pressure you\'re under.' },
@@ -55,9 +51,48 @@ const whyCards = [
   { num: '∞', title: 'Long-Term Partnerships', desc: 'We build systems we have to maintain. So we build them right. Our longest client relationships span the full lifetime of the company.' },
 ]
 
-const clients = ['Chobani', 'Bulla', "Arnott's", 'Lactalis', 'Real Pet Food', 'Beak & Johnston', 'Kinrise', 'Tibaldi']
+const imageExtensions = new Set(['.png', '.jpg', '.jpeg', '.webp', '.svg'])
+const publicDir = path.join(process.cwd(), 'public')
+
+function getImageFiles(relativeDir: string) {
+  const absDir = path.join(publicDir, relativeDir)
+  if (!fs.existsSync(absDir)) return []
+  return fs
+    .readdirSync(absDir)
+    .filter((file) => imageExtensions.has(path.extname(file).toLowerCase()))
+    .sort((a, b) => a.localeCompare(b))
+}
+
+function resolveImagePath(filename: string, searchDirs: string[]) {
+  for (const dir of searchDirs) {
+    if (fs.existsSync(path.join(publicDir, dir, filename))) {
+      return `/${dir}/${filename}`
+    }
+  }
+  return null
+}
+
+function humanizeFilename(filename: string) {
+  return filename
+    .replace(/\.[^/.]+$/, '')
+    .replace(/[-_]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
 
 export default function HomePage() {
+  const clientLogos = getImageFiles('public/images/clients')
+  const platformLogos = getImageFiles('public/images/platforms').filter(
+    (file) => !['ignitiongold.png', 'rockwell.png', 'screens.png', 'elec-drawings.png'].includes(file.toLowerCase()),
+  )
+  const certificationBadges = ['ignitiongold.png', 'rockwell.png']
+    .map((file) => resolveImagePath(file, ['public/images', 'public/images/platforms']))
+    .filter((badge): badge is string => Boolean(badge))
+  const workShowcaseImages = ['screens.png', 'elec-drawings.png']
+    .map((file) => resolveImagePath(file, ['public/images', 'public/images/platforms']))
+    .filter((image): image is string => Boolean(image))
+  const hughRoddyImage = resolveImagePath('hugh-roddy.jpg', ['public/images', 'public/images/platforms'])
+
   return (
     <>
       <Nav />
@@ -138,20 +173,25 @@ export default function HomePage() {
 
       {/* CLIENTS STRIP */}
       <Reveal><div style={{
-        padding: '28px 52px', borderBottom: '1px solid var(--border)',
+        padding: '28px 52px', borderBottom: '1px solid var(--border)', background: 'var(--white)',
         display: 'flex', alignItems: 'center', gap: '36px',
       }} className="clients-strip">
         <span style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--muted2)', whiteSpace: 'nowrap', flexShrink: 0 }}>Trusted by</span>
         <div style={{ width: '1px', height: '18px', background: 'var(--border2)', flexShrink: 0 }} />
-        <div className="logo-marquee" style={{ display: 'flex', gap: '36px', alignItems: 'center', flexWrap: 'nowrap' as const }}>
-          {clients.map(name => (
-            <span key={name} style={{
-              fontSize: '13px', fontWeight: 500, letterSpacing: '0.07em', textTransform: 'uppercase' as const,
-              color: 'var(--muted2)', transition: 'color 0.2s',
-            }}>
-              {name}
-            </span>
-          ))}
+        <div className="logo-marquee-track">
+          <div className="logo-marquee-inner">
+            {[...clientLogos, ...clientLogos].map((logo, idx) => (
+              <div key={`${logo}-${idx}`} className="logo-marquee-item">
+                <Image
+                  src={`/public/images/clients/${logo}`}
+                  alt={`${humanizeFilename(logo)} client logo`}
+                  width={160}
+                  height={40}
+                  style={{ width: 'auto', height: '40px', objectFit: 'contain' }}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div></Reveal>
 
@@ -221,6 +261,39 @@ export default function HomePage() {
             </div>
           ))}
         </div>
+        {workShowcaseImages.length > 0 && (
+          <div
+            style={{
+              marginTop: '28px',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+              gap: '16px',
+            }}
+            className="work-showcase-grid"
+          >
+            {workShowcaseImages.map((imagePath) => (
+              <div
+                key={imagePath}
+                className="hover-lift"
+                style={{
+                  background: 'var(--white)',
+                  border: '1px solid var(--border)',
+                  padding: '12px',
+                  position: 'relative',
+                  minHeight: '210px',
+                }}
+              >
+                <Image
+                  src={imagePath}
+                  alt={`${humanizeFilename(path.basename(imagePath))} from a Metromotion Controls project`}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 50vw"
+                  style={{ objectFit: 'cover', padding: '12px' }}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </section></Reveal>
 
       {/* INDUSTRIES */}
@@ -348,7 +421,33 @@ export default function HomePage() {
           padding: '56px 64px', marginTop: '48px',
           display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '40px', alignItems: 'start',
         }} className="testimonial-hero">
-          <div style={{ fontFamily: 'var(--font-serif)', fontSize: '88px', lineHeight: 0.7, color: 'var(--red)', opacity: 0.3 }}>&ldquo;</div>
+          {hughRoddyImage ? (
+            <Image
+              src={hughRoddyImage}
+              alt="Hugh Roddy, Vice President Global Engineering at Chobani"
+              width={56}
+              height={56}
+              style={{ width: '56px', height: '56px', borderRadius: '999px', objectFit: 'cover' }}
+            />
+          ) : (
+            <div
+              style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '999px',
+                background: 'var(--off2)',
+                border: '1px solid var(--border)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 600,
+                color: 'var(--ink2)',
+                fontSize: '14px',
+              }}
+            >
+              HR
+            </div>
+          )}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
             <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(19px, 2.4vw, 26px)', lineHeight: 1.45, color: 'var(--ink)', fontStyle: 'italic', letterSpacing: '-0.01em' }}>
               All the team have been an outstanding partner of Chobani since 2011. They have provided a one in a million partnership that we have not seen anywhere else in the world to date, and they continue to do so on many levels.
@@ -398,20 +497,61 @@ export default function HomePage() {
         <h2 className="section-headline">Platform <em>agnostic,</em><br/>vendor independent</h2>
         <p className="section-sub">We work across leading automation platforms and design around your site standards, not ours.</p>
         <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)',
+          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
           background: 'var(--border)', border: '1px solid var(--border)', gap: '1px', marginTop: '48px',
         }} className="platform-grid">
-          {platforms.map(p => (
-            <div key={p} style={{
+          {platformLogos.map((logo) => (
+            <div key={logo} style={{
               background: 'var(--white)', padding: '24px 16px',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '13px', fontWeight: 500, color: 'var(--muted)', textAlign: 'center', lineHeight: 1.3,
-              transition: 'background 0.2s, color 0.2s', minHeight: '72px', whiteSpace: 'pre-line',
+              minHeight: '72px',
             }}>
-              {p}
+              <Image
+                src={`/public/images/platforms/${logo}`}
+                alt={`${humanizeFilename(logo)} platform logo`}
+                width={160}
+                height={36}
+                style={{ width: 'auto', height: '36px', objectFit: 'contain' }}
+                className="logo-image"
+              />
             </div>
           ))}
         </div>
+        {certificationBadges.length > 0 && (
+          <div style={{ marginTop: '30px' }}>
+            <div className="section-label">Certifications</div>
+            <div
+              style={{
+                display: 'flex',
+                gap: '16px',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+              }}
+            >
+              {certificationBadges.map((badgePath) => (
+                <div
+                  key={badgePath}
+                  style={{
+                    background: 'var(--white)',
+                    border: '1px solid var(--border)',
+                    padding: '14px 18px',
+                    minHeight: '88px',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image
+                    src={badgePath}
+                    alt={`${humanizeFilename(path.basename(badgePath))} certification badge`}
+                    width={190}
+                    height={60}
+                    style={{ width: 'auto', height: '60px', objectFit: 'contain' }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section></Reveal>
 
       {/* WHY */}

@@ -81,14 +81,34 @@ body {
   box-shadow: 0 8px 18px rgba(24, 23, 20, 0.08);
 }
 
-.logo-marquee {
+.logo-marquee-track {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.logo-marquee-inner {
+  display: flex;
+  align-items: center;
+  gap: 42px;
   width: max-content;
-  animation: logoScroll 32s linear infinite;
+  animation: logoScroll 28s linear infinite;
+}
+
+.logo-marquee-item,
+.logo-image {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.logo-marquee-item:hover,
+.logo-image:hover {
+  filter: grayscale(0%);
 }
 
 @keyframes logoScroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-18%); }
+  100% { transform: translateX(-50%); }
 }
 
 /* ── TAG ── */
@@ -137,6 +157,10 @@ body {
   .platform-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .testimonial-hero { grid-template-columns: 1fr !important; padding: 36px !important; gap: 16px !important; }
   .clients-strip { flex-wrap: wrap !important; padding: 20px 24px !important; }
+  .logo-marquee-inner { gap: 28px !important; }
+  .logo-marquee-item img { height: 30px !important; }
+  .logo-image { height: 30px !important; }
+  .work-showcase-grid { grid-template-columns: 1fr !important; }
 
   .about-header { grid-template-columns: 1fr !important; padding: 60px 24px !important; gap: 36px !important; }
   .about-stats { grid-template-columns: repeat(2, 1fr) !important; }
@@ -152,7 +176,7 @@ body {
 
 @media (max-width: 1100px) {
   .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  .platform-grid { grid-template-columns: repeat(3, 1fr) !important; }
+  .platform-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
 @media (max-width: 1100px) and (min-width: 901px) {
