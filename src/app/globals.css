@@ -139,3 +139,25 @@ body {
 .blog-content tbody tr:nth-child(even) { background: #f7f6f3; }
 .blog-content pre { background: #111827; border-radius: 12px; padding: 16px; overflow-x: auto; }
 .blog-content img { width: 100%; height: auto; border-radius: 14px; }
+
+.contact-input:focus {
+  border-color: var(--red) !important;
+  box-shadow: 0 0 0 1px var(--red-light);
+}
+
+.contact-submit-btn:hover {
+  background: #ac241b;
+}
+
+.contact-spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #ffffff;
+  animation: contactSpin 0.8s linear infinite;
+}
+
+@keyframes contactSpin {
+  to { transform: rotate(360deg); }
+}
