@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { buildPageMetadata } from '@/lib/metadata'
 import ProjectScopingTool from '@/components/ProjectScopingTool'
 import Reveal from '@/components/animations/Reveal'
-import CountUpStat from '@/components/animations/CountUpStat'
 
 export const metadata = buildPageMetadata({
   title: 'Industrial Automation & Control Systems',
@@ -113,7 +112,15 @@ export default function HomePage() {
               display: 'flex', flexDirection: 'column', justifyContent: 'center',
               borderBottom: i < 3 ? '1px solid var(--border)' : 'none',
             }} className="hero-stat">
-              <CountUpStat value={Number(stat.num)} suffix={stat.suffix} label={stat.label} />
+              <div>
+                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '52px', color: 'var(--ink)', lineHeight: 1, marginBottom: '5px' }}>
+                  {stat.num}
+                  {stat.suffix && <em style={{ color: 'var(--red)', fontStyle: 'normal', fontSize: '38px' }}>{stat.suffix}</em>}
+                </div>
+                <div style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.05em', textTransform: 'uppercase', fontWeight: 400 }}>
+                  {stat.label}
+                </div>
+              </div>
             </div>
           ))}
         </div>
