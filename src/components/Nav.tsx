@@ -45,6 +45,7 @@ export default function Nav() {
           { href: '/#industries', label: 'Industries' },
           { href: '/projects', label: 'Projects' },
           { href: '/about', label: 'About' },
+          { href: '/blog', label: 'Blog' },
           { href: '/contact', label: 'Contact' },
         ].map(link => (
           <li key={link.href}>
@@ -102,6 +103,7 @@ export default function Nav() {
             { href: '/#industries', label: 'Industries' },
             { href: '/projects', label: 'Projects' },
             { href: '/about', label: 'About' },
+            { href: '/blog', label: 'Blog' },
             { href: '/contact', label: 'Contact' },
           ].map(link => (
             <Link key={link.href} href={link.href}

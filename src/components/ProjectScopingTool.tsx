@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 
 type ChallengeQuestion = {
   key: string
@@ -230,6 +231,7 @@ const formatSize = (bytes: number): string => {
 }
 
 export default function ProjectScopingTool() {
+  const reducedMotion = useReducedMotion()
   const [step, setStep] = useState(0)
   const [challenge, setChallenge] = useState<string | null>(null)
   const [cAns, setCAns] = useState<Record<string, string>>({})
@@ -365,6 +367,15 @@ export default function ProjectScopingTool() {
     setFallbackMode(false)
   }
 
+  const stepMotion = reducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+        transition: { duration: 0.3, ease: 'easeOut' as const },
+      }
+
   return (
     <div className="overflow-hidden rounded-sm border border-[#e2e0db] bg-white">
       <div className="flex items-center justify-between border-b border-[#e2e0db] px-5 py-3">
@@ -376,7 +387,14 @@ export default function ProjectScopingTool() {
       </div>
 
       {step < 4 && (
-        <div className="grid grid-cols-2 border-b border-[#e2e0db] sm:grid-cols-4">
+        <div className="border-b border-[#e2e0db]">
+          <motion.div
+            className="h-1 bg-[#c8281e]"
+            initial={false}
+            animate={{ width: `${((step + 1) / 4) * 100}%` }}
+            transition={reducedMotion ? { duration: 0 } : { duration: 0.3, ease: 'easeOut' }}
+          />
+          <div className="grid grid-cols-2 sm:grid-cols-4">
           {stepLabels.map((label, index) => (
             <div
               key={label}
@@ -391,12 +409,14 @@ export default function ProjectScopingTool() {
               {label}
             </div>
           ))}
+          </div>
         </div>
       )}
 
       <div ref={scrollRef} className="max-h-[78vh] overflow-y-auto px-5 py-8 sm:px-8">
+        <AnimatePresence mode="wait">
         {step === 0 && (
-          <div>
+          <motion.div key="step-0" {...stepMotion}>
             <h3 className="font-[var(--font-serif)] text-3xl leading-tight text-[#1a1a1a]">What are you trying to solve?</h3>
             <p className="mt-2 text-sm text-[#7a7770]">Pick the challenge closest to your situation.</p>
             <div className="mt-7 grid gap-px border border-[#e2e0db] bg-[#e2e0db] md:grid-cols-2">
@@ -418,11 +438,11 @@ export default function ProjectScopingTool() {
                 </button>
               ))}
             </div>
-          </div>
+          </motion.div>
         )}
 
         {step === 1 && currentChallenge && (
-          <div>
+          <motion.div key="step-1" {...stepMotion}>
             <div className="flex items-center gap-2">
               <span className="text-xl text-[#c8281e]">{currentChallenge.icon}</span>
               <h3 className="font-[var(--font-serif)] text-3xl leading-tight text-[#1a1a1a]">{currentChallenge.label}</h3>
@@ -471,11 +491,11 @@ export default function ProjectScopingTool() {
                 Continue →
               </button>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {step === 2 && (
-          <div>
+          <motion.div key="step-2" {...stepMotion}>
             <h3 className="font-[var(--font-serif)] text-3xl leading-tight text-[#1a1a1a]">A bit of context</h3>
             <p className="mt-2 text-sm text-[#7a7770]">Helps us match against similar projects we&apos;ve delivered.</p>
 
@@ -551,11 +571,11 @@ export default function ProjectScopingTool() {
               <button onClick={() => setStep(1)} className="text-sm text-[#7a7770] hover:text-[#1a1a1a]">← Back</button>
               <button onClick={() => setStep(3)} disabled={!industry || !platform || !timeline} className="rounded-sm bg-[#c8281e] px-6 py-2 text-sm font-semibold text-white transition hover:bg-[#a8201a] disabled:opacity-35">Continue →</button>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {step === 3 && (
-          <div>
+          <motion.div key="step-3" {...stepMotion}>
             <h3 className="font-[var(--font-serif)] text-3xl leading-tight text-[#1a1a1a]">Almost there</h3>
             <p className="mt-2 text-sm text-[#7a7770]">We&apos;ll generate your scoping brief in about 10 seconds.</p>
 
@@ -604,7 +624,7 @@ export default function ProjectScopingTool() {
                 <button onClick={submit} disabled={!canSubmit || loading} className="rounded-sm bg-[#c8281e] px-6 py-2 text-sm font-semibold text-white transition hover:bg-[#a8201a] disabled:opacity-35">Generate My Scoping Brief →</button>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {step === 4 && loading && !report && !fallbackMode && (
@@ -638,7 +658,7 @@ export default function ProjectScopingTool() {
         )}
 
         {step === 4 && !fallbackMode && report && currentChallenge && (
-          <div>
+          <motion.div key="step-4-report" {...stepMotion}>
             <div className="mb-7 border-b border-[#e2e0db] pb-5">
               <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#c8281e]">Scoping Brief — {currentChallenge.label}</span>
               <h3 className="mt-2 font-[var(--font-serif)] text-3xl leading-tight text-[#1a1a1a]">{report.headline}</h3>
@@ -700,8 +720,9 @@ export default function ProjectScopingTool() {
                 Start Over
               </button>
             </div>
-          </div>
+          </motion.div>
         )}
+        </AnimatePresence>
       </div>
 
       <div className="border-t border-[#e2e0db] px-5 py-3 text-center text-[11px] text-[#7a7770]">

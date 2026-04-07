@@ -3,6 +3,8 @@ import Footer from '@/components/Footer'
 import Link from 'next/link'
 import { buildPageMetadata } from '@/lib/metadata'
 import ProjectScopingTool from '@/components/ProjectScopingTool'
+import Reveal from '@/components/animations/Reveal'
+import CountUpStat from '@/components/animations/CountUpStat'
 
 export const metadata = buildPageMetadata({
   title: 'Industrial Automation & Control Systems',
@@ -13,13 +15,13 @@ export const metadata = buildPageMetadata({
 
 const services = [
   { num: '01', title: 'Project Management', desc: 'End-to-end delivery from scope and design through procurement, installation and handover. On time, on budget.', tags: ['Scope & Schedule', 'Procurement'], icon: <><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 3v18"/><circle cx="15" cy="15" r="2"/></> },
-  { num: '02', title: 'Electrical Engineering', desc: 'Full electrical design — MCC layouts, cable schedules, panel builds and site installation using EPLAN and AutoCAD.', tags: ['EPLAN', 'AutoCAD', 'Panel Build'], icon: <><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></> },
+  { num: '02', title: 'Electrical Engineering', desc: 'Full electrical design, MCC layouts, cable schedules, panel builds and site installation using EPLAN and AutoCAD.', tags: ['EPLAN', 'AutoCAD', 'Panel Build'], icon: <><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></> },
   { num: '03', title: 'Safety Systems', desc: 'Safety-rated control design and verification to AS 61508 / AS 62061. Keeping your people safe and machines compliant.', tags: ['AS 61508', 'SIL Assessment', 'Safety PLC'], icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/> },
   { num: '04', title: 'PLC, HMI & SCADA', desc: 'Custom control logic, supervisory systems and intuitive operator interfaces across all major platforms.', tags: ['Allen-Bradley', 'Siemens', 'Ignition'], icon: <><rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/><path d="M7 8l3 3-3 3M13 14h4"/></> },
   { num: '05', title: 'Commissioning', desc: 'On-site commissioning, FAT/SAT, loop checks and production ramp-up support. We stay until the line runs right.', tags: ['FAT / SAT', 'Loop Check', 'Startup'], icon: <><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></> },
   { num: '06', title: 'Data Analytics & OEE', desc: 'Real-time OEE dashboards and production visibility. Track availability, performance and quality to find your biggest gains.', tags: ['OEE', 'Downtime', 'KPI Dashboards'], icon: <path d="M22 12h-4l-3 9L9 3l-3 9H2"/> },
   { num: '07', title: 'OT Services & Integration', desc: 'SAP, ERP, MES and cloud connectivity. IIoT architecture, OPC-UA and secure industrial networking.', tags: ['SAP', 'MES', 'OPC-UA', 'IIoT'], icon: <><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></> },
-  { num: '08', title: 'Ongoing Support', desc: 'Support contracts, preventive maintenance and on-call engineering. We build systems we maintain — so we build them right.', tags: ['On-call', 'Preventive PM', 'Documentation'], icon: <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/> },
+  { num: '08', title: 'Ongoing Support', desc: 'Support contracts, preventive maintenance and on-call engineering. We build systems we maintain, so we build them right.', tags: ['On-call', 'Preventive PM', 'Documentation'], icon: <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/> },
 ]
 
 const industries = [
@@ -30,11 +32,11 @@ const industries = [
 ]
 
 const caseStudies = [
-  { type: 'Greenfield', name: 'Greenfields Cheese Factory', desc: 'Full automation scope for a new cheese manufacturing facility — pasteurisation, vat control, and CIP systems.' },
+  { type: 'Greenfield', name: 'Greenfields Cheese Factory', desc: 'Full automation scope for a new cheese manufacturing facility, pasteurisation, vat control, and CIP systems.' },
   { type: 'Integration', name: 'Raw Materials Handling', desc: 'Automated intake, weighing, batching and transfer systems with full traceability and ERP integration.' },
-  { type: 'Upgrade', name: 'Factory Automation Upgrades', desc: 'Legacy PLC migration and SCADA upgrades across multiple sites — zero unplanned downtime on any cutover.' },
+  { type: 'Upgrade', name: 'Factory Automation Upgrades', desc: 'Legacy PLC migration and SCADA upgrades across multiple sites, zero unplanned downtime on any cutover.' },
   { type: 'Support', name: 'Site Automation Support', desc: 'Long-term on-call engineering, preventive maintenance and continuous improvement programs.' },
-  { type: 'Commissioning', name: 'OEM Machine Integration', desc: 'Commissioning and site integration of imported OEM machinery — protocols, safety systems and production reporting.' },
+  { type: 'Commissioning', name: 'OEM Machine Integration', desc: 'Commissioning and site integration of imported OEM machinery, protocols, safety systems and production reporting.' },
   { type: 'Analytics', name: 'OEE Analytics Platform', desc: 'Real-time OEE dashboards and downtime tracking integrated into existing SCADA across three production lines.' },
 ]
 
@@ -45,11 +47,11 @@ const platforms = [
 ]
 
 const whyCards = [
-  { num: '92%', title: 'Repeat Business', desc: 'Over 92% of our work comes from existing clients. That\'s the result of delivering what we promise — and staying involved long after go-live.' },
+  { num: '92%', title: 'Repeat Business', desc: 'Over 92% of our work comes from existing clients. That\'s the result of delivering what we promise, and staying involved long after go-live.' },
   { num: '14+', title: 'Years Specialising', desc: 'Over a decade focused exclusively on industrial automation for food and beverage manufacturing. We know your equipment, your environment, and the pressure you\'re under.' },
-  { num: 'OT+IT', title: 'Full Stack Integration', desc: 'From field devices to SAP — we bridge the gap between factory floor and business systems. No third-party middleware. No vendor finger-pointing.' },
+  { num: 'OT+IT', title: 'Full Stack Integration', desc: 'From field devices to SAP, we connect factory systems with business systems. No third-party middleware and no vendor finger-pointing.' },
   { num: 'Zero', title: 'Unplanned Cutovers', desc: 'Every legacy migration is planned to the minute. We\'ve never caused unplanned production downtime during a system cutover.' },
-  { num: 'AU', title: 'National Reach', desc: 'Based in Melbourne, delivering across Australia. We\'ve worked on sites from Brisbane to Adelaide — and we travel for the right project.' },
+  { num: 'AU', title: 'National Reach', desc: 'Based in Melbourne, delivering across Australia. We\'ve worked on sites from Brisbane to Adelaide, and we travel for the right project.' },
   { num: '∞', title: 'Long-Term Partnerships', desc: 'We build systems we have to maintain. So we build them right. Our longest client relationships span the full lifetime of the company.' },
 ]
 
@@ -95,10 +97,7 @@ export default function HomePage() {
           </p>
           <div style={{ display: 'flex', gap: '12px', animation: 'fadeUp 0.6s 0.4s both' }}>
             <Link href="/#projects" className="btn-primary">View Our Work</Link>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <Link href="/contact" className="btn-outline">Start a Project</Link>
-              <Link href="#scope" style={{ fontSize: '12px', color: 'var(--muted)', textDecoration: 'none' }}>Or scope your project first →</Link>
-            </div>
+            <Link href="#scope" className="btn-outline">Start a Project</Link>
           </div>
         </div>
 
@@ -114,25 +113,20 @@ export default function HomePage() {
               display: 'flex', flexDirection: 'column', justifyContent: 'center',
               borderBottom: i < 3 ? '1px solid var(--border)' : 'none',
             }} className="hero-stat">
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '52px', color: 'var(--ink)', lineHeight: 1, marginBottom: '5px' }}>
-                {stat.num}{stat.suffix && <em style={{ color: 'var(--red)', fontStyle: 'normal', fontSize: '38px' }}>{stat.suffix}</em>}
-              </div>
-              <div style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.05em', textTransform: 'uppercase' as const, fontWeight: 400 }}>
-                {stat.label}
-              </div>
+              <CountUpStat value={Number(stat.num)} suffix={stat.suffix} label={stat.label} />
             </div>
           ))}
         </div>
       </section>
 
       {/* CLIENTS STRIP */}
-      <div style={{
+      <Reveal><div style={{
         padding: '28px 52px', borderBottom: '1px solid var(--border)',
         display: 'flex', alignItems: 'center', gap: '36px',
       }} className="clients-strip">
         <span style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--muted2)', whiteSpace: 'nowrap', flexShrink: 0 }}>Trusted by</span>
         <div style={{ width: '1px', height: '18px', background: 'var(--border2)', flexShrink: 0 }} />
-        <div style={{ display: 'flex', gap: '36px', alignItems: 'center', flexWrap: 'wrap' as const }}>
+        <div className="logo-marquee" style={{ display: 'flex', gap: '36px', alignItems: 'center', flexWrap: 'nowrap' as const }}>
           {clients.map(name => (
             <span key={name} style={{
               fontSize: '13px', fontWeight: 500, letterSpacing: '0.07em', textTransform: 'uppercase' as const,
@@ -142,10 +136,10 @@ export default function HomePage() {
             </span>
           ))}
         </div>
-      </div>
+      </div></Reveal>
 
       {/* INTRO BAND */}
-      <div style={{
+      <Reveal><div style={{
         background: 'var(--ink)', padding: '80px 52px',
         display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center',
       }} className="intro-grid">
@@ -156,14 +150,14 @@ export default function HomePage() {
         </div>
         <div>
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.85, fontWeight: 300 }}>
-            Metromotion Controls is a trusted provider of <strong style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 500 }}>industrial automation and control systems engineering</strong> for manufacturing and processing facilities across Australia. We specialise in PLC programming, HMI development, SCADA integration, and control system commissioning — delivering tailored solutions that improve efficiency, enhance product quality, and increase visibility across your production lines.
+            Metromotion Controls engineers, builds, and commissions industrial control systems for manufacturing sites across Australia. We deliver PLC programming, HMI and SCADA development, panel design, commissioning, and integration with plant and business systems.
             <br/><br/>
-            Whether you&apos;re in food and beverage, packaging, or advanced manufacturing, we help <strong style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 500 }}>streamline and future-proof your operations</strong>. From new greenfield installations to legacy system upgrades, our experienced engineers collaborate closely with your team from concept through to commissioning — and beyond.
+            Most projects involve legacy equipment, tight shutdown windows, and incomplete documentation. We work with your team to define the cutover plan, deliver the implementation, and support startup until production is stable.
           </p>
         </div>
-      </div>
+      </div></Reveal>
 
-      <section id="scope" className="section" style={{ background: 'var(--off)' }}>
+      <Reveal><section id="scope" className="section" style={{ background: 'var(--off)' }}>
         <div style={{ marginBottom: '32px' }}>
           <div className="section-label">Project Scoping Tool</div>
           <h2 className="section-headline">Start <em>scoping</em> your project</h2>
@@ -172,23 +166,23 @@ export default function HomePage() {
         <div style={{ background: '#f7f6f3' }}>
           <ProjectScopingTool />
         </div>
-      </section>
+      </section></Reveal>
 
       {/* SERVICES */}
-      <section className="section" id="services" style={{ background: 'var(--off)' }}>
+      <Reveal><section className="section" id="services" style={{ background: 'var(--off)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '48px', flexWrap: 'wrap' as const, gap: '24px' }}>
           <div>
             <div className="section-label">What We Do</div>
             <h2 className="section-headline">Eight disciplines,<br/>one <em>integrated</em> team</h2>
           </div>
-          <p className="section-sub">From first brief to final commissioning — and long after. We cover the full scope so you don&apos;t manage multiple vendors.</p>
+          <p className="section-sub">From first brief to commissioning and ongoing support, we cover the full scope so you do not need multiple vendors.</p>
         </div>
         <div style={{
           display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
           background: 'var(--border)', border: '1px solid var(--border)', gap: '1px',
         }} className="services-grid">
           {services.map(svc => (
-            <div key={svc.num} className="service-card-wrapper" style={{
+            <div key={svc.num} className="service-card-wrapper hover-lift" style={{
               background: 'var(--white)', padding: '32px 26px',
               display: 'flex', flexDirection: 'column', gap: '13px',
               position: 'relative', transition: 'background 0.22s',
@@ -210,10 +204,10 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </section></Reveal>
 
       {/* INDUSTRIES */}
-      <section className="section" id="industries" style={{ background: 'var(--white)' }}>
+      <Reveal><section className="section" id="industries" style={{ background: 'var(--white)' }}>
         <div className="section-label">Industries</div>
         <h2 className="section-headline">Deep sector <em>expertise</em></h2>
         <p className="section-sub">Over a decade focused on Australia&apos;s most demanding manufacturing environments. We know the equipment, the regulations, and the uptime pressure.</p>
@@ -222,7 +216,7 @@ export default function HomePage() {
           background: 'var(--border)', border: '1px solid var(--border)', gap: '1px', marginTop: '48px',
         }} className="industry-grid">
           {industries.map(ind => (
-            <div key={ind.num} style={{
+            <div key={ind.num} className="hover-lift" style={{
               background: 'var(--white)', padding: '36px 26px',
               display: 'flex', flexDirection: 'column', gap: '12px', transition: 'background 0.2s',
             }}>
@@ -232,10 +226,10 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </section></Reveal>
 
       {/* PROJECTS */}
-      <section className="section" id="projects" style={{ background: 'var(--off)' }}>
+      <Reveal><section className="section" id="projects" style={{ background: 'var(--off)' }}>
         <div className="section-label">Case Studies</div>
         <h2 className="section-headline">Projects that <em>speak</em><br/>for themselves</h2>
 
@@ -266,7 +260,7 @@ export default function HomePage() {
               color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: '9px',
             }}>
               <span style={{ width: '7px', height: '7px', background: 'var(--red)', display: 'inline-block', flexShrink: 0 }} />
-              Greenfields Yoghurt Plant — Chobani
+              Greenfields Yoghurt Plant, Chobani
             </div>
           </div>
           <div style={{
@@ -314,7 +308,7 @@ export default function HomePage() {
           background: 'var(--border)', border: '1px solid var(--border)', borderTop: 'none', gap: '1px',
         }} className="cases-grid">
           {caseStudies.map(cs => (
-            <div key={cs.name} style={{
+            <div key={cs.name} className="hover-lift" style={{
               background: 'var(--white)', padding: '26px',
               display: 'flex', flexDirection: 'column', gap: '9px', transition: 'background 0.2s',
             }}>
@@ -324,10 +318,10 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </section></Reveal>
 
       {/* TESTIMONIALS */}
-      <section className="section" id="about" style={{ background: 'var(--white)' }}>
+      <Reveal><section className="section" id="about" style={{ background: 'var(--white)' }}>
         <div className="section-label">Client Testimonials</div>
         <h2 className="section-headline">What our clients <em>say</em></h2>
 
@@ -340,7 +334,7 @@ export default function HomePage() {
           <div style={{ fontFamily: 'var(--font-serif)', fontSize: '88px', lineHeight: 0.7, color: 'var(--red)', opacity: 0.3 }}>&ldquo;</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
             <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(19px, 2.4vw, 26px)', lineHeight: 1.45, color: 'var(--ink)', fontStyle: 'italic', letterSpacing: '-0.01em' }}>
-              All the team have been an outstanding partner of Chobani since 2011. They have provided a one in a million partnership that we have not seen anywhere else in the world to date — and they continue to do so on many levels.
+              All the team have been an outstanding partner of Chobani since 2011. They have provided a one in a million partnership that we have not seen anywhere else in the world to date, and they continue to do so on many levels.
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <div style={{ width: '22px', height: '1px', background: 'var(--red)' }} />
@@ -379,13 +373,13 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </section></Reveal>
 
       {/* PLATFORMS */}
-      <section className="section" style={{ background: 'var(--off)' }}>
+      <Reveal><section className="section" style={{ background: 'var(--off)' }}>
         <div className="section-label">Our Expertise</div>
         <h2 className="section-headline">Platform <em>agnostic,</em><br/>vendor independent</h2>
-        <p className="section-sub">We work across all leading automation platforms — designing around your site standards, not ours.</p>
+        <p className="section-sub">We work across leading automation platforms and design around your site standards, not ours.</p>
         <div style={{
           display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)',
           background: 'var(--border)', border: '1px solid var(--border)', gap: '1px', marginTop: '48px',
@@ -401,10 +395,10 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </section></Reveal>
 
       {/* WHY */}
-      <section className="section" style={{ background: 'var(--white)' }}>
+      <Reveal><section className="section" style={{ background: 'var(--white)' }}>
         <div className="section-label">Why Metromotion</div>
         <h2 className="section-headline">The difference<br/><em>experience</em> makes</h2>
         <div style={{
@@ -419,7 +413,7 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </section></Reveal>
 
       {/* CTA BAND */}
       <div id="contact" style={{
@@ -431,12 +425,12 @@ export default function HomePage() {
             Ready to improve<br/>your <em style={{ color: 'var(--red)', fontStyle: 'italic' }}>production?</em>
           </h2>
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', marginTop: '12px', fontWeight: 300, maxWidth: '480px', lineHeight: 1.75 }}>
-            Tell us about your project and we&apos;ll come back with a straight answer — scope, timeline and a realistic budget. No fluff, no sales pitch.
+            Tell us about your project and we&apos;ll come back with a direct answer on scope, timeline, and delivery approach. Clear engineering advice, no sales script.
           </p>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start', flexShrink: 0 }}>
+        <div style={{ display: 'flex', flexDirection: 'row', gap: '12px', alignItems: 'center', flexWrap: 'wrap', flexShrink: 0 }}>
           <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Start a Conversation</Link>
-          <Link href="#scope" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>Or scope your project online first →</Link>
+          <Link href="#scope" className="btn-outline" style={{ textDecoration: 'none', color: 'white', borderColor: 'rgba(255,255,255,0.35)' }}>Scope Your Project</Link>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
             <a href="tel:0398076896" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>(03) 9807 6896</a>
             <a href="mailto:info@metromotioncontrols.com.au" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>info@metromotioncontrols.com.au</a>
