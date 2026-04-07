@@ -169,7 +169,7 @@ export default function HomePage() {
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.85, fontWeight: 300 }}>
             Metromotion Controls engineers, builds, and commissions industrial control systems for manufacturing sites across Australia. We deliver PLC programming, HMI and SCADA development, panel design, commissioning, and integration with plant and business systems.
             <br/><br/>
-            Most projects involve legacy equipment, tight shutdown windows, and incomplete documentation. We work with your team to define the cutover plan, deliver the implementation, and support startup until production is stable.
+            Most projects involve legacy equipment, short shutdown windows, and incomplete documentation. We define the cutover plan with your team, complete the implementation, and stay on site through startup until production is stable.
           </p>
         </div>
       </div></Reveal>
@@ -178,7 +178,7 @@ export default function HomePage() {
         <div style={{ marginBottom: '32px' }}>
           <div className="section-label">Project Scoping Tool</div>
           <h2 className="section-headline">Start <em>scoping</em> your project</h2>
-          <p className="section-sub">Answer a few questions about your automation challenge. We&apos;ll generate a tailored scoping brief with the key questions worth discussing before you engage any integrator.</p>
+          <p className="section-sub">Answer a few questions about your automation challenge. We&apos;ll generate a scoping brief that lists system requirements, risks, and the decisions to settle before implementation starts.</p>
         </div>
         <div style={{ background: '#f7f6f3' }}>
           <ProjectScopingTool />
@@ -192,7 +192,7 @@ export default function HomePage() {
             <div className="section-label">What We Do</div>
             <h2 className="section-headline">Eight disciplines,<br/>one <em>integrated</em> team</h2>
           </div>
-          <p className="section-sub">From first brief to commissioning and ongoing support, we cover the full scope so you do not need multiple vendors.</p>
+          <p className="section-sub">From first brief to commissioning and ongoing support, one team handles design, build, controls, and startup so handovers are clear and accountability stays with us.</p>
         </div>
         <div style={{
           display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
@@ -227,7 +227,7 @@ export default function HomePage() {
       <Reveal><section className="section" id="industries" style={{ background: 'var(--white)' }}>
         <div className="section-label">Industries</div>
         <h2 className="section-headline">Deep sector <em>expertise</em></h2>
-        <p className="section-sub">Over a decade focused on Australia&apos;s most demanding manufacturing environments. We know the equipment, the regulations, and the uptime pressure.</p>
+        <p className="section-sub">Over a decade focused on Australia&apos;s most demanding manufacturing sites. We understand the equipment, compliance requirements, and uptime targets your team is measured against.</p>
         <div style={{
           display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
           background: 'var(--border)', border: '1px solid var(--border)', gap: '1px', marginTop: '48px',
