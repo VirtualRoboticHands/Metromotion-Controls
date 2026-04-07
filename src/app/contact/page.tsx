@@ -1,5 +1,6 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import Image from 'next/image'
 import ContactForm from '@/components/contact/ContactForm'
 import { buildPageMetadata, siteUrl } from '@/lib/metadata'
 
@@ -32,20 +33,30 @@ export default function ContactPage() {
     <>
       <Nav />
       <main style={{ paddingTop: '72px' }}>
-        <section className="contact-header" style={{ padding: '80px 52px', background: 'var(--off)' }}>
-          <div className="section-label">Contact</div>
+        <section className="contact-header" style={{ padding: '80px 52px', background: 'var(--off)', position: 'relative', overflow: 'hidden' }}>
+          <Image
+            src="/images/ContactUsBanner-e1623751245652.png"
+            alt="Contact Metromotion Controls engineering team for industrial automation projects"
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
+          <div className="section-label" style={{ color: 'var(--red)', position: 'relative', zIndex: 1 }}>Contact</div>
           <h1
             style={{
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(40px, 4.4vw, 60px)',
               lineHeight: 1.06,
               letterSpacing: '-0.02em',
-              color: '#1a1a1a',
+              color: 'white',
+              position: 'relative',
+              zIndex: 1,
             }}
           >
             Contact Us
           </h1>
-          <p style={{ maxWidth: '620px', color: 'var(--muted)', marginTop: '14px', lineHeight: 1.75 }}>
+          <p style={{ maxWidth: '620px', color: 'rgba(255,255,255,0.85)', marginTop: '14px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
             Let us know what you&apos;re building and our engineering team will respond with practical next steps.
           </p>
         </section>

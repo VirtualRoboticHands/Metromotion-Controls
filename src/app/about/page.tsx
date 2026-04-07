@@ -1,6 +1,7 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import Image from 'next/image'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata = buildPageMetadata({
@@ -35,8 +36,17 @@ export default function AboutPage() {
         <section style={{
           background: 'var(--ink)', padding: '80px 52px',
           display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center',
+          position: 'relative', overflow: 'hidden',
         }} className="about-header">
-          <div>
+          <Image
+            src="/images/ProjectManagementBanner.png"
+            alt="Project management planning session for industrial automation delivery"
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
+          <div style={{ position: 'relative', zIndex: 1 }}>
             <div className="section-label" style={{ color: 'var(--red)' }}>About Us</div>
             <h1 style={{
               fontFamily: 'var(--font-serif)',
@@ -48,6 +58,7 @@ export default function AboutPage() {
           </div>
           <p style={{
             fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.85, fontWeight: 300,
+            position: 'relative', zIndex: 1,
           }}>
             Metromotion Controls is a Melbourne-based industrial automation and control systems engineering company. We design, program, commission and support automation systems for food &amp; beverage, packaging and advanced manufacturing facilities across Australia.
             <br/><br/>

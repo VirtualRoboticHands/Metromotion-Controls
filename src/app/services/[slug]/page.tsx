@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
@@ -38,6 +39,29 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const breadcrumbSchema = buildServiceBreadcrumbSchema({ name: service.name, slug: service.slug })
   const organisationSchema = buildOrganisationSchema()
   const faqSchema = buildFaqPageSchema(service.faqs)
+  const heroImageBySlug: Record<string, { src: string; alt: string }> = {
+    commissioning: {
+      src: '/images/CommissioningBanner.png',
+      alt: 'Engineers commissioning industrial automation equipment on site',
+    },
+    'ot-networks': {
+      src: '/images/OTBanner.png',
+      alt: 'Industrial OT networking hardware and secure connectivity infrastructure',
+    },
+    'functional-safety': {
+      src: '/images/SafetyBanner.png',
+      alt: 'Functional safety systems and machinery safety controls in an industrial plant',
+    },
+    'automation-upgrades': {
+      src: '/images/SupportBanner.png',
+      alt: 'Automation upgrade works on legacy industrial control systems',
+    },
+    'control-panel-engineering': {
+      src: '/images/ElectricalEngineeringBanner.png',
+      alt: 'Control panel engineering and electrical design workspace',
+    },
+  }
+  const heroImage = heroImageBySlug[service.slug]
 
   return (
     <>
@@ -47,10 +71,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Nav />
       <main style={{ background: 'var(--white)', minHeight: '100vh', paddingTop: '72px' }}>
-        <section className="section" style={{ background: 'var(--off)', borderBottom: '1px solid var(--border)' }}>
-          <div className="section-label">Service</div>
-          <h1 className="section-headline" style={{ maxWidth: '900px' }}>{service.name}</h1>
-          <p className="section-sub" style={{ maxWidth: '780px' }}>{service.heroDescription}</p>
+        <section className="section" style={{ background: 'var(--off)', borderBottom: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
+          {heroImage && (
+            <>
+              <Image src={heroImage.src} alt={heroImage.alt} fill sizes="100vw" style={{ objectFit: 'cover' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
+            </>
+          )}
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <div className="section-label" style={{ color: heroImage ? 'var(--red)' : undefined }}>Service</div>
+            <h1 className="section-headline" style={{ maxWidth: '900px', color: heroImage ? 'white' : undefined }}>{service.name}</h1>
+            <p className="section-sub" style={{ maxWidth: '780px', color: heroImage ? 'rgba(255,255,255,0.85)' : undefined }}>{service.heroDescription}</p>
+          </div>
         </section>
 
         {service.sections.map((section, index) => (

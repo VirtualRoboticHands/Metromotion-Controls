@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { IndustryContent } from '@/data/industries'
 
 const h2Style = {
@@ -24,14 +25,27 @@ export function IndustryBreadcrumb({ name, slug }: { name: string; slug: string 
 }
 
 export function IndustryHero({ industry }: { industry: IndustryContent }) {
+  const heroImage = industry.slug === 'dairy'
+    ? {
+        src: '/images/ServicesBanner.png',
+        alt: 'Dairy processing automation systems and production equipment',
+      }
+    : null
+
   return (
-    <section className="section" style={{ background: 'var(--off)', borderBottom: '1px solid var(--border)' }}>
-      <div className="section-label">Industry</div>
-      <h1 className="section-headline" style={{ maxWidth: '900px' }}>{industry.name}</h1>
+    <section className="section" style={{ background: 'var(--off)', borderBottom: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
+      {heroImage && (
+        <>
+          <Image src={heroImage.src} alt={heroImage.alt} fill sizes="100vw" style={{ objectFit: 'cover' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
+        </>
+      )}
+      <div className="section-label" style={{ color: heroImage ? 'var(--red)' : undefined, position: 'relative', zIndex: 1 }}>Industry</div>
+      <h1 className="section-headline" style={{ maxWidth: '900px', color: heroImage ? 'white' : undefined, position: 'relative', zIndex: 1 }}>{industry.name}</h1>
       {industry.heroSummary.map((item) => (
-        <p key={item} className="section-sub" style={{ maxWidth: '900px', marginTop: '14px' }}>{item}</p>
+        <p key={item} className="section-sub" style={{ maxWidth: '900px', marginTop: '14px', color: heroImage ? 'rgba(255,255,255,0.85)' : undefined, position: 'relative', zIndex: 1 }}>{item}</p>
       ))}
-      <Link href="/contact" className="btn-cta" style={{ display: 'inline-block', textDecoration: 'none', marginTop: '20px' }}>
+      <Link href="/contact" className="btn-cta" style={{ display: 'inline-block', textDecoration: 'none', marginTop: '20px', position: 'relative', zIndex: 1 }}>
         Get in Touch
       </Link>
     </section>
