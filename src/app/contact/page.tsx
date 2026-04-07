@@ -1,235 +1,134 @@
-'use client'
-
-import { useState } from 'react'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import ContactForm from '@/components/contact/ContactForm'
+import { buildPageMetadata, siteUrl } from '@/lib/metadata'
+
+export const metadata = buildPageMetadata({
+  title: 'Contact Us',
+  description:
+    'Get in touch with Metromotion Controls for industrial automation, PLC programming, SCADA, and control systems engineering in Melbourne.',
+  path: '/contact',
+})
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Metromotion Controls',
+  url: `${siteUrl}/contact`,
+  telephone: '(03) 9807 6896',
+  email: 'info@metromotioncontrols.com.au',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '29-31 Sunhill Road',
+    addressLocality: 'Mount Waverley',
+    addressRegion: 'VIC',
+    postalCode: '3149',
+    addressCountry: 'AU',
+  },
+}
 
 export default function ContactPage() {
-  const [form, setForm] = useState({
-    name: '', company: '', phone: '', email: '', challenge: '', message: '',
-  })
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('sending')
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      if (res.ok) {
-        setStatus('sent')
-        setForm({ name: '', company: '', phone: '', email: '', challenge: '', message: '' })
-      } else {
-        setStatus('error')
-      }
-    } catch {
-      setStatus('error')
-    }
-  }
-
-  const inputStyle = {
-    width: '100%', padding: '14px 16px',
-    border: '1px solid var(--border2)', background: 'var(--white)',
-    fontFamily: 'var(--font-sans)', fontSize: '14px', color: 'var(--ink)',
-    outline: 'none', transition: 'border-color 0.2s',
-  }
-
-  const labelStyle = {
-    fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase' as const,
-    color: 'var(--muted)', fontWeight: 500, marginBottom: '6px', display: 'block',
-  }
-
   return (
     <>
       <Nav />
       <main style={{ paddingTop: '72px' }}>
-        {/* Header */}
-        <section style={{
-          background: 'var(--ink)', padding: '80px 52px',
-        }} className="contact-header">
-          <div className="section-label" style={{ color: 'var(--red)' }}>Contact</div>
-          <h1 style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(38px, 4.5vw, 60px)',
-            color: 'white', lineHeight: 1.05, letterSpacing: '-0.02em',
-          }}>
-            Start a <em style={{ color: 'var(--red)', fontStyle: 'italic' }}>conversation</em>
+        <section className="contact-header" style={{ padding: '80px 52px', background: 'var(--off)' }}>
+          <div className="section-label">Contact</div>
+          <h1
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(40px, 4.4vw, 60px)',
+              lineHeight: 1.06,
+              letterSpacing: '-0.02em',
+              color: '#1a1a1a',
+            }}
+          >
+            Contact Us
           </h1>
-          <p style={{
-            fontSize: '16px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.75,
-            fontWeight: 300, maxWidth: '520px', marginTop: '16px',
-          }}>
-            Tell us about your project and we&apos;ll come back with a straight answer — scope, timeline and a realistic budget.
+          <p style={{ maxWidth: '620px', color: 'var(--muted)', marginTop: '14px', lineHeight: 1.75 }}>
+            Let us know what you&apos;re building and our engineering team will respond with practical next steps.
           </p>
         </section>
 
-        {/* Form + Details */}
-        <section style={{
-          display: 'grid', gridTemplateColumns: '1fr 380px', gap: 0,
-          borderBottom: '1px solid var(--border)',
-        }} className="contact-grid">
-          {/* Form */}
-          <div style={{ padding: '64px 52px', borderRight: '1px solid var(--border)' }} className="contact-form-col">
-            <h2 style={{
-              fontFamily: 'var(--font-serif)', fontSize: '28px',
-              color: 'var(--ink)', marginBottom: '36px',
-            }}>
-              Project enquiry
+        <section
+          className="contact-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1.2fr 1fr',
+            borderTop: '1px solid var(--border)',
+            borderBottom: '1px solid var(--border)',
+          }}
+        >
+          <div className="contact-form-col" style={{ padding: '64px 52px', borderRight: '1px solid var(--border)' }}>
+            <h2
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: '30px',
+                lineHeight: 1.15,
+                color: '#1a1a1a',
+                marginBottom: '30px',
+              }}
+            >
+              Send an Enquiry
+            </h2>
+            <ContactForm />
+          </div>
+
+          <aside style={{ padding: '64px 52px', background: 'var(--off)' }}>
+            <h2
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: '30px',
+                lineHeight: 1.15,
+                color: '#1a1a1a',
+                marginBottom: '28px',
+              }}
+            >
+              Get in Touch
             </h2>
 
-            {status === 'sent' ? (
-              <div style={{
-                background: 'var(--off)', border: '1px solid var(--border)',
-                padding: '48px', textAlign: 'center',
-              }}>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', color: 'var(--ink)', marginBottom: '12px' }}>
-                  Thanks for getting in touch
+            <div style={{ display: 'grid', gap: '20px', marginBottom: '28px' }}>
+              <div>
+                <div style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                  Phone
                 </div>
-                <p style={{ fontSize: '15px', color: 'var(--muted)', lineHeight: 1.7, fontWeight: 300 }}>
-                  We&apos;ll review your enquiry and come back to you within one business day.
-                </p>
+                <a href="tel:0398076896" style={{ color: 'var(--ink)', textDecoration: 'none' }}>
+                  (03) 9807 6896
+                </a>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }} className="form-row">
-                  <div>
-                    <label style={labelStyle}>Your name *</label>
-                    <input
-                      required type="text" value={form.name}
-                      onChange={e => setForm({ ...form, name: e.target.value })}
-                      style={inputStyle} placeholder="Full name"
-                    />
-                  </div>
-                  <div>
-                    <label style={labelStyle}>Company *</label>
-                    <input
-                      required type="text" value={form.company}
-                      onChange={e => setForm({ ...form, company: e.target.value })}
-                      style={inputStyle} placeholder="Company name"
-                    />
-                  </div>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }} className="form-row">
-                  <div>
-                    <label style={labelStyle}>Phone</label>
-                    <input
-                      type="tel" value={form.phone}
-                      onChange={e => setForm({ ...form, phone: e.target.value })}
-                      style={inputStyle} placeholder="Phone number"
-                    />
-                  </div>
-                  <div>
-                    <label style={labelStyle}>Email *</label>
-                    <input
-                      required type="email" value={form.email}
-                      onChange={e => setForm({ ...form, email: e.target.value })}
-                      style={inputStyle} placeholder="Email address"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label style={labelStyle}>What are you trying to solve? *</label>
-                  <select
-                    required value={form.challenge}
-                    onChange={e => setForm({ ...form, challenge: e.target.value })}
-                    style={{ ...inputStyle, appearance: 'none' as const, cursor: 'pointer' }}
-                  >
-                    <option value="">Select a challenge...</option>
-                    <option value="oee">OEE & Production Visibility</option>
-                    <option value="scada">SCADA / HMI Upgrade or New Build</option>
-                    <option value="plc">PLC Programming or Migration</option>
-                    <option value="safety">Safety System Design / SIL Assessment</option>
-                    <option value="integration">SAP / ERP / MES Integration</option>
-                    <option value="commissioning">Commissioning & Startup Support</option>
-                    <option value="legacy">Legacy System Migration</option>
-                    <option value="greenfield">Greenfield Plant Automation</option>
-                    <option value="support">Ongoing Support Contract</option>
-                    <option value="data">Data Analytics & Dashboards</option>
-                    <option value="electrical">Electrical Engineering & Panel Build</option>
-                    <option value="other">Something else</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label style={labelStyle}>Tell us more about your project</label>
-                  <textarea
-                    value={form.message}
-                    onChange={e => setForm({ ...form, message: e.target.value })}
-                    style={{ ...inputStyle, minHeight: '140px', resize: 'vertical' as const }}
-                    placeholder="What's the situation? What are you trying to achieve? Any platforms or constraints we should know about?"
-                  />
-                </div>
-
-                <button type="submit" className="btn-primary"
-                  style={{ alignSelf: 'flex-start', opacity: status === 'sending' ? 0.6 : 1 }}
-                  disabled={status === 'sending'}
-                >
-                  {status === 'sending' ? 'Sending...' : 'Send Enquiry'}
-                </button>
-
-                {status === 'error' && (
-                  <p style={{ fontSize: '13px', color: 'var(--red)' }}>
-                    Something went wrong. Please try again or call us directly.
-                  </p>
-                )}
-              </form>
-            )}
-          </div>
-
-          {/* Sidebar details */}
-          <div style={{ padding: '64px 36px', background: 'var(--off)' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-              {[
-                { label: 'Phone', value: '(03) 9807 6896', href: 'tel:0398076896' },
-                { label: 'Email', value: 'info@metromotioncontrols.com.au', href: 'mailto:info@metromotioncontrols.com.au' },
-                { label: 'Address', value: '29–31 Sunhill Road\nMount Waverley VIC 3149', href: 'https://maps.google.com/?q=29-31+Sunhill+Road+Mount+Waverley+VIC+3149' },
-              ].map(item => (
-                <div key={item.label}>
-                  <div style={{
-                    fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase' as const,
-                    color: 'var(--muted2)', fontWeight: 500, marginBottom: '8px',
-                  }}>{item.label}</div>
-                  <a href={item.href} style={{
-                    fontSize: '15px', color: 'var(--ink)', textDecoration: 'none',
-                    lineHeight: 1.5, whiteSpace: 'pre-line',
-                  }} target={item.href.startsWith('https') ? '_blank' : undefined}>
-                    {item.value}
-                  </a>
-                </div>
-              ))}
 
               <div>
-                <div style={{
-                  fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase' as const,
-                  color: 'var(--muted2)', fontWeight: 500, marginBottom: '8px',
-                }}>Hours</div>
-                <div style={{ fontSize: '15px', color: 'var(--ink)', lineHeight: 1.5 }}>
-                  Monday – Friday<br/>8:00 AM – 5:00 PM AEST
+                <div style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                  Email
                 </div>
+                <a href="mailto:info@metromotioncontrols.com.au" style={{ color: 'var(--ink)', textDecoration: 'none' }}>
+                  info@metromotioncontrols.com.au
+                </a>
               </div>
 
-              <div style={{
-                background: 'var(--white)', border: '1px solid var(--border)',
-                padding: '24px',
-              }}>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '18px', color: 'var(--ink)', marginBottom: '8px' }}>
-                  Prefer to talk?
+              <div>
+                <div style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                  Address
                 </div>
-                <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.65, fontWeight: 300 }}>
-                  Call us directly and speak to an engineer — not a sales team. We&apos;ll give you a straight answer on the spot.
-                </p>
+                <p style={{ color: 'var(--ink)' }}>29-31 Sunhill Road, Mount Waverley VIC 3149</p>
               </div>
             </div>
-          </div>
+
+            <iframe
+              title="Metromotion Controls on Google Maps"
+              src="https://www.google.com/maps?q=29-31%20Sunhill%20Road%2C%20Mount%20Waverley%20VIC%203149&output=embed"
+              width="100%"
+              height="320"
+              loading="lazy"
+              style={{ border: '1px solid var(--border)', background: 'var(--white)' }}
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </aside>
         </section>
       </main>
-      <Footer />
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+      <Footer />
     </>
   )
 }
