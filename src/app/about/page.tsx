@@ -131,15 +131,6 @@ export default function AboutPage() {
       </main>
       <Footer />
 
-      <style jsx global>{`
-        @media (max-width: 900px) {
-          .about-header { grid-template-columns: 1fr !important; padding: 60px 24px !important; gap: 36px !important; }
-          .about-stats { grid-template-columns: repeat(2, 1fr) !important; }
-          .values-grid { grid-template-columns: 1fr !important; }
-          .timeline-row { grid-template-columns: 80px 1fr !important; gap: 16px !important; }
-          .about-cta { padding: 60px 24px !important; }
-        }
-      `}</style>
     </>
   )
 }
