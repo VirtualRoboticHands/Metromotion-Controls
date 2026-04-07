@@ -1,136 +1,126 @@
+import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
-import Link from 'next/link'
 
-const timeline = [
-  { year: '1995', title: 'Metromotion Founded', desc: 'Parent company Metromotion established, providing instrumentation and control services to Australian industry.' },
-  { year: '2011', title: 'Chobani Partnership Begins', desc: 'Engaged as automation partner for Chobani\'s Australian operations — a relationship that continues today.' },
-  { year: '2012', title: 'Metromotion Controls Formed', desc: 'Metromotion Controls Pty Ltd established to focus exclusively on industrial automation and control systems engineering.' },
-  { year: '2015', title: 'National Expansion', desc: 'First interstate projects delivered, extending reach beyond Victoria to food and beverage sites across Australia.' },
-  { year: '2020', title: '200+ Projects Milestone', desc: 'Surpassed 200 completed automation projects with a 92% repeat customer rate.' },
-  { year: 'Today', title: 'Still Growing', desc: 'Eight service disciplines, national delivery, and long-term partnerships with Australia\'s leading manufacturers.' },
-]
+export const metadata: Metadata = {
+  title: 'About Metromotion Controls | Industrial Automation & Control Systems Engineers, Melbourne',
+  description: 'Metromotion Controls is a Melbourne-based industrial automation and control systems integrator. PLC programming, SCADA, IIoT, OT networking and functional safety for manufacturers across Australia.',
+}
 
-const values = [
-  { title: 'Engineer-to-Engineer', desc: 'We speak your language. No sales layer, no account managers — direct access to the engineers who design and deliver your systems.' },
-  { title: 'Build to Maintain', desc: 'We design systems knowing we\'ll be the ones supporting them. That makes us build better — cleaner code, better documentation, smarter architecture.' },
-  { title: 'Platform Agnostic', desc: 'We recommend what\'s right for your site, not what earns us the biggest margin. Rockwell, Siemens, Ignition — we work across them all.' },
-  { title: 'Zero Surprises', desc: 'Straight talk on scope, timeline and budget from day one. Every project gets a clear specification before a single line of code is written.' },
+const sections = [
+  {
+    heading: 'Melbourne-Based Control Systems Integrator Since 2012',
+    content:
+      "Metromotion Controls is a Melbourne-based industrial automation and control systems engineering company, founded in 2012. We specialise in PLC programming, SCADA and HMI development, control panel engineering, industrial data and IIoT, OT networking, functional safety and commissioning for manufacturing and processing facilities across Australia. Our clients include some of Australia's most recognised food and beverage, dairy, packaging and industrial manufacturers. Over 92% of our project work comes from existing clients, a reflection of the long-term partnerships we build and maintain.",
+  },
+  {
+    heading: 'Control Systems Engineering Across the Full Automation Lifecycle',
+    content:
+      'Metromotion Controls delivers industrial automation projects from initial concept through to commissioning and ongoing support. We work from P&IDs and functional descriptions, understanding the full process before we touch a line of code. Our engineering team has deep experience across process control, batch automation to ISA-88 standards, HMI design to ISA-101, safety systems and OT infrastructure. We are vendor-agnostic, working across all major platforms including Rockwell Automation, Siemens, Omron, Schneider Electric, Ignition by Inductive Automation, Wonderware and Citect. We recommend what is right for the application, not what is easiest for us.',
+  },
+  {
+    heading: 'Industrial Automation Services for Australian Manufacturers',
+    content:
+      'Metromotion Controls provides automation and control systems engineering services to manufacturers across Victoria and Australia, including food and beverage processing and packaging, dairy manufacturing and processing, pet food and agricultural production, snack food and FMCG manufacturing, industrial packaging and materials handling, and OEM machine builders and engineering firms. Our Melbourne engineering team has delivered projects ranging from small process upgrades to full greenfield factory automation, including large capital projects for clients such as Chobani, Lactalis, La Casa Del Formaggio and Real Pet Food Company.',
+  },
+  {
+    heading: 'Transparent, Process-Aware Engineering',
+    content:
+      'Metromotion Controls operates on a transparent, vendor-agnostic model with no hidden costs. Our engineers understand process design as well as control systems, which means we consider the needs of operations, maintenance and QA teams when designing automation solutions. We manage project budgets and risk with the same rigour our clients would apply themselves.',
+  },
+  {
+    heading: 'Certified Automation Integrator, Melbourne',
+    content:
+      'Metromotion Controls is a certified Ignition integrator through Inductive Automation and works in close partnership with Rockwell Automation. Based in Mount Waverley, Melbourne, we serve clients across Victoria, New South Wales, Queensland, South Australia and nationally.',
+  },
 ]
 
 export default function AboutPage() {
   return (
     <>
       <Nav />
-      <main style={{ paddingTop: '72px' }}>
-        {/* Header */}
-        <section style={{
-          background: 'var(--ink)', padding: '80px 52px',
-          display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center',
-        }} className="about-header">
-          <div>
-            <div className="section-label" style={{ color: 'var(--red)' }}>About Us</div>
-            <h1 style={{
+      <main style={{ paddingTop: '72px', background: '#f7f6f3' }}>
+        <section
+          style={{
+            padding: '84px 52px 64px',
+            borderBottom: '1px solid var(--border)',
+            background: '#f7f6f3',
+          }}
+        >
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontSize: '11px',
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: '#c8281e',
+              fontWeight: 500,
+              marginBottom: '22px',
+              fontFamily: 'var(--font-sans)',
+            }}
+          >
+            <span style={{ width: '22px', height: '1px', background: '#c8281e', display: 'inline-block' }} />
+            About Metromotion Controls
+          </div>
+          <h1
+            style={{
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(38px, 4.5vw, 60px)',
-              color: 'white', lineHeight: 1.05, letterSpacing: '-0.02em',
-            }}>
-              Engineers who<br/>build what they <em style={{ color: 'var(--red)', fontStyle: 'italic' }}>maintain</em>
-            </h1>
-          </div>
-          <p style={{
-            fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.85, fontWeight: 300,
-          }}>
-            Metromotion Controls is a Melbourne-based industrial automation and control systems engineering company. We design, program, commission and support automation systems for food &amp; beverage, packaging and advanced manufacturing facilities across Australia.
-            <br/><br/>
-            Founded in 2012 as part of the Metromotion group (est. 1995), we bring <strong style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 500 }}>deep domain expertise and a no-nonsense approach</strong> to every project.
-          </p>
+              lineHeight: 1.05,
+              letterSpacing: '-0.02em',
+              color: 'var(--ink)',
+              maxWidth: '920px',
+              marginBottom: '18px',
+            }}
+          >
+            Industrial automation and control systems engineers, headquartered in Melbourne and delivering projects across Australia since 2012.
+          </h1>
         </section>
 
-        {/* Stats band */}
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-          background: 'var(--border)', borderBottom: '1px solid var(--border)', gap: '1px',
-        }} className="about-stats">
-          {[
-            { num: '92%', label: 'Repeat customer rate' },
-            { num: '14+', label: 'Years in operation' },
-            { num: '200+', label: 'Projects delivered' },
-            { num: '8', label: 'Service disciplines' },
-          ].map(s => (
-            <div key={s.label} style={{
-              background: 'var(--white)', padding: '40px 36px',
-              display: 'flex', flexDirection: 'column', gap: '6px',
-            }}>
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '40px', color: 'var(--red)', lineHeight: 1 }}>{s.num}</div>
-              <div style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.05em', textTransform: 'uppercase' as const }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Values */}
-        <section className="section" style={{ background: 'var(--off)' }}>
-          <div className="section-label">How We Work</div>
-          <h2 className="section-headline">Our <em>approach</em></h2>
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)',
-            background: 'var(--border)', border: '1px solid var(--border)', gap: '1px', marginTop: '48px',
-          }} className="values-grid">
-            {values.map(v => (
-              <div key={v.title} style={{
-                background: 'var(--white)', padding: '40px 32px',
-                display: 'flex', flexDirection: 'column', gap: '12px',
-              }}>
-                <div style={{ fontSize: '18px', fontWeight: 600, color: 'var(--ink)' }}>{v.title}</div>
-                <div style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.75, fontWeight: 300 }}>{v.desc}</div>
-              </div>
+        <section style={{ padding: '0 52px 90px', background: '#f7f6f3' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr',
+              border: '1px solid var(--border)',
+              background: 'var(--border)',
+              gap: '1px',
+              marginTop: '40px',
+            }}
+          >
+            {sections.map((section) => (
+              <article key={section.heading} style={{ background: '#f7f6f3', padding: '42px 38px' }}>
+                <h2
+                  style={{
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: 'clamp(26px, 3.1vw, 36px)',
+                    lineHeight: 1.15,
+                    color: 'var(--ink)',
+                    marginBottom: '14px',
+                  }}
+                >
+                  {section.heading}
+                </h2>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '16px',
+                    lineHeight: 1.85,
+                    color: 'var(--muted)',
+                    fontWeight: 300,
+                    maxWidth: '1050px',
+                  }}
+                >
+                  {section.content}
+                </p>
+              </article>
             ))}
           </div>
         </section>
-
-        {/* Timeline */}
-        <section className="section" style={{ background: 'var(--white)' }}>
-          <div className="section-label">Our History</div>
-          <h2 className="section-headline">Three decades of <em>delivering</em></h2>
-          <div style={{
-            marginTop: '48px', display: 'flex', flexDirection: 'column',
-            border: '1px solid var(--border)',
-          }}>
-            {timeline.map((t, i) => (
-              <div key={t.year} style={{
-                display: 'grid', gridTemplateColumns: '120px 1fr', gap: '32px',
-                padding: '32px 36px',
-                borderBottom: i < timeline.length - 1 ? '1px solid var(--border)' : 'none',
-                alignItems: 'start',
-              }} className="timeline-row">
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', color: 'var(--red)', lineHeight: 1 }}>{t.year}</div>
-                <div>
-                  <div style={{ fontSize: '16px', fontWeight: 600, color: 'var(--ink)', marginBottom: '6px' }}>{t.title}</div>
-                  <div style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, fontWeight: 300 }}>{t.desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA */}
-        <div style={{
-          background: 'var(--ink)', padding: '80px 52px',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '20px',
-        }} className="about-cta">
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(30px, 3.5vw, 44px)', color: 'white', lineHeight: 1.1 }}>
-            Ready to work with us?
-          </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', maxWidth: '460px', lineHeight: 1.7, fontWeight: 300 }}>
-            Talk to an engineer — not a sales team. We&apos;ll give you a straight answer.
-          </p>
-          <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none', marginTop: '8px' }}>
-            Start a Conversation
-          </Link>
-        </div>
       </main>
       <Footer />
-
     </>
   )
 }
