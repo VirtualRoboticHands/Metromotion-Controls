@@ -43,7 +43,7 @@ export default function Nav() {
         {[
           { href: '/services', label: 'Services' },
           { href: '/#industries', label: 'Industries' },
-          { href: '/#projects', label: 'Projects' },
+          { href: '/projects', label: 'Projects' },
           { href: '/about', label: 'About' },
           { href: '/contact', label: 'Contact' },
         ].map(link => (
@@ -100,7 +100,7 @@ export default function Nav() {
           {[
             { href: '/services', label: 'Services' },
             { href: '/#industries', label: 'Industries' },
-            { href: '/#projects', label: 'Projects' },
+            { href: '/projects', label: 'Projects' },
             { href: '/about', label: 'About' },
             { href: '/contact', label: 'Contact' },
           ].map(link => (
