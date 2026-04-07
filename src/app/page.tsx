@@ -421,7 +421,7 @@ export default function HomePage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
             <a href="tel:0398076896" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>(03) 9807 6896</a>
             <a href="mailto:info@metromotioncontrols.com.au" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>info@metromotioncontrols.com.au</a>
-            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)' }}>29–31 Sunhill Road, Mount Waverley VIC 3149</span>
+            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)' }}>39 Sunhill Rd, Mount Waverley VIC 3149</span>
           </div>
         </div>
       </div>

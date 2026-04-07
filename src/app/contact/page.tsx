@@ -19,7 +19,7 @@ const localBusinessSchema = {
   email: 'info@metromotioncontrols.com.au',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '29-31 Sunhill Road',
+    streetAddress: '39 Sunhill Rd',
     addressLocality: 'Mount Waverley',
     addressRegion: 'VIC',
     postalCode: '3149',
@@ -110,13 +110,13 @@ export default function ContactPage() {
                 <div style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)' }}>
                   Address
                 </div>
-                <p style={{ color: 'var(--ink)' }}>29-31 Sunhill Road, Mount Waverley VIC 3149</p>
+                <p style={{ color: 'var(--ink)' }}>39 Sunhill Rd, Mount Waverley VIC 3149</p>
               </div>
             </div>
 
             <iframe
               title="Metromotion Controls on Google Maps"
-              src="https://www.google.com/maps?q=29-31%20Sunhill%20Road%2C%20Mount%20Waverley%20VIC%203149&output=embed"
+              src="https://www.google.com/maps?q=39%20Sunhill%20Rd%2C%20Mount%20Waverley%20VIC%203149&output=embed"
               width="100%"
               height="320"
               loading="lazy"

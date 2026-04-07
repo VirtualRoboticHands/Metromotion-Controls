@@ -3,6 +3,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { services } from '@/lib/services'
 import { buildPageMetadata } from '@/lib/metadata'
+import { buildOrganisationSchema, buildServicesIndexBreadcrumbSchema } from '@/lib/schema'
 
 export const metadata = buildPageMetadata({
   title: 'Automation Services',
@@ -12,8 +13,13 @@ export const metadata = buildPageMetadata({
 })
 
 export default function ServicesIndexPage() {
+  const organisationSchema = buildOrganisationSchema()
+  const breadcrumbSchema = buildServicesIndexBreadcrumbSchema()
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Nav />
       <main style={{ background: 'var(--off)', minHeight: '100vh', paddingTop: '72px' }}>
         <section className="section" style={{ borderBottom: '1px solid var(--border)' }}>
@@ -44,7 +50,7 @@ export default function ServicesIndexPage() {
             <article style={{ background: 'var(--white)', padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '30px', lineHeight: 1.1, color: 'var(--ink)' }}>Automation Support &amp; Maintenance</h2>
               <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.7, flex: 1 }}>
-                Expert on-site and remote support, 24/7 — backed by senior engineers with real commissioning experience.
+                Expert on-site and remote support, available 24/7 and backed by senior engineers with real commissioning experience.
               </p>
               <Link href="/services/support" className="btn-outline" style={{ width: 'fit-content' }}>
                 View service
