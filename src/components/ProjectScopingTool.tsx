@@ -19,11 +19,9 @@ type Challenge = {
 type Report = {
   headline: string
   overview: string
-  scope_items: string[]
-  timeline_estimate: string
-  common_pitfalls: string[]
-  questions_to_ask: string[]
-  metromotion_approach: string
+  key_considerations: string[]
+  questions_to_think_about: string[]
+  what_to_have_ready: string[]
 }
 
 const CHALLENGES: Challenge[] = [
@@ -185,6 +183,45 @@ const loadingMessages = ['Reviewing your requirements…', 'Matching against sim
 const ALLOWED_EXTENSIONS = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png', 'xlsx', 'dwg', 'dxf']
 
 const buttonBase = 'rounded-sm border px-4 py-2 text-left text-sm transition disabled:cursor-not-allowed disabled:opacity-40'
+const METROMOTION_PHONE_DIGITS = '0398076896'
+const METROMOTION_PHONE_WITH_SPACES = '03 9807 6896'
+
+const stripUnsafeContent = (value: string): string =>
+  value
+    .replace(/<[^>]*>/g, '')
+    .replace(/\bhttps?:\/\/[^\s]+/gi, '')
+    .replace(/\bwww\.[^\s]+/gi, '')
+    .replace(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi, '')
+    .replace(/\+?\d[\d\s().-]{7,}\d/g, (match) => {
+      const digitsOnly = match.replace(/\D/g, '')
+      const allowed = [METROMOTION_PHONE_DIGITS, `61${METROMOTION_PHONE_DIGITS.slice(1)}`]
+      return allowed.includes(digitsOnly) ? METROMOTION_PHONE_WITH_SPACES : ''
+    })
+    .replace(/\s{2,}/g, ' ')
+    .trim()
+
+const isValidReport = (input: unknown): input is Report => {
+  if (!input || typeof input !== 'object') return false
+  const candidate = input as Partial<Report>
+  return (
+    typeof candidate.headline === 'string' &&
+    typeof candidate.overview === 'string' &&
+    Array.isArray(candidate.key_considerations) &&
+    candidate.key_considerations.every((item) => typeof item === 'string') &&
+    Array.isArray(candidate.questions_to_think_about) &&
+    candidate.questions_to_think_about.every((item) => typeof item === 'string') &&
+    Array.isArray(candidate.what_to_have_ready) &&
+    candidate.what_to_have_ready.every((item) => typeof item === 'string')
+  )
+}
+
+const sanitiseReport = (input: Report): Report => ({
+  headline: stripUnsafeContent(input.headline),
+  overview: stripUnsafeContent(input.overview),
+  key_considerations: input.key_considerations.map((item) => stripUnsafeContent(item)).filter(Boolean),
+  questions_to_think_about: input.questions_to_think_about.map((item) => stripUnsafeContent(item)).filter(Boolean),
+  what_to_have_ready: input.what_to_have_ready.map((item) => stripUnsafeContent(item)).filter(Boolean),
+})
 
 const formatSize = (bytes: number): string => {
   if (bytes < 1024) return `${bytes} B`
@@ -278,7 +315,7 @@ export default function ProjectScopingTool() {
     formData.set('industry', industry ?? '')
     formData.set('platform', platform ?? '')
     formData.set('timeline', timeline ?? '')
-    formData.set('freeText', freeText)
+    formData.set('freeText', freeText.slice(0, 1000))
     formData.set('contactName', contact.name)
     formData.set('contactCompany', contact.company)
     formData.set('contactEmail', contact.email)
@@ -294,16 +331,18 @@ export default function ProjectScopingTool() {
         throw new Error(payload?.error ?? 'Unable to generate scoping brief right now.')
       }
 
-      const payload = (await response.json()) as { report?: Report; fallback?: boolean }
+      const payload = (await response.json()) as { report?: unknown; fallback?: boolean }
       if (payload.fallback) {
         setFallbackMode(true)
         setReport(null)
         return
       }
-      if (!payload.report) {
-        throw new Error('Unable to generate scoping brief right now.')
+      if (!isValidReport(payload.report)) {
+        setFallbackMode(true)
+        setReport(null)
+        return
       }
-      setReport(payload.report)
+      setReport(sanitiseReport(payload.report))
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : 'Unable to generate report.')
       setStep(3)
@@ -608,62 +647,52 @@ export default function ProjectScopingTool() {
 
             <p className="mb-7 text-sm leading-relaxed text-[#1a1a1a]">{report.overview}</p>
 
-            <div className="mb-7 grid gap-px border border-[#e2e0db] bg-[#e2e0db] lg:grid-cols-2">
-              <div className="bg-white p-5">
-                <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#c8281e]">Typical Scope</h4>
-                <ul className="space-y-2">
-                  {report.scope_items.map((item, index) => (
-                    <li key={item} className="flex gap-2 text-sm text-[#1a1a1a]">
-                      <span className="text-xs font-semibold text-[#c8281e]">{String(index + 1).padStart(2, '0')}</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="bg-white p-5">
-                <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#c8281e]">Timeline</h4>
-                <p className="text-sm leading-relaxed text-[#1a1a1a]">{report.timeline_estimate}</p>
-              </div>
+            <div className="mb-7 rounded-sm border border-[#e2e0db] bg-white p-5">
+              <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#c8281e]">Key Considerations for Your Project</h4>
+              <ol className="space-y-3">
+                {report.key_considerations.map((item, index) => (
+                  <li key={`${index}-${item.slice(0, 24)}`} className="flex gap-3 text-sm text-[#1a1a1a]">
+                    <span className="pt-0.5 text-xs font-semibold text-[#c8281e]">{index + 1}.</span>
+                    <p className="leading-relaxed">{item}</p>
+                  </li>
+                ))}
+              </ol>
             </div>
 
-            <div className="mb-1 bg-[#1a1a1a] px-5 py-5">
-              <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#c8281e]">Watch Out For</h4>
-              <ul className="space-y-2">
-                {report.common_pitfalls.map((item) => (
-                  <li key={item} className="flex gap-2 text-sm text-[#d4d2cd]">
-                    <span className="text-[#c8281e]">⚠</span>
+            <div className="mb-7 rounded-sm border border-[#e2e0db] bg-[#f7f6f3] px-5 py-5">
+              <h4 className="mb-1 font-[var(--font-serif)] text-xl text-[#1a1a1a]">Questions Worth Thinking Through</h4>
+              <p className="mb-4 text-sm text-[#4d4a45]">These prompts can help you prepare for early project conversations and make sure important details get discussed.</p>
+              <ul className="space-y-3">
+                {report.questions_to_think_about.map((item, index) => (
+                  <li key={`${index}-${item.slice(0, 24)}`} className="flex gap-2 text-sm text-[#1a1a1a]">
+                    <span className="font-semibold text-[#7a7770]">Q{index + 1}.</span>
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="mb-7 bg-[#2a2a27] px-5 py-5">
-              <h4 className="mb-1 font-[var(--font-serif)] text-xl text-[#f7f6f3]">Your Project Discussion Guide — Questions Worth Thinking Through Before We Talk</h4>
-              <p className="mb-4 text-sm text-[#b8b6b0]">These are the questions our engineers would typically explore in a first meeting for a project like yours. They help you prepare and make sure nothing gets missed.</p>
+            <div className="mb-7 rounded-sm border border-[#e2e0db] bg-white p-5">
+              <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#c8281e]">What to Have Ready</h4>
               <ul className="space-y-2">
-                {report.questions_to_ask.map((item, index) => (
-                  <li key={item} className="flex gap-2 text-sm text-[#c4c2bd]">
-                    <span className="text-[#7a7770]">Q{index + 1}.</span>
+                {report.what_to_have_ready.map((item, index) => (
+                  <li key={`${index}-${item.slice(0, 24)}`} className="flex items-start gap-2 text-sm text-[#1a1a1a]">
+                    <input type="checkbox" checked readOnly aria-label={`Checklist item ${index + 1}`} className="mt-0.5 h-4 w-4 rounded border-[#c8c4bc] accent-[#c8281e]" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-            </div>
-
-            <div className="mb-7 rounded-sm border border-[#e2e0db] bg-[#f7f6f3] px-5 py-4">
-              <h4 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#1a1a1a]">How We&apos;d Approach This</h4>
-              <p className="text-sm text-[#1a1a1a]">{report.metromotion_approach}</p>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
+              <span className="text-sm font-semibold text-[#1a1a1a]">Want to discuss this further?</span>
               <a
                 href={`mailto:info@metromotioncontrols.com.au?subject=${encodeURIComponent(`Scoping Enquiry — ${contact.company}`)}`}
                 className="rounded-sm bg-[#c8281e] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a8201a]"
               >
-                Let&apos;s Talk — Book a Call
+                Email info@metromotioncontrols.com.au
               </a>
-              <a href="tel:0398076896" className="text-sm text-[#7a7770] hover:text-[#1a1a1a]">Or call (03) 9807 6896</a>
+              <a href="tel:0398076896" className="text-sm text-[#7a7770] hover:text-[#1a1a1a]">Call (03) 9807 6896</a>
               <button
                 onClick={resetTool}
                 className="ml-auto text-sm text-[#7a7770] hover:text-[#1a1a1a]"

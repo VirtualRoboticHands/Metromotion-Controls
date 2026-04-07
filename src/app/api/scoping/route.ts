@@ -4,11 +4,9 @@ import { createClient } from '@supabase/supabase-js'
 type ScopingReport = {
   headline: string
   overview: string
-  scope_items: string[]
-  timeline_estimate: string
-  common_pitfalls: string[]
-  questions_to_ask: string[]
-  metromotion_approach: string
+  key_considerations: string[]
+  questions_to_think_about: string[]
+  what_to_have_ready: string[]
 }
 
 const RATE_LIMIT_MAX = 5
@@ -22,15 +20,13 @@ const ipRequestMap = new Map<string, number[]>()
 const parseReport = (input: unknown): ScopingReport | null => {
   if (!input || typeof input !== 'object') return null
   const report = input as Partial<ScopingReport>
-  const scopeItems = report.scope_items
-  const commonPitfalls = report.common_pitfalls
-  const questionsToAsk = report.questions_to_ask
-  const requiredArrays = [scopeItems, commonPitfalls, questionsToAsk]
+  const keyConsiderations = report.key_considerations
+  const questionsToThinkAbout = report.questions_to_think_about
+  const whatToHaveReady = report.what_to_have_ready
+  const requiredArrays = [keyConsiderations, questionsToThinkAbout, whatToHaveReady]
   if (
     typeof report.headline !== 'string' ||
     typeof report.overview !== 'string' ||
-    typeof report.timeline_estimate !== 'string' ||
-    typeof report.metromotion_approach !== 'string' ||
     requiredArrays.some((value) => !Array.isArray(value) || value.some((entry) => typeof entry !== 'string'))
   ) {
     return null
@@ -39,11 +35,9 @@ const parseReport = (input: unknown): ScopingReport | null => {
   return {
     headline: report.headline,
     overview: report.overview,
-    scope_items: scopeItems as string[],
-    timeline_estimate: report.timeline_estimate,
-    common_pitfalls: commonPitfalls as string[],
-    questions_to_ask: questionsToAsk as string[],
-    metromotion_approach: report.metromotion_approach,
+    key_considerations: keyConsiderations as string[],
+    questions_to_think_about: questionsToThinkAbout as string[],
+    what_to_have_ready: whatToHaveReady as string[],
   }
 }
 
@@ -94,28 +88,58 @@ const buildPrompt = (input: {
 Generate a practical project scoping brief for a prospective industrial client.
 Output valid JSON only, no markdown.
 
-Inputs:
-Challenge: ${input.challengeLabel} — ${input.challengeShort}
-Challenge answers:
-${answerLines || '- none provided'}
-Industry: ${input.industry}
-Current platform: ${input.platform}
-Timeline: ${input.timeline}
-Additional context: ${input.freeText || 'None'}
-Attachments: ${input.fileNames.join(', ') || 'None'}
-Contact: ${input.contactName} at ${input.contactCompany}
+A prospective client has completed our project scoping tool. Generate a helpful scoping brief based on their inputs:
 
-Respond with shape:
-{
-  "headline": "specific headline for their situation",
-  "overview": "2-3 sentence summary",
-  "scope_items": ["5-7 specific scope items"],
-  "timeline_estimate": "phase-based realistic guidance",
-  "common_pitfalls": ["3-4 pitfalls"],
-  "questions_to_ask": ["6-8 thoughtful follow-up questions for discussion with any integrator"],
-  "metromotion_approach": "2-3 sentence Metromotion approach"
-}`
+What they're looking to do: ${input.challengeLabel} (${input.challengeShort})
+Their answers to scoping questions:
+${answerLines || '- none provided'}
+
+Industry: ${input.industry}
+Current platform/s: ${input.platform}
+Additional notes: ${input.freeText || 'None provided'}
+Attachments: ${input.fileNames.join(', ') || 'None'}
+Contact: ${input.contactName} at ${input.contactCompany}`
 }
+
+const SYSTEM_PROMPT = `You are a project scoping assistant for Metromotion Controls, a Melbourne-based industrial automation and control systems integrator. Your role is to help prospective clients think through their automation project by highlighting the key considerations they should be aware of.
+
+ABOUT METROMOTION CONTROLS:
+- Melbourne-based, delivering nationally across Australia since 2012
+- Specialise in: PLC programming (Allen-Bradley, Siemens, Schneider, Omron), SCADA and HMI development (Ignition, AVEVA, FactoryTalk, Citect, WinCC), control panel engineering, industrial data/IIoT, OT networking, functional safety (AS 62061, AS 4024), and commissioning
+- Key industries: food and beverage, dairy, packaging, pet food, FMCG, general manufacturing
+- Notable clients: Chobani, Lactalis, Arnott's, Bulla, Real Pet Food, Orora, Beak & Johnston
+- Engineering approach: ISA-88 batch principles, ISA-101 HMI design, structured FAT/SAT processes, full documentation handover
+- Platforms: Rockwell ControlLogix/CompactLogix, Siemens S7-1500/S7-1200, Ignition SCADA, AVEVA, FactoryTalk, EPLAN, OPC UA, MQTT
+
+AUDIENCE:
+The reader is a project engineer or automation manager at a manufacturing or processing facility. They are technically competent. They know their plant. They are in the early stages of thinking about a project and want to make sure they haven't missed anything important.
+
+PURPOSE:
+Generate a brief that helps them think through their project. It should feel like a helpful checklist from a senior engineer, not a sales pitch.
+
+STRICT RULES:
+- ONLY generate project scoping briefs. If the input does not relate to industrial automation or process control, respond with exactly: {"error": "This tool is designed for industrial automation project scoping only."}
+- NEVER include pricing, cost estimates, hourly rates, or budget ranges.
+- NEVER include timeline estimates, durations, or scheduling guidance.
+- NEVER mention competitors by name or make comparisons to other integrators.
+- NEVER give advice on hiring, staffing, or personnel decisions.
+- NEVER provide safety-critical guidance that someone might act on without proper engineering review.
+- NEVER make promises or guarantees on behalf of Metromotion Controls.
+- NEVER use em dashes.
+- NEVER use marketing language: "innovative", "cutting-edge", "seamless", "holistic", "unlock", "leverage", "empower", "game-changer", "next-level", "We don't just X, we Y".
+- Use Australian English spelling.
+- Keep the tone warm, practical, and helpful. This is for the client's benefit.
+- Be specific where it helps (name standards, protocols, platforms relevant to their situation) but don't overwhelm with jargon.
+
+OUTPUT FORMAT:
+Respond with valid JSON only. No markdown, no code fences, no preamble, no explanation. The JSON must have this exact structure:
+{
+  "headline": "A clear, specific one-line summary of what their project involves",
+  "overview": "2-3 sentences describing what a project like this typically looks like. Written for the client, not for engineers. Help them understand what they're getting into.",
+  "key_considerations": ["5-6 important things they should be thinking about for this specific type of project. Each one should be a short paragraph (2-3 sentences) that explains why it matters and what to look out for. These should be genuinely useful, not generic."],
+  "questions_to_think_about": ["6-8 questions they should think through before engaging any integrator. These help them prepare and make sure the important things get discussed early. Frame them as friendly prompts, not interrogation. For example: 'Do you have up-to-date drawings and an I/O list for the existing system? This saves significant time during the design phase.'"],
+  "what_to_have_ready": ["3-4 documents or pieces of information that would be useful to have on hand when discussing this project with an integrator. For example: P&IDs, existing PLC program backups, I/O lists, network drawings."]
+}`
 
 async function generateReport(prompt: string): Promise<ScopingReport | null> {
   const apiKey = process.env.ANTHROPIC_API_KEY
@@ -127,7 +151,9 @@ async function generateReport(prompt: string): Promise<ScopingReport | null> {
 
   const requestBody = {
     model: 'claude-sonnet-4-20250514',
-    max_tokens: 1200,
+    max_tokens: 1500,
+    temperature: 0.3,
+    system: SYSTEM_PROMPT,
     messages: [{ role: 'user' as const, content: prompt }],
   }
 
@@ -194,6 +220,7 @@ export async function POST(request: NextRequest) {
     const platform = String(formData.get('platform') || '').trim()
     const timeline = String(formData.get('timeline') || '').trim()
     const freeText = String(formData.get('freeText') || '').trim()
+    const truncatedFreeText = freeText.slice(0, 1000)
     const contactName = String(formData.get('contactName') || '').trim()
     const contactCompany = String(formData.get('contactCompany') || '').trim()
     const contactEmail = String(formData.get('contactEmail') || '').trim()
@@ -286,7 +313,7 @@ export async function POST(request: NextRequest) {
         industry,
         platform,
         timeline,
-        freeText,
+        freeText: truncatedFreeText,
         fileNames: uploadFiles.map((file) => file.name),
         contactName,
         contactCompany,
