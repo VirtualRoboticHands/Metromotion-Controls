@@ -1,6 +1,15 @@
 import Link from 'next/link'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import { buildPageMetadata, serviceMetadataBySlug } from '@/lib/metadata'
+
+const supportMetadata = serviceMetadataBySlug.support
+
+export const metadata = buildPageMetadata({
+  title: supportMetadata.title,
+  description: supportMetadata.description,
+  path: '/services/support',
+})
 
 export default function SupportServicePage() {
   return (

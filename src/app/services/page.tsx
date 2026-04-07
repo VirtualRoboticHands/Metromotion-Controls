@@ -2,6 +2,14 @@ import Link from 'next/link'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { services } from '@/lib/services'
+import { buildPageMetadata } from '@/lib/metadata'
+
+export const metadata = buildPageMetadata({
+  title: 'Automation Services',
+  description:
+    'Explore industrial automation services from our Melbourne engineering team, including control systems, PLC, SCADA and commissioning across Australia. View services now.',
+  path: '/services',
+})
 
 export default function ServicesIndexPage() {
   return (

@@ -3,9 +3,26 @@ import { notFound } from 'next/navigation'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { services, servicesBySlug } from '@/lib/services'
+import type { Metadata } from 'next'
+import { buildPageMetadata, serviceMetadataBySlug } from '@/lib/metadata'
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }))
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const serviceMetadata = serviceMetadataBySlug[slug]
+
+  if (!serviceMetadata) {
+    return {}
+  }
+
+  return buildPageMetadata({
+    title: serviceMetadata.title,
+    description: serviceMetadata.description,
+    path: `/services/${slug}`,
+  })
 }
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
