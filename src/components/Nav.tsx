@@ -41,7 +41,7 @@ export default function Nav() {
         display: 'flex', gap: '32px', listStyle: 'none',
       }} className="nav-links-desktop">
         {[
-          { href: '/#services', label: 'Services' },
+          { href: '/services', label: 'Services' },
           { href: '/#industries', label: 'Industries' },
           { href: '/#projects', label: 'Projects' },
           { href: '/about', label: 'About' },
@@ -98,7 +98,7 @@ export default function Nav() {
           display: 'flex', flexDirection: 'column', gap: '24px',
         }}>
           {[
-            { href: '/#services', label: 'Services' },
+            { href: '/services', label: 'Services' },
             { href: '/#industries', label: 'Industries' },
             { href: '/#projects', label: 'Projects' },
             { href: '/about', label: 'About' },
