@@ -1,30 +1,148 @@
 ---
 title: "Allen-Bradley Migration Checklist for Legacy Lines"
 slug: "allen-bradley-migration-checklist"
-description: "Checklist for migrating legacy Allen-Bradley systems with minimal downtime."
+description: "A practical migration checklist for upgrading legacy Allen-Bradley control systems without avoidable commissioning risk."
 publishedAt: "2026-02-10"
-updatedAt: "2026-02-10"
+updatedAt: "2026-04-07"
 author: "Metromotion Controls"
 category: "PLC & Control Systems"
-tags: ["Allen-Bradley", "PLC programming", "migration"]
+tags: ["Allen-Bradley", "ControlLogix", "CompactLogix", "migration", "commissioning", "manufacturing", "Melbourne"]
 targetKeyword: "Allen-Bradley migration checklist"
 searchIntent: "informational"
 pillar: "plc-control-systems"
 postType: "checklist"
 readingTime: 5
 featured: false
+faqs:
+  - question: "What is the biggest risk in an Allen-Bradley migration?"
+    answer: "The biggest risk is usually hidden scope in interfaces and field devices rather than PLC code volume. Unmapped interlocks, undocumented messaging, and unclear startup states create most commissioning delays."
+  - question: "Should we use phased cutover or one shutdown?"
+    answer: "Use phased cutover when the process allows stable boundaries and temporary interfaces. Use one shutdown when dependencies are tightly coupled and partial operation creates more risk than a controlled full outage."
+  - question: "Do we need to upgrade SCADA at the same time as the PLC?"
+    answer: "Not always, but you do need to define tag, alarm, and historian impacts before final design. If your SCADA stack cannot support new naming standards or security requirements, parallel upgrade planning is usually safer."
 ---
 
-Allen-Bradley migration projects should focus on scope validation, I/O verification, and a staged commissioning plan that protects uptime.
+If you are planning an Allen-Bradley migration, the safest approach is to treat it as a production risk project, not a coding task. Most failures happen at boundaries: old remote I/O, undocumented interlocks, third-party skids, and startup assumptions that only exist in an operator’s notebook. A migration succeeds when scope, test coverage, and cutover sequencing are locked before shutdown starts.
 
-## Validate hardware lifecycle
+For Australian manufacturing sites, especially in Melbourne, Victoria, and regional plants with narrow outage windows, the winning pattern is straightforward. Build an exact asset baseline, design a target architecture around current lifecycle support, and prove key sequences in FAT before site work. Whether the target is CompactLogix or ControlLogix, this checklist helps project engineers and automation managers drive a cleaner handover into commissioning.
 
-Confirm spare strategy, firmware path, and compatibility before procurement.
+## 1) Define migration boundaries before you touch code
 
-## Build a migration test plan
+Start by defining exactly what is in and out of scope. That sounds obvious, but it is where most schedule damage starts. The PLC replacement might be clear, while plant interfaces are not.
 
-Prepare simulation, FAT scripts, SAT scripts, and rollback process.
+List every boundary that can affect production. Include MCC signals, safety relays, robot handshakes, OEM machine permissives, weighers, and utilities. If a signal can stop a line, it belongs in scope management.
 
-## Execute staged commissioning
+Capture these decisions in a short migration basis document before detailed design:
 
-Commission by functional area and keep clear defect tracking until stable production is achieved.
+- Controller families being replaced, for example SLC 5/05 or ControlLogix L6x
+- New hardware target, for example CompactLogix 5380 or ControlLogix 5580
+- Networks in scope, such as EtherNet/IP, DeviceNet migration, or serial gateway replacement
+- Cutover model, either phased by area or single shutdown
+- Rollback criteria and authority to trigger rollback
+
+## 2) Build an accurate as-is inventory, not a hopeful one
+
+An Allen-Bradley migration lives or dies on inventory quality. You need a device-level map, firmware baseline, and communications map before design freeze. If you skip this, engineering hours move to site, where every hour costs more.
+
+At minimum, collect:
+
+- Current processor model, firmware revision, and memory utilisation
+- I/O rack composition including local, remote, and specialty modules
+- HMI and SCADA tag references to controller addresses
+- MSG instructions and data handshakes between PLCs
+- Drive and safety device integration points
+
+For legacy platforms, check conversion assumptions carefully. A conversion tool can accelerate structure, but it does not validate intent.
+
+## 3) Choose architecture for lifecycle, not convenience
+
+Do not choose the target architecture only because it looks familiar. Choose it for maintainability and supply stability over the next operating cycle. Think about who supports this system at 2 am during a breakdown.
+
+| Decision area | Common options | What to test before approval |
+| --- | --- | --- |
+| Controller platform | CompactLogix vs ControlLogix | Motion, I/O scale, redundancy requirements, safety integration |
+| Network strategy | Flat EtherNet/IP vs segmented cell/area design | OT security zoning, switch capability, diagnostics |
+| HMI integration | Existing FactoryTalk View vs revised model | Tag namespace changes, alarm class mapping, audit needs |
+| Historian path | Keep current historian vs migrate interface layer | Timestamp quality, data integrity during cutover |
+| Safety integration | Separate safety controller vs GuardLogix | AS 62061 obligations, proof test method, validation scope |
+
+Standardise naming conventions and alarm structures during migration to reduce long-term troubleshooting load.
+
+## 4) Lock functional behaviour with plain-language test cases
+
+A migration project should not rely on memory-based acceptance. Translate operational behaviour into objective FAT and SAT tests with expected results. Operators and maintenance should be able to read the tests and recognise the process logic.
+
+Focus on behaviours that create most risk:
+
+- Sequence start, hold, restart, and abort states
+- Interlocks tied to utilities, CIP, and quality-critical permissives
+- Device fault response, latching logic, and alarm acknowledgement
+- Mode transitions between manual, semi-auto, and auto
+- Shutdown and recovery from power or communications loss
+
+Keep each test tied to one requirement ID. When defects appear, log them against that ID and close them with retest evidence. This gives project managers a real view of readiness before site deployment.
+
+## 5) Validate interfaces early, especially third-party skids
+
+Most commissioning surprises come from interfaces that were assumed to be simple. That includes serial converters, old drives, hardwired permissives, and OEM equipment that changed firmware during maintenance windows.
+
+Interface validation should happen before final shutdown planning. Where possible, bench-test communications and handshake logic in a representative environment. If you cannot bench-test, document assumptions and build them into risk scoring.
+
+For ISA-88 style batch areas, validate phase handshakes and state models across equipment modules. If the line uses mixed vendors, confirm object models and status words line by line, not by template assumptions.
+
+## 6) Plan cutover like a commissioning job, not an installation job
+
+Installation and commissioning are different work. Installation puts hardware in place. Commissioning proves production behaviour. Your cutover plan needs to reflect that difference in resource planning and timing.
+
+A practical cutover plan includes:
+
+- Hour-by-hour sequence for isolation, wiring, software load, and I/O prove-out
+- Named owners for each step, including operations and electrical leads
+- Hold points where you stop and confirm readiness before proceeding
+- Defined rollback trigger points with technical and operational authority
+- Post-startup hypercare window and defect triage workflow
+
+Phased cutovers reduce immediate risk when the process can tolerate temporary interfaces. Full shutdowns can be cleaner when system dependencies are tight and partial operation adds complexity.
+
+## 7) Treat cybersecurity and remote access as commissioning items
+
+OT cybersecurity is often left to a later phase and then forgotten. During migration, this becomes a real operational gap. Build access control and segmentation into commissioning criteria from day one.
+
+Include checks for:
+
+- Account management and role-based access in engineering tools and HMIs
+- Remote access pathways, VPN controls, and support workflow
+- Switch and firewall configurations aligned with site OT zones
+- Patch and backup validation before and after cutover
+
+If your site uses ISA/IEC 62443 controls, map migration deliverables directly to policy requirements. It avoids rework and audit pressure after startup.
+
+## 8) Handover is part of migration scope, not an optional extra
+
+A migration is incomplete until site teams can support it confidently. Handover quality should be measured, not assumed. If the as-built package is weak, the plant pays for it for years.
+
+Minimum handover set:
+
+- Final source code and backups with version history
+- I/O schedules and network drawings with as-built markups
+- Alarm list and setpoint register with ownership notes
+- Recovery instructions for common faults and restart conditions
+- Training sessions for operators and maintenance with attendance record
+
+In practice, the strongest projects run short, scenario-based training on live process states. That is where teams learn the new behaviour quickly and spot any final gaps.
+
+## Allen-Bradley migration checklist you can use on your next project
+
+Pre-shutdown checklist:
+
+1. Scope boundaries approved and signed, including exclusions.
+2. As-is inventory verified for controller, I/O, firmware, and interfaces.
+3. Target architecture approved for lifecycle support and security zoning.
+4. Requirement-linked FAT and SAT scripts completed and reviewed.
+5. Interface validation done for third-party skids and data exchanges.
+6. Cutover sequence, hold points, and rollback criteria approved.
+7. Commissioning resource plan confirmed across engineering, electrical, and operations.
+8. Cybersecurity controls and remote access workflow validated.
+9. As-built handover package structure agreed before startup.
+
+Migration projects rarely fail because one major decision was wrong. They fail because small unknowns stack up under time pressure. If you remove those unknowns early, Allen-Bradley migrations become predictable, even on legacy lines with limited outage windows.

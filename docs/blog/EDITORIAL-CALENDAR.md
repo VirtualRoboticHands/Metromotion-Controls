@@ -1,5 +1,7 @@
 # Metromotion Controls Blog Editorial Calendar
 
+Target length: 1,000-1,200 words per post (5 minute read). No pricing or hourly rates. See BLOG-WRITING-PROMPT.md for full brand voice guidelines.
+
 ## Publishing Schedule: 2 posts per week (Tuesday + Thursday)
 
 ---
@@ -17,7 +19,7 @@ POST TYPE: definitive-guide
 CATEGORY: PLC & Control Systems
 PILLAR: plc-control-systems
 TAGS: PLC programming, Melbourne, Allen-Bradley, Siemens, industrial automation, control systems
-WORD COUNT: 2000
+WORD COUNT: 1000-1200
 KEY POINTS TO COVER:
 - What PLC programming involves in plain terms
 - Major PLC platforms in Australian manufacturing (Allen-Bradley/Rockwell, Siemens, Schneider Modicon, Mitsubishi)
@@ -40,7 +42,7 @@ POST TYPE: definitive-guide
 CATEGORY: SCADA & HMI
 PILLAR: scada-hmi
 TAGS: SCADA, SCADA upgrade, manufacturing, Ignition, AVEVA, FactoryTalk, Australia
-WORD COUNT: 2200
+WORD COUNT: 1000-1200
 KEY POINTS TO COVER:
 - Signs your SCADA system needs upgrading (end of vendor support, performance issues, security vulnerabilities, lack of remote access)
 - Overview of modern SCADA platforms available in Australia (Ignition by Inductive Automation, AVEVA System Platform, Rockwell FactoryTalk, Citect/GeoSCADA)
@@ -63,7 +65,7 @@ POST TYPE: definitive-guide
 CATEGORY: Industry Solutions
 PILLAR: industry-automation
 TAGS: food and beverage, automation, HACCP, CIP, batch control, packaging, Australia, manufacturing
-WORD COUNT: 2500
+WORD COUNT: 1000-1200
 KEY POINTS TO COVER:
 - The current state of automation in Australian F&B manufacturing
 - Key automation systems in F&B: PLC control, SCADA/HMI, batch management, CIP automation, packaging line integration
@@ -86,7 +88,7 @@ POST TYPE: definitive-guide
 CATEGORY: OT & IIoT
 PILLAR: ot-iiot
 TAGS: OT cybersecurity, industrial network security, SCADA security, ICS security, Australia, manufacturing
-WORD COUNT: 2000
+WORD COUNT: 1000-1200
 KEY POINTS TO COVER:
 - What OT cybersecurity means and why it matters for manufacturers (not just an IT problem)
 - The difference between IT security and OT security
@@ -109,7 +111,7 @@ POST TYPE: definitive-guide
 CATEGORY: PLC & Control Systems
 PILLAR: plc-control-systems
 TAGS: Allen-Bradley, Siemens, PLC, Rockwell, comparison, industrial automation, Australia
-WORD COUNT: 1800
+WORD COUNT: 1000-1200
 KEY POINTS TO COVER:
 - Overview of both platforms and their market position in Australia
 - Detailed comparison table: programming environment (Studio 5000 vs TIA Portal), hardware range, communication protocols, licensing, local support/distribution, typical industries
@@ -132,7 +134,7 @@ POST TYPE: definitive-guide
 CATEGORY: PLC & Control Systems
 PILLAR: plc-control-systems
 TAGS: control system integrator, systems integration, industrial automation, Australia, Melbourne
-WORD COUNT: 1500
+WORD COUNT: 1000-1200
 KEY POINTS TO COVER:
 - Clear definition of what a control system integrator does
 - The difference between an integrator, an electrician, an OEM, and a panel builder
@@ -155,7 +157,7 @@ POST TYPE: industry-spotlight
 CATEGORY: Industry Solutions
 PILLAR: industry-automation
 TAGS: dairy, dairy processing, CIP, clean-in-place, batch control, SCADA, automation, Lactalis, Australia
-WORD COUNT: 1800
+WORD COUNT: 1000-1200
 KEY POINTS TO COVER:
 - Overview of automation in Australian dairy processing (milk reception, pasteurisation, separation, packaging)
 - CIP automation: why it matters, how automated CIP systems work, integration with production scheduling
@@ -178,7 +180,7 @@ POST TYPE: how-to
 CATEGORY: PLC & Control Systems
 PILLAR: plc-control-systems
 TAGS: control panel, panel build, AS/NZS 61439, electrical design, MCC, industrial automation, Australia
-WORD COUNT: 1500
+WORD COUNT: 1000-1200
 KEY POINTS TO COVER:
 - What a control panel is and what goes inside one (PLCs, I/O modules, VSDs, power supplies, terminals, circuit protection)
 - The design process: functional spec, electrical schematics, component selection, layout, thermal management
@@ -201,7 +203,7 @@ POST TYPE: how-to
 CATEGORY: OT & IIoT
 PILLAR: ot-iiot
 TAGS: IIoT, MQTT, OPC UA, data collection, industrial IoT, manufacturing, Industry 4.0
-WORD COUNT: 1800
+WORD COUNT: 1000-1200
 KEY POINTS TO COVER:
 - What IIoT data collection means in a manufacturing context (not consumer IoT)
 - The two dominant protocols: MQTT and OPC UA, and when to use each
@@ -225,7 +227,7 @@ POST TYPE: definitive-guide
 CATEGORY: Safety & Standards
 PILLAR: functional-safety
 TAGS: functional safety, AS 62061, SIL, safety PLC, machine safety, risk assessment, Australia
-WORD COUNT: 2000
+WORD COUNT: 1000-1200
 KEY POINTS TO COVER:
 - What functional safety means in an industrial context
 - The key Australian/international standards: AS 62061 (safety of machinery), AS 4024 (safeguarding of machinery), IEC 61511 (process industries), IEC 61508 (base standard)
