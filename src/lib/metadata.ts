@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-export const siteUrl = 'https://www.metromotioncontrols.com.au'
+export const siteUrl = 'https://metromotioncontrols.com.au'
 export const siteName = 'Metromotion Controls'
 
 export const defaultMetaDescription =
