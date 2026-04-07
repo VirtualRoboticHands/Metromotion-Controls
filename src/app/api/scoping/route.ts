@@ -19,38 +19,6 @@ const ALLOWED_EXTENSIONS = new Set(['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png', 
 
 const ipRequestMap = new Map<string, number[]>()
 
-const fallbackReport: ScopingReport = {
-  headline: 'Project Scoping Brief',
-  overview:
-    'Based on your questionnaire responses, this project should begin with discovery and risk review, then move into detailed design and staged implementation. The practical sequencing will depend on production constraints, integration touchpoints, and changeover windows.',
-  scope_items: [
-    'Current-state system and documentation review',
-    'Functional scope definition and interface mapping',
-    'Detailed controls and integration design package',
-    'Build, test, and FAT before site deployment',
-    'Staged site commissioning with operator handover',
-    'Post go-live support and optimisation',
-  ],
-  timeline_estimate:
-    'Typical delivery runs in phases over several weeks to a few months, depending on discovery quality, site access, and cutover constraints.',
-  common_pitfalls: [
-    'Insufficient upfront discovery on legacy assets and interfaces',
-    'Late involvement of operations and maintenance stakeholders',
-    'Under-scoped testing before site deployment',
-    'Unclear cutover ownership across vendors or teams',
-  ],
-  questions_to_ask: [
-    'How will cutover risk be managed while maintaining production continuity?',
-    'What testing evidence will be available before site commissioning?',
-    'How will integration dependencies be validated across systems?',
-    'What support model applies in the first weeks after go-live?',
-    'How will operator training and handover be structured?',
-    'What are the highest-risk assumptions in the current scope?',
-  ],
-  metromotion_approach:
-    'Metromotion typically starts with structured discovery, then aligns scope, testing, and commissioning plans to plant realities. We prioritise pragmatic risk management and clear ownership so delivery stays predictable from design through handover.',
-}
-
 const parseReport = (input: unknown): ScopingReport | null => {
   if (!input || typeof input !== 'object') return null
   const report = input as Partial<ScopingReport>
@@ -143,36 +111,35 @@ Respond with shape:
 }`
 }
 
-async function generateReport(prompt: string): Promise<ScopingReport> {
+async function generateReport(prompt: string): Promise<ScopingReport | null> {
   const apiKey = process.env.ANTHROPIC_API_KEY
-  if (!apiKey) return fallbackReport
-
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1200,
-      messages: [{ role: 'user', content: prompt }],
-    }),
-  })
-
-  if (!response.ok) {
-    return fallbackReport
-  }
-
-  const data = (await response.json()) as { content?: Array<{ type: string; text?: string }> }
-  const text = data.content?.filter((block) => block.type === 'text').map((block) => block.text || '').join('') || ''
+  if (!apiKey) return null
 
   try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1200,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    })
+
+    if (!response.ok) {
+      return null
+    }
+
+    const data = (await response.json()) as { content?: Array<{ type: string; text?: string }> }
+    const text = data.content?.filter((block) => block.type === 'text').map((block) => block.text || '').join('') || ''
     const parsed = JSON.parse(text.replace(/```json|```/g, '').trim())
-    return parseReport(parsed) || fallbackReport
+    return parseReport(parsed)
   } catch {
-    return fallbackReport
+    return null
   }
 }
 
@@ -253,6 +220,25 @@ export async function POST(request: NextRequest) {
     filePaths.push(path)
   }
 
+  const { data: insertedLead, error: insertError } = await supabase.from('scoping_leads').insert({
+    challenge,
+    challenge_answers: challengeAnswers,
+    industry,
+    platform,
+    timeline,
+    free_text: freeText || null,
+    contact_name: contactName,
+    contact_company: contactCompany,
+    contact_email: contactEmail,
+    contact_phone: contactPhone || null,
+    report: { status: 'generation_pending' },
+    files: filePaths,
+  }).select('id').single()
+
+  if (insertError || !insertedLead?.id) {
+    return NextResponse.json({ error: 'Unable to save scoping lead.' }, { status: 500 })
+  }
+
   const report = await generateReport(
     buildPrompt({
       challengeLabel,
@@ -268,24 +254,19 @@ export async function POST(request: NextRequest) {
     }),
   )
 
-  const { error: insertError } = await supabase.from('scoping_leads').insert({
-    challenge,
-    challenge_answers: challengeAnswers,
-    industry,
-    platform,
-    timeline,
-    free_text: freeText || null,
-    contact_name: contactName,
-    contact_company: contactCompany,
-    contact_email: contactEmail,
-    contact_phone: contactPhone || null,
-    report,
-    files: filePaths,
-  })
+  if (!report) {
+    await supabase
+      .from('scoping_leads')
+      .update({ report: { status: 'generation_unavailable' } })
+      .eq('id', insertedLead.id)
 
-  if (insertError) {
-    return NextResponse.json({ error: 'Unable to save scoping lead.' }, { status: 500 })
+    return NextResponse.json({ fallback: true })
   }
 
-  return NextResponse.json({ report })
+  await supabase
+    .from('scoping_leads')
+    .update({ report })
+    .eq('id', insertedLead.id)
+
+  return NextResponse.json({ report, fallback: false })
 }
