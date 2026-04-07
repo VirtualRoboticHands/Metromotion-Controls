@@ -3,11 +3,13 @@ import { getAllPosts } from '@/lib/blog'
 import { projects } from '@/lib/projects'
 import { services } from '@/lib/services'
 import { siteUrl } from '@/lib/metadata'
+import { industries } from '@/data/industries'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = ['', '/about', '/contact', '/services', '/services/support', '/projects']
   const serviceRoutes = services.map((service) => `/services/${service.slug}`)
   const projectRoutes = projects.map((project) => `/projects/${project.slug}`)
+  const industryRoutes = ['/industries', ...industries.map((industry) => `/industries/${industry.slug}`)]
 
   const posts = await getAllPosts()
   const blogUrls = posts.map((post) => ({
@@ -18,7 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   return [
-    ...[...staticRoutes, ...serviceRoutes, ...projectRoutes].map((route) => ({
+    ...[...staticRoutes, ...serviceRoutes, ...projectRoutes, ...industryRoutes].map((route) => ({
       url: `${siteUrl}${route}`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
