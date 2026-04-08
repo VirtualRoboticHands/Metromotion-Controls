@@ -13,14 +13,12 @@ export const metadata = buildPageMetadata({
 
 const timeline = [
   { year: '2012', title: 'Founded & Chobani Partnership', desc: 'Metromotion Controls established in Melbourne. Engaged as automation partner for Chobani\'s Australian yoghurt manufacturing operations, a partnership that continues today.' },
-  { year: '2015', title: 'National Expansion', desc: 'First interstate projects delivered, extending beyond Victoria to food and beverage manufacturing sites across New South Wales, South Australia and Queensland.' },
-  { year: '2017', title: 'La Casa del Formaggio Partnership', desc: 'Began a long-term automation partnership with La Casa del Formaggio, supporting their cheese manufacturing operations including a major greenfield facility.' },
-  { year: '2018', title: 'Lactalis & Multi-Site Delivery', desc: 'Partnered with Lactalis Australia for automation support across 10 dairy processing sites nationally, covering PLC, SCADA and control system upgrades.' },
+  { year: '2015', title: 'National Expansion', desc: 'First interstate projects delivered, extending beyond Victoria to food and beverage manufacturing sites across New South Wales, South Australia, and Queensland.' },
+  { year: '2017', title: 'La Casa del Formaggio & Ignition Gold Certified', desc: 'Began a long-term automation partnership with La Casa del Formaggio, supporting their cheese manufacturing operations. Achieved Ignition Gold Certified Integrator status in the same year.' },
+  { year: '2018', title: 'Lactalis Partnership', desc: 'Partnered with Lactalis Australia for automation support across their dairy processing operations nationally, covering PLC, SCADA, and control system upgrades.' },
   { year: '2020', title: 'Remedy Drinks & 200 Projects', desc: 'Partnered with Remedy Drinks on their greenfield kombucha manufacturing facility. Surpassed 200 completed automation projects.' },
-  { year: '2024', title: 'Ignition Gold Certified', desc: 'Achieved Ignition Gold Certified Integrator status, reflecting deep expertise in Inductive Automation\'s SCADA platform.' },
-  { year: '2026', title: '20 Engineers, National Delivery', desc: 'Team grows to 20 engineers. Delivering across 7+ industries nationally with long-term partnerships spanning food and beverage, dairy, FMCG, pet food, packaging, agricultural processing and building products.' },
+  { year: '2026', title: '20 Engineers, National Delivery', desc: 'Team grows to 20 engineers. Delivering across 7+ industries nationally with long-term partnerships spanning food and beverage, dairy, FMCG, pet food, packaging, agricultural processing, and building products.' },
 ]
-
 const values = [
   { title: 'Engineer-to-Engineer', desc: 'You talk directly to the engineers who design and deliver your systems. No sales layer, no account managers. The person scoping your project is the same person commissioning it.' },
   { title: 'Build to Maintain', desc: 'We design systems knowing we\'ll be the ones supporting them long term. That means cleaner code, better documentation, and architecture that your maintenance team can actually work with.' },
