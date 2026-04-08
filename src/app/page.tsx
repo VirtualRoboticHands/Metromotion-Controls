@@ -133,8 +133,6 @@ export default function HomePage() {
   const certificationBadges = ['ignitiongold.png', 'rockwell.png']
     .map((file) => resolveImagePath(file, ['images', 'images/platforms']))
     .filter((badge): badge is string => Boolean(badge))
-  const hughRoddyImage = resolveImagePath('hugh-roddy.jpg', ['images', 'images/platforms'])
-
   return (
     <>
       <Nav />
@@ -331,15 +329,23 @@ export default function HomePage() {
         <p className="section-sub">Over a decade focused on Australia&apos;s most demanding manufacturing sites. We understand the equipment, compliance requirements, and uptime targets your team is measured against.</p>
         <div style={{
           display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-          background: 'var(--border)', border: '1px solid var(--border)', gap: '1px', marginTop: '48px',
-        }} className="industry-grid">
+          gap: '11px', marginTop: '48px',
+        }} className="industry-grid industry-cards-grid">
           {industries.map(ind => (
             <div key={ind.num} className="hover-lift" style={{
-              background: 'var(--white)', padding: '36px 26px',
-              display: 'flex', flexDirection: 'column', gap: '12px', transition: 'background 0.2s',
+              background: 'var(--white)', padding: '28px 22px 24px',
+              display: 'flex', flexDirection: 'column', gap: '10px', transition: 'background 0.2s',
+              borderTop: '3px solid #c8281e',
+              borderLeft: '0.5px solid var(--border)',
+              borderRight: '0.5px solid var(--border)',
+              borderBottom: '0.5px solid var(--border)',
+              borderTopLeftRadius: 0,
+              borderTopRightRadius: 0,
+              borderBottomLeftRadius: '8px',
+              borderBottomRightRadius: '8px',
             }}>
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '18px', color: 'var(--muted2)', fontStyle: 'italic' }}>{ind.num}</div>
-              <div style={{ fontSize: '16px', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.25 }}>{ind.name}</div>
+              <div style={{ fontSize: '12px', color: '#c8281e', fontWeight: 500, letterSpacing: '0.05em' }}>{ind.num}</div>
+              <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)', lineHeight: 1.35 }}>{ind.name}</div>
               <div style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.65, fontWeight: 300 }}>{ind.desc}</div>
             </div>
           ))}
@@ -439,82 +445,34 @@ export default function HomePage() {
       </section></Reveal>
 
       {/* TESTIMONIALS */}
-      <Reveal><section className="section" id="about" style={{ background: 'var(--white)' }}>
-        <div className="section-label">Client Testimonials</div>
-        <h2 className="section-headline">What our clients <em>say</em></h2>
+      <Reveal><section className="section testimonials-section-dark" id="about" style={{ background: '#1a1a18', padding: '48px 40px' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+          <div style={{ color: '#c8281e', textTransform: 'uppercase', fontSize: '11px', letterSpacing: '2px', fontWeight: 500, marginBottom: '24px' }}>
+            Client Testimonials
+          </div>
 
-        {/* Hero quote */}
-        <div style={{
-          background: 'var(--off)', border: '1px solid var(--border)',
-          padding: '56px 64px', marginTop: '48px',
-          display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '40px', alignItems: 'start',
-        }} className="testimonial-hero">
-          {hughRoddyImage ? (
-            <Image
-              src={hughRoddyImage}
-              alt="Hugh Roddy, Vice President Global Engineering at Chobani"
-              width={56}
-              height={56}
-              style={{ width: '56px', height: '56px', borderRadius: '999px', objectFit: 'cover' }}
-            />
-          ) : (
-            <div
-              style={{
-                width: '56px',
-                height: '56px',
-                borderRadius: '999px',
-                background: 'var(--off2)',
-                border: '1px solid var(--border)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 600,
-                color: 'var(--ink2)',
-                fontSize: '14px',
-              }}
-            >
-              HR
-            </div>
-          )}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
-            <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(19px, 2.4vw, 26px)', lineHeight: 1.45, color: 'var(--ink)', fontStyle: 'italic', letterSpacing: '-0.01em' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 'clamp(20px, 2.2vw, 22px)', color: '#f7f6f3', lineHeight: 1.5 }}>
               All the team have been an outstanding partner of Chobani since 2012. They have provided a one in a million partnership that we have not seen anywhere else in the world to date. They continue to do so on many levels.
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-              <div style={{ width: '22px', height: '1px', background: 'var(--red)' }} />
+            <div style={{ display: 'flex', alignItems: 'stretch', gap: '12px' }}>
+              <div style={{ width: '3px', background: '#c8281e', borderRadius: '1px', flexShrink: 0 }} />
               <div>
-                <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)' }}>Hugh Roddy</div>
-                <div style={{ fontSize: '12px', color: 'var(--muted)' }}>Vice President Global Engineering, Chobani</div>
+                <div style={{ fontSize: '14px', fontWeight: 500, color: '#f7f6f3' }}>Hugh Roddy</div>
+                <div style={{ fontSize: '12px', color: '#9c9a92' }}>Vice President Global Engineering, Chobani</div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Secondary testimonials */}
-        <div style={{
-          display: 'grid', gridTemplateColumns: '1fr 1fr',
-          background: 'var(--border)', border: '1px solid var(--border)', borderTop: 'none', gap: '1px',
-        }} className="testimonial-grid">
-          {[
-            { quote: 'Thanks again for helping us deliver another successful project on time and on budget. The automation platform that was delivered far exceeded all our expectations. Metromotion Controls will definitely be first choice for our next project.', name: 'Gary Saywell', role: 'Project Engineer, Real Pet Food', initial: 'GS' },
-          ].map(t => (
-            <div key={t.initial} style={{ background: 'var(--white)', padding: '36px', display: 'flex', flexDirection: 'column', gap: '18px' }}>
-              <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.8, fontStyle: 'italic', fontWeight: 300 }}>
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: 'auto' }}>
-                <div style={{
-                  width: '36px', height: '36px', background: 'var(--off2)', border: '1px solid var(--border)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: '12px', fontWeight: 600, color: 'var(--ink2)', flexShrink: 0,
-                }}>{t.initial}</div>
-                <div>
-                  <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)' }}>{t.name}</div>
-                  <div style={{ fontSize: '12px', color: 'var(--muted)' }}>{t.role}</div>
-                </div>
-              </div>
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: '28px', paddingTop: '24px' }}>
+            <p style={{ fontSize: '14px', color: '#b8b6ac', lineHeight: 1.75, fontStyle: 'italic', fontWeight: 300 }}>
+              &ldquo;Thanks again for helping us deliver another successful project on time and on budget. The automation platform that was delivered far exceeded all our expectations. Metromotion Controls will definitely be first choice for our next project.&rdquo;
+            </p>
+            <div style={{ marginTop: '12px' }}>
+              <div style={{ fontSize: '14px', fontWeight: 500, color: '#d4d2c8' }}>Gary Saywell</div>
+              <div style={{ fontSize: '12px', color: '#7c7a72' }}>Project Engineer, Real Pet Food</div>
             </div>
-          ))}
+          </div>
         </div>
       </section></Reveal>
 

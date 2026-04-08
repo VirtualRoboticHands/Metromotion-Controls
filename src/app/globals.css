@@ -261,6 +261,7 @@ body {
 /* ── RESPONSIVE ── */
 @media (max-width: 1100px) {
   .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .industry-cards-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .platform-grid { grid-template-columns: repeat(3, 1fr) !important; }
   .footer-top { grid-template-columns: 1fr 1fr !important; }
 }
@@ -282,13 +283,14 @@ body {
   .intro-grid,
   .cta-grid { grid-template-columns: 1fr !important; padding: 60px 24px !important; gap: 36px !important; }
   .project-main { grid-template-columns: 1fr !important; }
-  .industry-grid,
   .services-grid,
   .cases-grid,
   .testimonial-grid,
   .why-grid { grid-template-columns: 1fr !important; }
+  .industry-cards-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .platform-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .testimonial-hero { grid-template-columns: 1fr !important; padding: 36px !important; gap: 16px !important; }
+  .testimonials-section-dark { padding: 48px 24px !important; border-radius: 0 !important; }
   .clients-strip { flex-wrap: wrap !important; padding: 20px 24px !important; }
   .logo-marquee-track { gap: 18px !important; }
   .logo-marquee-item img { max-height: 40px !important; width: auto !important; }
@@ -304,6 +306,10 @@ body {
   .contact-grid { grid-template-columns: 1fr !important; }
   .contact-form-col { padding: 48px 24px !important; border-right: none !important; }
   .form-row { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 640px) {
+  .industry-cards-grid { grid-template-columns: 1fr !important; }
 }
 
 @media (max-width: 1100px) {
