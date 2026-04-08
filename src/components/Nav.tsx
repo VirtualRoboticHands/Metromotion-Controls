@@ -35,28 +35,34 @@ export default function Nav() {
       <div className="site-nav-inner">
         <Link href="/" className="site-nav-logo" aria-label="Metromotion Controls home">
           <Image
-            src="/images/cropped-cropped-Company-Logo-Transparent-Black1-e1604547687941.webp"
+            src="/images/clients/logo (1).png"
             alt="Metromotion Controls"
-            height={44}
-            width={220}
-            style={{ objectFit: 'contain', objectPosition: 'left center' }}
+            width={200}
+            height={48}
+            style={{ height: '44px', width: 'auto', objectFit: 'contain', objectPosition: 'left center' }}
             priority
           />
         </Link>
 
-        <ul className="site-nav-links nav-links-desktop" aria-label="Primary">
-          {links.map((link) => {
-            const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`)
+        <div className="site-nav-right">
+          <ul className="site-nav-links nav-links-desktop" aria-label="Primary">
+            {links.map((link) => {
+              const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`)
 
-            return (
-              <li key={link.href}>
-                <Link href={link.href} className={`site-nav-link ${isActive ? 'active' : ''}`}>
-                  {link.label}
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+              return (
+                <li key={link.href}>
+                  <Link href={link.href} className={`site-nav-link ${isActive ? 'active' : ''}`}>
+                    {link.label}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+
+          <Link href="/contact" className="btn-cta nav-cta-btn">
+            Start a Project
+          </Link>
+        </div>
 
         <button
           onClick={() => setMobileOpen((prev) => !prev)}
