@@ -34,7 +34,7 @@ export default function Nav() {
       <div className="site-nav-inner">
         <Link href="/" className="site-nav-logo" aria-label="Metromotion Controls home">
           <img
-            src="/images/clients/logo (1).png"
+            src="/images/cropped-cropped-Company-Logo-Transparent-Black1-e1604547687941.webp"
             alt="Metromotion Controls"
             style={{ height: '44px', width: 'auto' }}
           />
