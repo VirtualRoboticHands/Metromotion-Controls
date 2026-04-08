@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -34,13 +33,10 @@ export default function Nav() {
     <nav className={`site-nav ${scrolled ? 'site-nav-scrolled' : ''}`}>
       <div className="site-nav-inner">
         <Link href="/" className="site-nav-logo" aria-label="Metromotion Controls home">
-          <Image
+          <img
             src="/images/clients/logo (1).png"
             alt="Metromotion Controls"
-            width={200}
-            height={48}
-            style={{ height: '44px', width: 'auto', objectFit: 'contain', objectPosition: 'left center' }}
-            priority
+            style={{ height: '44px', width: 'auto' }}
           />
         </Link>
 
