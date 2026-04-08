@@ -84,16 +84,16 @@ export default function HomePage() {
   const yearsInOperation = new Date().getFullYear() - 2012
   const clientFiles = getImageFiles('images/clients')
   const trustedByClients = [
-    { name: 'Chobani', file: 'CHO®_WM_REG_RGB_560_052019.png' },
-    { name: 'Lactalis', file: 'lactalislogo.png' },
-    { name: 'La Casa del Formaggio', file: 'la-casa-resized-01.jpg' },
-    { name: 'Remedy Drinks', file: 'RemedyLogo.png' },
-    { name: 'Peters Ice Cream', file: 'peters.jpeg' },
-    { name: 'Real Pet Food', file: 'rpf.webp' },
-    { name: 'Austral Bricks', file: 'australbricks.png' },
-    { name: 'Beak & Johnston', file: 'logo-beak.png' },
-    { name: 'Kinrise', file: 'kinrise.png' },
-    { name: 'Tibaldi', file: 'tibaldi.png' },
+    { name: 'Chobani', file: 'CHO®_WM_REG_RGB_560_052019.png', h: 30 },
+    { name: 'Lactalis', file: 'lactalislogo.png', h: 44 },
+    { name: 'La Casa del Formaggio', file: 'la-casa-resized-01.jpg', h: 52 },
+    { name: 'Remedy Drinks', file: 'RemedyLogo.png', h: 52 },
+    { name: 'Peters Ice Cream', file: 'peters.jpeg', h: 52 },
+    { name: 'Real Pet Food', file: 'rpf.webp', h: 52 },
+    { name: 'Austral Bricks', file: 'australbricks.png', h: 28 },
+    { name: 'Beak & Johnston', file: 'logo-beak.png', h: 44 },
+    { name: 'Kinrise', file: 'kinrise.png', h: 44 },
+    { name: 'Tibaldi', file: 'tibaldi.png', h: 52 },
   ]
   const matchFile = (candidates: string[], files: string[]) =>
     files.find((existing) => candidates.some((candidate) => candidate.toLowerCase() === existing.toLowerCase())) ?? null
@@ -112,6 +112,8 @@ export default function HomePage() {
     { name: 'Citect SCADA', files: ['citect.png'] },
     { name: 'ifm', files: ['ifm.png'] },
     { name: 'SICK', files: ['sick.png'] },
+    { name: 'Sepasoft', files: ['sepasoft.png'] },
+    { name: 'Phoenix Contact', files: ['phoenix.png'] },
   ]
   const platformLogos = platformLogoConfig
     .map((vendor) => {
@@ -240,9 +242,9 @@ export default function HomePage() {
                     <Image
                       src={client.path}
                       alt={`${client.name} logo`}
-                      width={180}
-                      height={40}
-                      style={{ width: 'auto', maxHeight: '40px', objectFit: 'contain' }}
+                      width={200}
+                      height={60}
+                      style={{ height: `${client.h}px`, width: 'auto', objectFit: 'contain' }}
                       className="trusted-logo-image"
                     />
                   ) : null}

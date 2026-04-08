@@ -86,7 +86,7 @@ export default function Footer() {
           © {new Date().getFullYear()} Metromotion Controls Pty Ltd. All rights reserved.
         </span>
         <div style={{ display: 'flex', gap: '6px' }}>
-          {['ISO 9001', 'AS 61508', 'NCC Compliant'].map(cert => (
+          {['AS 61508'].map(cert => (
             <span key={cert} style={{
               fontSize: '10px', letterSpacing: '0.06em', textTransform: 'uppercase' as const,
               padding: '3px 9px', border: '1px solid var(--border2)', color: 'var(--muted2)', background: 'var(--white)',
