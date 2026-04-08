@@ -7,6 +7,7 @@ import path from 'node:path'
 import { buildPageMetadata } from '@/lib/metadata'
 import ProjectScopingTool from '@/components/ProjectScopingTool'
 import Reveal from '@/components/animations/Reveal'
+import { projectsBySlug } from '@/lib/projects'
 
 export const metadata = buildPageMetadata({
   title: 'Industrial Automation & Control Systems',
@@ -35,14 +36,17 @@ const industries = [
   { num: '04', name: 'Building Products & General Manufacturing', desc: 'Heavy clay, bricks, tiles, and general industrial automation. Precision process control, kiln management, and production data systems.' },
 ]
 
-const caseStudies = [
-  { type: 'Greenfield', name: 'Greenfields Cheese Factory', desc: 'Full automation scope for a new cheese manufacturing facility, pasteurisation, vat control, and CIP systems.' },
-  { type: 'Integration', name: 'Raw Materials Handling', desc: 'Automated intake, weighing, batching and transfer systems with full traceability and ERP integration.' },
-  { type: 'Upgrade', name: 'Factory Automation Upgrades', desc: 'Legacy PLC migration and SCADA upgrades across multiple sites. Zero unplanned downtime on any cutover.' },
-  { type: 'Support', name: 'Site Automation Support', desc: 'Long-term on-call engineering, preventive maintenance and continuous improvement programs.' },
-  { type: 'Commissioning', name: 'OEM Machine Integration', desc: 'Commissioning and site integration of imported OEM machinery, protocols, safety systems and production reporting.' },
-  { type: 'Analytics', name: 'OEE Analytics Platform', desc: 'Real-time OEE dashboards and downtime tracking integrated into existing SCADA across three production lines.' },
+const showcaseProjectSlugs = [
+  'chobani-yoghurt-plant',
+  'la-casa-cheese-factory',
+  'real-pet-food-raw-materials',
+  'sakata-product-line-integration',
+  'jc-smale-brick-texturing',
+  'lactalis-commissioning-support',
 ]
+const showcaseProjects = showcaseProjectSlugs
+  .map(slug => projectsBySlug[slug])
+  .filter(Boolean)
 
 const whyCards = [
   { num: '80%', title: 'Repeat Business', desc: 'Around 80% of our work comes from existing clients. That comes from delivering what we promise and staying involved long after go-live.' },
@@ -435,15 +439,18 @@ export default function HomePage() {
           display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
           background: 'var(--border)', border: '1px solid var(--border)', borderTop: 'none', gap: '1px',
         }} className="cases-grid">
-          {caseStudies.map(cs => (
-            <div key={cs.name} className="hover-lift" style={{
+          {showcaseProjects.map(p => (
+            <Link key={p.slug} href={`/projects/${p.slug}`} className="hover-lift" style={{
               background: 'var(--white)', padding: '26px',
               display: 'flex', flexDirection: 'column', gap: '9px', transition: 'background 0.2s',
+              textDecoration: 'none',
             }}>
-              <div style={{ fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'var(--red)', fontWeight: 500 }}>{cs.type}</div>
-              <div style={{ fontSize: '15px', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.3 }}>{cs.name}</div>
-              <div style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6, fontWeight: 300 }}>{cs.desc}</div>
-            </div>
+              <div style={{ fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'var(--red)', fontWeight: 500 }}>{p.category}</div>
+              <div style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--muted2)', fontWeight: 500 }}>{p.client}</div>
+              <div style={{ fontSize: '15px', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.3 }}>{p.title}</div>
+              <div style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6, fontWeight: 300, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as const, overflow: 'hidden' }}>{p.overview}</div>
+              <div style={{ fontSize: '12px', color: 'var(--red)', fontWeight: 500, marginTop: '4px' }}>View project →</div>
+            </Link>
           ))}
         </div>
       </section></Reveal>

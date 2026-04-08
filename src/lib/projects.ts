@@ -29,13 +29,14 @@ export const projects: ProjectDetail[] = [
     category: 'Large Capital Projects',
     title: 'Greenfields Yoghurt Plant',
     overview:
-      'As Chobani expanded into Australia, the company acquired a local yoghurt operation and invested in a new automated yoghurt facility. Metromotion Controls was engaged as the on-site automation and electrical partner to deliver core infrastructure and plant-wide integration. This partnership has continued since 2011, with ongoing support aligned to Chobani\'s global automation standards.',
+      'When Chobani established its first Australian manufacturing facility, the project demanded a controls partner capable of managing plant-wide automation from the ground up. Metromotion Controls was engaged as the on-site automation and electrical partner, delivering site power infrastructure, process automation and full-facility integration. The partnership has continued since 2011, with ongoing support aligned to Chobani\'s global automation standards.',
     deliverables: [
       'Site power upgrade, including new mains design and procurement',
       'Building services and process power distribution',
       'Factory-wide automation integration across process, packaging and site services',
       'Commissioning plus ongoing remote and on-site support'
     ],
+    technologies: ['Rockwell ControlLogix', 'FactoryTalk View SE', 'PowerFlex Drives', 'EtherNet/IP'],
     testimonial: {
       quote:
         'Metromotion Controls and all the team have been an outstanding partner of Chobani since 2011. They provided a one in a million partnership that we have not seen anywhere else in the world. From the initial onset of the project they provided outstanding project management of the whole portfolio, managed all pricing and quotations, facilitated design of all process, mechanical and electrical to meet our end goals, and coordinated all installation. We have continued to work with them on all projects since completion in 2012 and would not hesitate to recommend them.',
@@ -49,11 +50,12 @@ export const projects: ProjectDetail[] = [
     category: 'Large Capital Projects',
     title: 'Greenfields Cheese Factory',
     overview:
-      'La Casa Del Formaggio is a family-run Australian business with more than 125 staff, producing Bocconcini, Burrata, Mascarpone, Mozzarella and Ricotta for retail, food service and industrial customers nationwide. To meet rapid growth, Metromotion Controls was contracted to design, build and commission a fully automated greenfield cheese manufacturing facility in South Australia.',
+      'La Casa Del Formaggio is a family-run Australian business with more than 125 staff, producing Bocconcini, Burrata, Mascarpone, Mozzarella and Ricotta for retail, food service and industrial customers nationwide. To meet rapid production growth, Metromotion Controls was contracted to design, build and commission a fully automated greenfield cheese manufacturing facility in South Australia, delivering full electrical and automation scope from concept through to operational handover.',
     deliverables: [
       'End-to-end design, build and commissioning of a fully automated greenfield cheese plant',
-      'Delivery of automation and electrical systems to support growing production demand',
-      'Commissioning support for start-up and operational readiness'
+      'Full electrical scope including MCC design, cable schedules and panel engineering',
+      'Automation and control systems for pasteurisation, vat management and CIP processes',
+      'Commissioning support for start-up, operator training and operational readiness'
     ],
     technologies: ['Rockwell', 'Ignition SCADA', '21 PowerFlex525 VSDs', '3 Motor Control Centres', '4 HMI stations', '16,237 Ignition tags', '30 PID loops']
   },
@@ -63,7 +65,7 @@ export const projects: ProjectDetail[] = [
     category: 'Large Capital Projects',
     title: 'Raw Materials Handling Automation',
     overview:
-      'Founded in 1994 as a small chilled dog-roll facility in Queensland, Real Pet Food Company has grown into one of Australia\'s leading pet food manufacturers. This project covered supply, installation and commissioning of processing equipment across mechanical, electrical and automation scopes.',
+      'Founded in 1994 as a small chilled dog-roll facility in Queensland, Real Pet Food Company has grown into one of Australia\'s leading pet food manufacturers. This project covered supply, installation and commissioning of a fully automated raw materials handling system, with a particular focus on batch traceability and production scheduling. Metromotion Controls delivered the complete mechanical, electrical and automation scope.',
     deliverables: [
       'Automation architecture design using Rockwell PLC, I/O and VSDs, Stratix managed networking and Ignition SCADA',
       'Tailored ISA-88 batch control platform from production scheduling through to live plant-floor batch visibility',
@@ -84,13 +86,13 @@ export const projects: ProjectDetail[] = [
     category: 'Factory Automation Upgrades',
     title: 'New Product Line Integration',
     overview:
-      "The Smith's Snackfood Company has brought successful brands such as Grain Waves, Doritos and Sakata rice crackers to market. Metromotion Controls supported the integration of new equipment into an existing production line to enable reliable expansion.",
+      "Smith's Snackfood Company manages some of Australia's most recognised snack brands including Grain Waves, Doritos and Sakata rice crackers. When new production equipment was added alongside existing assets, clean integration of automation, networking and control software was critical to maintaining line reliability. Metromotion Controls provided engineering support to deliver seamless integration from field devices through to the site SCADA layer.",
     deliverables: [
-      'Automation networking and communications integration for new line equipment',
-      'Development of detailed functional descriptions',
-      'PLC and SCADA programming plus commissioning support'
+      'Automation networking and EtherNet/IP communications integration for new line equipment',
+      'Development of detailed functional descriptions and control philosophies',
+      'PLC and SCADA programming plus commissioning and handover support'
     ],
-    technologies: ['Rockwell']
+    technologies: ['Rockwell ControlLogix', 'EtherNet/IP', 'FactoryTalk View SE']
   },
   {
     slug: 'patties-hot-water-automation',
@@ -98,12 +100,14 @@ export const projects: ProjectDetail[] = [
     category: 'Factory Automation Upgrades',
     title: 'Low Cost Hot Water Set Automation',
     overview:
-      'Patties Foods manufactures meat pies, baked goods, frozen fruit products and pre-made desserts for the Australian market. Metromotion Controls delivered a low-cost control system for a hot water set process, balancing dependable performance with strict budget constraints.',
+      'Patties Foods is one of Australia\'s leading manufacturers of pies, pasties, sausage rolls and frozen desserts. When Patties needed to automate a hot water set process used for product forming and cooking cycle control, the project required a practical, low-cost engineering solution. Metromotion Controls scoped and delivered a fit-for-purpose control system that met operational requirements without over-engineering the scope or exceeding budget.',
     deliverables: [
-      'Design and implementation of a cost-effective hot water set control solution',
-      'Reliable process functionality and consistent operational performance',
-      'Fit-for-purpose engineering without unnecessary system complexity'
-    ]
+      'Scoped and delivered a fit-for-purpose hot water set control solution within strict budget constraints',
+      'Reliable temperature and cycle control for consistent product forming and cooking outcomes',
+      'Straightforward operator interface designed for fast adoption by production staff',
+      'Engineering documentation and handover support for ongoing maintenance'
+    ],
+    technologies: ['Rockwell CompactLogix', 'PanelView HMI']
   },
   {
     slug: 'tibaldi-inventory-management',
@@ -111,12 +115,14 @@ export const projects: ProjectDetail[] = [
     category: 'Factory Automation Upgrades',
     title: 'Automatic Inventory Management',
     overview:
-      'Metromotion Controls designed and implemented an automated inventory management system integrated with Tibaldi\'s existing production controls to improve stock handling and visibility.',
+      'Tibaldi Smallgoods is an Australian producer of Italian-style cured meats and continental smallgoods with a longstanding reputation in the Melbourne market. As production volumes grew, manual stock tracking and material movement across the factory floor created delays, data gaps and traceability risk. Metromotion Controls designed and implemented an automated inventory management system, integrating directly with existing production controls to provide real-time visibility and reduce manual handling.',
     deliverables: [
-      'Automated inventory management system design and implementation',
-      'Integration with existing production control systems',
-      'Real-time stock visibility and reduced manual handling'
-    ]
+      'Automated inventory tracking and management system design and implementation',
+      'Integration with existing production PLC and control infrastructure',
+      'Real-time stock visibility across raw material, work-in-progress and finished goods areas',
+      'Reduced manual data entry and improved traceability through automated stock movement recording'
+    ],
+    technologies: ['Rockwell', 'Ignition SCADA', 'SQL Database Integration']
   },
   {
     slug: 'jc-smale-brick-texturing',
@@ -124,12 +130,13 @@ export const projects: ProjectDetail[] = [
     category: 'OEM Automation Projects',
     title: 'Brick Texturing Machine Automation',
     overview:
-      'JC Smale is a high-performance manufacturing and design engineering team serving multiple sectors. Metromotion Controls has delivered several projects for JC Smale, particularly in brickworks applications. This project required flexible automation delivery while equipment remained in mechanical development.',
+      'JC Smale is a Melbourne-based high-performance manufacturing and design engineering business serving multiple industrial sectors. Metromotion Controls has a long-standing working relationship with the JC Smale team, particularly on brickworks automation projects. This engagement required flexible, adaptive delivery — working in parallel with ongoing mechanical development while building a polished HMI capable of managing complex multi-recipe texturing operations.',
     deliverables: [
-      'Integration of new equipment during ongoing mechanical development',
-      'Site commissioning at both the engineering workshop and the end-customer brickworks site',
-      'Collaborative development of an HMI interface tailored to complex recipe management'
-    ]
+      'Automation integration of new equipment during concurrent mechanical development',
+      'Site commissioning at both the JC Smale engineering workshop and the end-customer brickworks site',
+      'Collaborative HMI design tailored to complex recipe management and operator workflows'
+    ],
+    technologies: ['Rockwell CompactLogix', 'FactoryTalk View ME', 'EtherNet/IP']
   },
   {
     slug: 'steamtech-boiler-automation',
@@ -137,13 +144,13 @@ export const projects: ProjectDetail[] = [
     category: 'OEM Automation Projects',
     title: 'Boiler Automation',
     overview:
-      'Steamtech Engineering is a Melbourne-based Australian boiler manufacturer established in 1970, producing a broad range of industrial steam and hot water boilers. Metromotion Controls provided local engineering support for automation delivery and customer commissioning outcomes.',
+      'Steamtech Engineering is a Melbourne-based Australian boiler manufacturer established in 1970, producing a broad range of industrial steam and hot water boilers for commercial and industrial customers. As Steamtech modernised its product range, Metromotion Controls was engaged to migrate legacy automation programs and provide commissioning support for Steamtech\'s end customers across Australia, ensuring consistent and reliable outcomes across each installation.',
     deliverables: [
-      'PLC program migration for existing automation systems',
-      'I/O testing and on-site commissioning activities',
-      'Ongoing engineering support to Steamtech end customers'
+      'PLC program migration from legacy to current automation platforms',
+      'I/O testing and on-site commissioning activities for new installations',
+      'Ongoing engineering support to Steamtech end customers post-commissioning'
     ],
-    technologies: ['Rockwell']
+    technologies: ['Rockwell CompactLogix', 'PanelView HMI']
   },
   {
     slug: 'lactalis-commissioning-support',
@@ -151,17 +158,16 @@ export const projects: ProjectDetail[] = [
     category: 'Engineering Services',
     title: 'Programming & Commissioning Support',
     overview:
-      "Lactalis Australia (formerly Parmalat) is one of Australia's largest dairy contributors and is part of the world's largest dairy group, with brands including Paul's Milk, OAK, ICE BREAK, Vaalia Yoghurt and President Cheese. Metromotion Controls was engaged across multiple sites including Bendigo, Echuca, Tamar Valley, Longwarry, Rowville and Lemnos.",
+      "Lactalis Australia (formerly Parmalat) is one of Australia's largest dairy contributors and part of the world's largest dairy group, with brands including Paul's Milk, OAK, ICE BREAK, Vaalia Yoghurt and President Cheese. Metromotion Controls was engaged across multiple sites including Bendigo, Echuca, Tamar Valley, Longwarry, Rowville and Lemnos, providing programming, commissioning and ongoing production support across a range of process upgrades and new equipment installations.",
     deliverables: [
-      'Commissioning and integration of OEM installations',
-      'Process upgrades to support new product introductions',
-      'Factory-wide CIP set validations',
-      'Continuous improvement of existing process operations',
-      'SCADA implementation and conversion in Citect',
-      'I/O testing of electrical installations',
-      'Ongoing production support'
+      'Commissioning and integration of OEM installations across multiple dairy sites',
+      'Process upgrades to support new product introductions and production line changes',
+      'Factory-wide CIP set validations to maintain hygiene and compliance standards',
+      'Continuous improvement of existing process operations and control sequences',
+      'SCADA implementation and conversion in Citect across site systems',
+      'I/O testing of electrical installations and ongoing production support'
     ],
-    technologies: ['Citect SCADA', 'Rockwell']
+    technologies: ['Citect SCADA', 'Rockwell', 'EtherNet/IP']
   },
   {
     slug: 'arnotts-control-system-audit',
@@ -169,12 +175,13 @@ export const projects: ProjectDetail[] = [
     category: 'Engineering Services',
     title: 'Control System Audit',
     overview:
-      "Arnott's is one of Australia's most recognised food manufacturers. As part of a broader improvement program, Metromotion Controls delivered a comprehensive audit of the site's existing control system architecture.",
+      "Arnott's is one of Australia's most recognised food and biscuit manufacturers, with manufacturing operations across the country. As part of a broader operational improvement program, the Arnott's engineering team engaged Metromotion Controls to conduct a structured audit of the existing control system infrastructure. The work provided a clear current-state picture and a prioritised set of recommendations to guide future automation investment decisions and manage obsolescence risk.",
     deliverables: [
-      'On-site walkthrough to identify and document existing control assets',
-      'Detailed findings report covering current-state architecture',
-      'Recommendations to support Arnott\'s future automation strategy'
-    ]
+      'On-site walkthrough to identify, document and assess existing control assets and architecture',
+      'Detailed findings report covering current-state hardware, software and network infrastructure',
+      "Prioritised recommendations to support Arnott's future automation strategy and risk management"
+    ],
+    technologies: ['Control System Assessment', 'Rockwell', 'Asset Documentation']
   },
   {
     slug: 'orora-network-investigation',
@@ -182,12 +189,13 @@ export const projects: ProjectDetail[] = [
     category: 'Engineering Services',
     title: 'OT Network Investigation',
     overview:
-      "Orora delivers a broad range of tailored packaging solutions. Metromotion Controls was engaged by Orora's engineering team to diagnose excessive control network latency that was impacting production performance.",
+      "Orora is one of Australasia's leading packaging solution providers, operating manufacturing and processing sites across the region. When excessive latency on a production-critical OT network began affecting control system performance and line output, Orora's engineering team engaged Metromotion Controls to investigate the root cause. The project combined detailed site investigation, network documentation and a structured recommendations report to resolve the issue and prevent recurrence.",
     deliverables: [
-      'Site investigation of network topology and device configurations',
-      'Development of Ethernet network schematics',
-      'Recommendations report to improve network performance and reduce production downtime'
-    ]
+      'Site investigation of OT network topology, device configurations and traffic behaviour',
+      'Development of accurate Ethernet network schematics reflecting the as-built environment',
+      'Recommendations report to reduce latency, improve network performance and prevent future production impact'
+    ],
+    technologies: ['OT Network Assessment', 'Industrial Ethernet', 'Network Topology Analysis']
   }
 ]
 

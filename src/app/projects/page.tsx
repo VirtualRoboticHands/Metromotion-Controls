@@ -44,7 +44,7 @@ export default function ProjectsIndexPage() {
                   <span className="tag" style={{ width: 'fit-content' }}>{project.category}</span>
                   <div style={{ fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted2)' }}>{project.client}</div>
                   <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '30px', lineHeight: 1.1, color: 'var(--ink)' }}>{project.title}</h3>
-                  <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.7, flex: 1 }}>{project.overview}</p>
+                  <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.7, flex: 1, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' as const, overflow: 'hidden' }}>{project.overview}</p>
                   <Link href={`/projects/${project.slug}`} className="btn-outline" style={{ width: 'fit-content' }}>
                     View project
                   </Link>
