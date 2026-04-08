@@ -12,22 +12,23 @@ export const metadata = buildPageMetadata({
 })
 
 const timeline = [
-  { year: '1995', title: 'Metromotion Founded', desc: 'Parent company Metromotion established, providing instrumentation and control services to Australian industry.' },
-  { year: '2011', title: 'Chobani Partnership Begins', desc: 'Engaged as automation partner for Chobani\'s Australian operations — a relationship that continues today.' },
+  { year: '2011', title: 'Chobani Partnership Begins', desc: 'Engaged as automation partner for Chobani\'s Australian operations, a relationship that continues today.' },
   { year: '2012', title: 'Metromotion Controls Formed', desc: 'Metromotion Controls Pty Ltd established to focus exclusively on industrial automation and control systems engineering.' },
   { year: '2015', title: 'National Expansion', desc: 'First interstate projects delivered, extending reach beyond Victoria to food and beverage sites across Australia.' },
-  { year: '2020', title: '200+ Projects Milestone', desc: 'Surpassed 200 completed automation projects with a 92% repeat customer rate.' },
-  { year: 'Today', title: 'Still Growing', desc: 'Eight service disciplines, national delivery, and long-term partnerships with Australia\'s leading manufacturers.' },
+  { year: '2020', title: '200+ Projects Milestone', desc: 'Surpassed 200 completed automation projects with an 80% repeat client rate.' },
+  { year: 'Today', title: 'Still Growing', desc: 'National delivery and long-term partnerships with Australia\'s leading manufacturers.' },
 ]
 
 const values = [
-  { title: 'Engineer-to-Engineer', desc: 'We speak your language. No sales layer, no account managers — direct access to the engineers who design and deliver your systems.' },
-  { title: 'Build to Maintain', desc: 'We design systems knowing we\'ll be the ones supporting them. That makes us build better — cleaner code, better documentation, smarter architecture.' },
-  { title: 'Platform Agnostic', desc: 'We recommend what\'s right for your site, not what earns us the biggest margin. Rockwell, Siemens, Ignition — we work across them all.' },
+  { title: 'Engineer-to-Engineer', desc: 'We speak your language. No sales layer and no account managers, just direct access to the engineers who design and deliver your systems.' },
+  { title: 'Build to Maintain', desc: 'We design systems knowing we will be the ones supporting them. That makes us build better, with cleaner code, better documentation and smarter architecture.' },
+  { title: 'Platform Agnostic', desc: 'We recommend what is right for your site, not what earns us the biggest margin. Rockwell, Siemens, Ignition and AVEVA are all part of our delivery stack.' },
   { title: 'Zero Surprises', desc: 'Straight talk on scope, timeline and budget from day one. Every project gets a clear specification before a single line of code is written.' },
 ]
 
 export default function AboutPage() {
+  const yearsInOperation = new Date().getFullYear() - 2012
+
   return (
     <>
       <Nav />
@@ -60,9 +61,9 @@ export default function AboutPage() {
             fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.85, fontWeight: 300,
             position: 'relative', zIndex: 1,
           }}>
-            Metromotion Controls is a Melbourne-based industrial automation and control systems engineering company. We design, program, commission and support automation systems for food &amp; beverage, packaging and advanced manufacturing facilities across Australia.
+            Metromotion Controls is a Melbourne-based industrial automation and control systems engineering company. We design, program, commission and support automation systems for food and beverage, dairy, FMCG, pet food, packaging, agricultural processing and building products facilities across Australia.
             <br/><br/>
-            Founded in 2012 as part of the Metromotion group (est. 1995), we bring <strong style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 500 }}>deep domain expertise and a no-nonsense approach</strong> to every project.
+            Founded in 2012, we bring <strong style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 500 }}>deep domain expertise and a no-nonsense approach</strong> to every project.
           </p>
         </section>
 
@@ -72,10 +73,10 @@ export default function AboutPage() {
           background: 'var(--border)', borderBottom: '1px solid var(--border)', gap: '1px',
         }} className="about-stats">
           {[
-            { num: '92%', label: 'Repeat customer rate' },
-            { num: '14+', label: 'Years in operation' },
+            { num: '80%', label: 'Repeat client rate' },
+            { num: `${yearsInOperation}+`, label: 'Years in operation' },
             { num: '200+', label: 'Projects delivered' },
-            { num: '8', label: 'Service disciplines' },
+            { num: '75+', label: 'Clients served' },
           ].map(s => (
             <div key={s.label} style={{
               background: 'var(--white)', padding: '40px 36px',
@@ -110,7 +111,7 @@ export default function AboutPage() {
         {/* Timeline */}
         <section className="section" style={{ background: 'var(--white)' }}>
           <div className="section-label">Our History</div>
-          <h2 className="section-headline">Three decades of <em>delivering</em></h2>
+          <h2 className="section-headline">Built since <em>2012</em></h2>
           <div style={{
             marginTop: '48px', display: 'flex', flexDirection: 'column',
             border: '1px solid var(--border)',
@@ -141,7 +142,7 @@ export default function AboutPage() {
             Ready to work with us?
           </h2>
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', maxWidth: '460px', lineHeight: 1.7, fontWeight: 300 }}>
-            Talk to an engineer — not a sales team. We&apos;ll give you a straight answer.
+            Talk to an engineer, not a sales team. We&apos;ll give you a straight answer.
           </p>
           <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none', marginTop: '8px' }}>
             Start a Conversation

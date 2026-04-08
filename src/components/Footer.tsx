@@ -18,7 +18,8 @@ const footerLinks = {
     { href: '/industries/packaging', label: 'Packaging' },
     { href: '/industries/pet-food', label: 'Pet Food' },
     { href: '/industries/fmcg', label: 'FMCG' },
-    { href: '/industries/advanced-manufacturing', label: 'Advanced Manufacturing' },
+    { href: '/industries/agricultural-processing', label: 'Agricultural Processing' },
+    { href: '/industries/building-products', label: 'Building Products' },
   ],
   company: [
     { href: '/about', label: 'About Us' },
@@ -46,7 +47,7 @@ export default function Footer() {
             Metromotion <span style={{ color: 'var(--red)' }}>Controls</span>
           </div>
           <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.65, maxWidth: '270px', fontWeight: 300 }}>
-            Industrial automation and control systems engineering for Australian food, beverage and advanced manufacturing.
+            Industrial automation and control systems engineering for Australian manufacturers across food, dairy, FMCG, packaging, pet food, agricultural processing and building products.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '4px' }}>
             <a href="tel:0398076896" style={{ fontSize: '13px', color: 'var(--muted)', textDecoration: 'none' }}>(03) 9807 6896</a>

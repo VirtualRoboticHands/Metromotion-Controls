@@ -12,7 +12,7 @@ export default function IndustriesIndexPage() {
           <div className="section-label">Industries</div>
           <h1 className="section-headline" style={{ maxWidth: '900px' }}>Industry-specific automation expertise</h1>
           <p className="section-sub" style={{ maxWidth: '820px' }}>
-            Explore how Metromotion Controls approaches automation in food and beverage, dairy, packaging, pet food, FMCG and advanced manufacturing environments.
+            Explore how Metromotion Controls approaches automation in food and beverage, dairy, FMCG, pet food, packaging, agricultural processing and building products environments.
           </p>
         </section>
 
