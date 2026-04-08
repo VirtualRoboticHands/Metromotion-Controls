@@ -164,7 +164,7 @@ body {
 
 .site-nav-inner {
   min-height: 86px;
-  padding: 18px 52px;
+  padding: 18px 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -188,7 +188,7 @@ body {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 36px;
+  gap: 2.5rem;
 }
 
 .site-nav-link,
