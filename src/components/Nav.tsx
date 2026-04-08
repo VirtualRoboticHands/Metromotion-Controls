@@ -37,10 +37,10 @@ export default function Nav() {
           <Image
             src="/images/cropped-cropped-Company-Logo-Transparent-Black1-e1604547687941.webp"
             alt="Metromotion Controls"
-            width={300}
-            height={48}
+            height={44}
+            width={220}
+            style={{ objectFit: 'contain', objectPosition: 'left center' }}
             priority
-            className="site-nav-logo-image"
           />
         </Link>
 
