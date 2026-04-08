@@ -164,11 +164,10 @@ body {
 
 .site-nav-inner {
   min-height: 86px;
-  padding: 18px 3rem;
+  padding: 0 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
 }
 
 .site-nav-logo {
@@ -182,6 +181,12 @@ body {
   height: 46px;
   width: auto;
   object-fit: contain;
+}
+
+.site-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
 }
 
 .site-nav-links {
@@ -260,6 +265,7 @@ body {
   .footer-top { grid-template-columns: 1fr !important; }
   .nav-links-desktop { display: none !important; }
   .nav-cta-btn { display: none !important; }
+  .site-nav-right { display: none !important; }
   .nav-mobile-toggle { display: flex !important; }
   .site-nav-inner { padding: 16px 24px !important; min-height: 78px !important; }
   .site-nav-logo-image { height: 40px !important; }
