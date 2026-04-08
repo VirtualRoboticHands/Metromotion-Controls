@@ -15,9 +15,9 @@ const footerLinks = {
   industries: [
     { href: '/industries/food-beverage', label: 'Food & Beverage' },
     { href: '/industries/dairy', label: 'Dairy' },
-    { href: '/industries/packaging', label: 'Packaging' },
-    { href: '/industries/pet-food', label: 'Pet Food' },
     { href: '/industries/fmcg', label: 'FMCG' },
+    { href: '/industries/pet-food', label: 'Pet Food' },
+    { href: '/industries/packaging', label: 'Packaging' },
     { href: '/industries/agricultural-processing', label: 'Agricultural Processing' },
     { href: '/industries/building-products', label: 'Building Products' },
   ],

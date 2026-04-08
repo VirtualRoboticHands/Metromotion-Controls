@@ -12,18 +12,20 @@ export const metadata = buildPageMetadata({
 })
 
 const timeline = [
-  { year: '2011', title: 'Chobani Partnership Begins', desc: 'Engaged as automation partner for Chobani\'s Australian operations, a relationship that continues today.' },
-  { year: '2012', title: 'Metromotion Controls Formed', desc: 'Metromotion Controls Pty Ltd established to focus exclusively on industrial automation and control systems engineering.' },
-  { year: '2015', title: 'National Expansion', desc: 'First interstate projects delivered, extending reach beyond Victoria to food and beverage sites across Australia.' },
-  { year: '2020', title: '200+ Projects Milestone', desc: 'Surpassed 200 completed automation projects with an 80% repeat client rate.' },
-  { year: 'Today', title: 'Still Growing', desc: 'National delivery and long-term partnerships with Australia\'s leading manufacturers.' },
+  { year: '2012', title: 'Founded & Chobani Partnership', desc: 'Metromotion Controls established in Melbourne. Engaged as automation partner for Chobani\'s Australian yoghurt manufacturing operations, a partnership that continues today.' },
+  { year: '2015', title: 'National Expansion', desc: 'First interstate projects delivered, extending beyond Victoria to food and beverage manufacturing sites across New South Wales, South Australia and Queensland.' },
+  { year: '2017', title: 'La Casa del Formaggio Partnership', desc: 'Began a long-term automation partnership with La Casa del Formaggio, supporting their cheese manufacturing operations including a major greenfield facility.' },
+  { year: '2018', title: 'Lactalis & Multi-Site Delivery', desc: 'Partnered with Lactalis Australia for automation support across 10 dairy processing sites nationally, covering PLC, SCADA and control system upgrades.' },
+  { year: '2020', title: 'Remedy Drinks & 200 Projects', desc: 'Partnered with Remedy Drinks on their greenfield kombucha manufacturing facility. Surpassed 200 completed automation projects.' },
+  { year: '2024', title: 'Ignition Gold Certified', desc: 'Achieved Ignition Gold Certified Integrator status, reflecting deep expertise in Inductive Automation\'s SCADA platform.' },
+  { year: '2026', title: '20 Engineers, National Delivery', desc: 'Team grows to 20 engineers. Delivering across 7+ industries nationally with long-term partnerships spanning food and beverage, dairy, FMCG, pet food, packaging, agricultural processing and building products.' },
 ]
 
 const values = [
-  { title: 'Engineer-to-Engineer', desc: 'We speak your language. No sales layer and no account managers, just direct access to the engineers who design and deliver your systems.' },
-  { title: 'Build to Maintain', desc: 'We design systems knowing we will be the ones supporting them. That makes us build better, with cleaner code, better documentation and smarter architecture.' },
-  { title: 'Platform Agnostic', desc: 'We recommend what is right for your site, not what earns us the biggest margin. Rockwell, Siemens, Ignition and AVEVA are all part of our delivery stack.' },
-  { title: 'Zero Surprises', desc: 'Straight talk on scope, timeline and budget from day one. Every project gets a clear specification before a single line of code is written.' },
+  { title: 'Engineer-to-Engineer', desc: 'You talk directly to the engineers who design and deliver your systems. No sales layer, no account managers. The person scoping your project is the same person commissioning it.' },
+  { title: 'Build to Maintain', desc: 'We design systems knowing we\'ll be the ones supporting them long term. That means cleaner code, better documentation, and architecture that your maintenance team can actually work with.' },
+  { title: 'Platform Agnostic', desc: 'We recommend what\'s right for your site, not what earns us the biggest margin. Allen-Bradley, Siemens, Ignition, AVEVA. We work across all major platforms and design around your existing standards.' },
+  { title: 'Long-Term Partnerships', desc: 'Our business is built on relationships that last. 80% of our clients come back, and our longest partnerships span over a decade. We want your project to succeed because that\'s how we earn the next one. That means honest scoping, transparent delivery, and no surprise variations.' },
 ]
 
 export default function AboutPage() {
@@ -61,9 +63,7 @@ export default function AboutPage() {
             fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.85, fontWeight: 300,
             position: 'relative', zIndex: 1,
           }}>
-            Metromotion Controls is a Melbourne-based industrial automation and control systems engineering company. We design, program, commission and support automation systems for food and beverage, dairy, FMCG, pet food, packaging, agricultural processing and building products facilities across Australia.
-            <br/><br/>
-            Founded in 2012, we bring <strong style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 500 }}>deep domain expertise and a no-nonsense approach</strong> to every project.
+            Metromotion Controls is a Melbourne-based industrial automation and control systems engineering company. We design, program, commission and support automation systems for food and beverage, dairy, FMCG, pet food, packaging, agricultural processing, and building products facilities across Australia. Founded in 2012, we&apos;ve grown to a team of 20 engineers delivering nationally.
           </p>
         </section>
 
@@ -73,10 +73,10 @@ export default function AboutPage() {
           background: 'var(--border)', borderBottom: '1px solid var(--border)', gap: '1px',
         }} className="about-stats">
           {[
-            { num: '80%', label: 'Repeat client rate' },
-            { num: `${yearsInOperation}+`, label: 'Years in operation' },
             { num: '200+', label: 'Projects delivered' },
+            { num: '80%', label: 'Repeat client rate' },
             { num: '75+', label: 'Clients served' },
+            { num: `${yearsInOperation}+`, label: 'Years in operation' },
           ].map(s => (
             <div key={s.label} style={{
               background: 'var(--white)', padding: '40px 36px',
@@ -111,7 +111,7 @@ export default function AboutPage() {
         {/* Timeline */}
         <section className="section" style={{ background: 'var(--white)' }}>
           <div className="section-label">Our History</div>
-          <h2 className="section-headline">Built since <em>2012</em></h2>
+          <h2 className="section-headline">Our story <em>so far</em></h2>
           <div style={{
             marginTop: '48px', display: 'flex', flexDirection: 'column',
             border: '1px solid var(--border)',
