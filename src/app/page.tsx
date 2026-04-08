@@ -83,28 +83,23 @@ function humanizeFilename(filename: string) {
 export default function HomePage() {
   const yearsInOperation = new Date().getFullYear() - 2012
   const clientFiles = getImageFiles('images/clients')
-  const fallbackClientFiles = getImageFiles('images/platforms')
   const trustedByClients = [
-    { name: 'Chobani', files: ['chobani.png', 'chobani.jpg', 'chobani.svg'] },
-    { name: 'Lactalis', files: ['lactalis.png', 'lactalis.jpg', 'lactalis.svg'] },
-    { name: 'Remedy Drinks', files: ['remedy-drinks.png', 'remedy.png', 'remedy-drinks.jpg'] },
-    { name: 'Peters Ice Cream', files: ['peters-ice-cream.png', 'peters.png', 'peters-ice-cream.jpg'] },
-    { name: 'La Casa del Formaggio', files: ['la-casa-del-formaggio.png', 'la-casa.png', 'la-casa-del-formaggio.jpg'] },
-    { name: 'Real Pet Food', files: ['real-pet-food.png', 'real-pet-food.jpg', 'realpetfood.png'] },
-    { name: 'Austral Bricks', files: ['austral-bricks.png', 'austral-bricks.jpg', 'austral.png'] },
-    { name: 'Beak & Johnston', files: ['beak-and-johnston.png', 'beak-johnston.png', 'beak-johnston.jpg'] },
-    { name: 'Kinrise', files: ['kinrise.png', 'kinrise.jpg', 'kinrise.svg'] },
-    { name: 'Tibaldi', files: ['tibaldi.png', 'tibaldi.jpg', 'tibaldi.svg'] },
+    { name: 'Chobani', file: 'CHO®_WM_REG_RGB_560_052019.png' },
+    { name: 'Lactalis', file: 'lactalislogo.png' },
+    { name: 'La Casa del Formaggio', file: 'la-casa-resized-01.jpg' },
+    { name: 'Remedy Drinks', file: 'RemedyLogo.png' },
+    { name: 'Peters Ice Cream', file: 'peters.jpeg' },
+    { name: 'Real Pet Food', file: 'rpf.webp' },
+    { name: 'Austral Bricks', file: 'australbricks.png' },
+    { name: 'Beak & Johnston', file: 'logo-beak.png' },
+    { name: 'Kinrise', file: 'kinrise.png' },
+    { name: 'Tibaldi', file: 'tibaldi.png' },
   ]
   const matchFile = (candidates: string[], files: string[]) =>
     files.find((existing) => candidates.some((candidate) => candidate.toLowerCase() === existing.toLowerCase())) ?? null
-  const trustedByEntries = trustedByClients.map((client) => {
-    const fileInClients = matchFile(client.files, clientFiles)
-    if (fileInClients) return { ...client, path: `/images/clients/${fileInClients}` }
-    const fileInFallback = matchFile(client.files, fallbackClientFiles)
-    if (fileInFallback) return { ...client, path: `/images/platforms/${fileInFallback}` }
-    return { ...client, path: null }
-  })
+  const trustedByEntries = trustedByClients
+    .filter((client) => clientFiles.some((file) => file.toLowerCase() === client.file.toLowerCase()))
+    .map((client) => ({ ...client, path: `/images/clients/${client.file}` }))
 
   const platformFiles = getImageFiles('images/platforms')
   const platformLogoConfig = [
@@ -127,11 +122,10 @@ export default function HomePage() {
   console.info('[Logo Debug] trusted-by and platform logo path resolution', {
     trustedByAvailableFiles: {
       clientsDir: clientFiles,
-      platformsDirFallback: fallbackClientFiles,
     },
     trustedByReferencedPaths: trustedByEntries.map((client) => ({
       name: client.name,
-      path: client.path ?? '[text fallback]',
+      path: client.path ?? '[missing]',
     })),
     platformAvailableFiles: platformFiles,
     platformReferencedPaths: platformLogos.map((platform) => `/images/platforms/${platform.file}`),
@@ -239,7 +233,6 @@ export default function HomePage() {
         padding: '28px 52px', borderBottom: '1px solid var(--border)', background: 'var(--white)',
         display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '20px',
       }} className="clients-strip">
-        <span style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--muted2)', whiteSpace: 'nowrap', flexShrink: 0 }}>Trusted by</span>
         {trustedByEntries.length > 0 && (
           <div className="logo-marquee">
             <div className="logo-marquee-track">
@@ -254,9 +247,7 @@ export default function HomePage() {
                       style={{ width: 'auto', maxHeight: '40px', objectFit: 'contain' }}
                       className="trusted-logo-image"
                     />
-                  ) : (
-                    <span style={{ fontSize: '13px', color: 'var(--ink2)', fontWeight: 500, whiteSpace: 'nowrap' }}>{client.name}</span>
-                  )}
+                  ) : null}
                 </div>
               ))}
             </div>
@@ -540,14 +531,14 @@ export default function HomePage() {
             <div key={platform.name} style={{
               background: 'var(--white)', padding: '24px 16px',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              minHeight: '72px',
+              minHeight: '94px',
             }}>
               <Image
                 src={`/images/platforms/${platform.file}`}
                 alt={`${platform.name} platform logo`}
                 width={160}
                 height={36}
-                style={{ width: 'auto', height: '36px', objectFit: 'contain' }}
+                style={{ width: 'auto', height: '47px', objectFit: 'contain' }}
                 className="logo-image"
               />
             </div>
@@ -571,7 +562,7 @@ export default function HomePage() {
                     background: 'var(--white)',
                     border: '1px solid var(--border)',
                     padding: '14px 18px',
-                    minHeight: '88px',
+                    minHeight: '106px',
                     display: 'flex',
                     alignItems: 'center',
                   }}
@@ -580,8 +571,8 @@ export default function HomePage() {
                     src={badgePath}
                     alt={`${humanizeFilename(path.basename(badgePath))} certification badge`}
                     width={190}
-                    height={60}
-                    style={{ width: 'auto', height: '60px', objectFit: 'contain' }}
+                    height={72}
+                    style={{ width: 'auto', height: '72px', objectFit: 'contain' }}
                   />
                 </div>
               ))}
