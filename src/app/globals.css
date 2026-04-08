@@ -147,6 +147,112 @@ body {
   }
 }
 
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 120;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(24, 23, 20, 0.07);
+  transition: box-shadow 0.24s ease, border-color 0.24s ease;
+}
+
+.site-nav-scrolled {
+  box-shadow: 0 8px 24px rgba(24, 23, 20, 0.08);
+  border-bottom-color: rgba(24, 23, 20, 0.1);
+}
+
+.site-nav-inner {
+  min-height: 86px;
+  padding: 18px 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.site-nav-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.site-nav-logo-image {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+}
+
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 36px;
+}
+
+.site-nav-link,
+.site-nav-mobile-link {
+  font-family: var(--font-sans);
+  color: var(--ink2);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: color 0.2s ease;
+}
+
+.site-nav-link:hover,
+.site-nav-mobile-link:hover {
+  color: var(--ink);
+}
+
+.site-nav-link.active,
+.site-nav-mobile-link.active {
+  color: #c8281e;
+}
+
+.site-nav-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.site-nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  transform-origin: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.site-nav-toggle.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.site-nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.site-nav-toggle.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.site-nav-mobile-menu {
+  display: none;
+  padding: 8px 24px 24px;
+  border-top: 1px solid rgba(24, 23, 20, 0.08);
+  background: #ffffff;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .section { padding: 64px 24px; }
@@ -155,7 +261,9 @@ body {
   .nav-links-desktop { display: none !important; }
   .nav-cta-btn { display: none !important; }
   .nav-mobile-toggle { display: flex !important; }
-  .site-nav { padding: 0 24px !important; }
+  .site-nav-inner { padding: 16px 24px !important; min-height: 78px !important; }
+  .site-nav-logo-image { height: 40px !important; }
+  .site-nav-mobile-menu.open { display: flex !important; flex-direction: column; gap: 18px; }
 
   .hero-grid { grid-template-columns: 1fr !important; }
   .hero-left { padding: 56px 24px !important; border-right: none !important; }
