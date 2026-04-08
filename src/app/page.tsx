@@ -27,10 +27,10 @@ const services = [
 ]
 
 const industries = [
-  { num: '01', name: 'Food & Beverage', desc: 'Dairy, yoghurt, cheese, beverages and baked goods. CIP automation, batching control, and full hygienic system design to food-grade standards.' },
-  { num: '02', name: 'Packaging & Processing', desc: 'High-speed lines, conveyors, palletisers and wrapping systems. Machine integration, line balancing and production reporting.' },
-  { num: '03', name: 'Pet Food & FMCG', desc: 'Complex recipes, CIP systems and demanding quality standards. Real Pet Food, Beak & Johnston and more rely on our systems every day.' },
-  { num: '04', name: 'Advanced Manufacturing', desc: 'Robotics integration, precision control, energy management and custom automation for complex industrial processes.' },
+  { num: '01', name: 'Food & Beverage / Dairy', desc: 'Dairy, yoghurt, cheese, beverages, bakery and confectionery. Hygienic controls, CIP automation and stable batching for reliable output.' },
+  { num: '02', name: 'FMCG & Packaging', desc: 'High-speed lines, multi-SKU production, palletising, labelling and changeover optimisation with clean machine-to-line integration.' },
+  { num: '03', name: 'Pet Food & Agricultural Processing', desc: 'Pet food manufacturing, seed processing, orchard and packhouse operations, and fruit processing with strong traceability and uptime focus.' },
+  { num: '04', name: 'Building Products & Manufacturing', desc: 'Heavy clay, bricks, tiles and pavers with precision process control and industrial automation for demanding production environments.' },
 ]
 
 const caseStudies = [
@@ -81,6 +81,7 @@ function humanizeFilename(filename: string) {
 }
 
 export default function HomePage() {
+  const yearsInOperation = new Date().getFullYear() - 2012
   const clientLogos = getImageFiles('images/clients')
   const platformLogos = getImageFiles('images/platforms').filter(
     (file) => !['ignitiongold.png', 'rockwell.png', 'screens.png', 'elec-drawings.png'].includes(file.toLowerCase()),
@@ -147,10 +148,10 @@ export default function HomePage() {
 
         <div style={{ background: 'rgba(0,0,0,0.25)', display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }} className="hero-right">
           {[
-            { num: '92', suffix: '%', label: 'Repeat customer rate' },
-            { num: '14', suffix: '+', label: 'Years in operation' },
             { num: '200', suffix: '+', label: 'Projects delivered' },
-            { num: '8', suffix: '', label: 'Service disciplines' },
+            { num: '80', suffix: '%', label: 'Repeat client rate' },
+            { num: '75', suffix: '+', label: 'Clients served' },
+            { num: String(yearsInOperation), suffix: '+', label: 'Years in operation' },
           ].map((stat, i) => (
             <div key={i} style={{
               flex: 1, padding: '0 52px',
@@ -207,9 +208,9 @@ export default function HomePage() {
         </div>
         <div>
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.85, fontWeight: 300 }}>
-            Metromotion Controls engineers, builds, and commissions industrial control systems for manufacturing sites across Australia. We deliver PLC programming, HMI and SCADA development, panel design, commissioning, and integration with plant and business systems.
+            Metromotion Controls is a Melbourne-based control systems integrator delivering automation engineering for manufacturers across Australia. We specialise in PLC programming, SCADA and HMI development, control panel engineering, and commissioning for production facilities that run around the clock.
             <br/><br/>
-            Most projects involve legacy equipment, short shutdown windows, and incomplete documentation. We define the cutover plan with your team, complete the implementation, and stay on site through startup until production is stable.
+            Our core industries are food and beverage, dairy, FMCG, pet food, packaging, agricultural processing, and building products. We work across all major platforms including Allen-Bradley, Siemens, Ignition, and AVEVA, and we stay involved from first scope through to ongoing support.
           </p>
         </div>
       </div></Reveal>

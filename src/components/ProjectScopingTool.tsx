@@ -54,12 +54,12 @@ const CHALLENGES: Challenge[] = [
       {
         key: 'data_source',
         label: 'Where does your production data live today?',
-        opts: ['Historian (PI, Wonderware, etc.)', 'PLC memory only — nothing is logged', 'Spreadsheets & manual operator logs', 'Multiple disconnected systems'],
+        opts: ['Historian (PI, Wonderware, etc.)', 'PLC memory only - nothing is logged', 'Spreadsheets & manual operator logs', 'Multiple disconnected systems'],
       },
       {
         key: 'data_audience',
         label: 'Who needs to see the dashboards?',
-        opts: ['Operators on the floor', 'Shift & line managers', 'Plant / site management', 'All levels — floor to boardroom'],
+        opts: ['Operators on the floor', 'Shift & line managers', 'Plant / site management', 'All levels - floor to boardroom'],
       },
       {
         key: 'data_decision',
@@ -76,7 +76,7 @@ const CHALLENGES: Challenge[] = [
     questions: [
       { key: 'legacy_hw', label: "What's the current hardware?", opts: ['Allen-Bradley PLC-5 or SLC 500', 'Siemens S5 or S7-300', 'Other legacy PLC / DCS', 'Multiple / mixed legacy systems', 'Not sure of the exact model'] },
       { key: 'legacy_driver', label: "What's driving the upgrade?", opts: ["Can't get spare parts anymore", 'Vendor end-of-life / no support', 'Reliability / performance issues', 'Cybersecurity or compliance risk'] },
-      { key: 'legacy_cutover', label: 'Can production stop for the cutover?', opts: ['Yes — planned shutdown window available', 'Partial — some lines can stop', 'No — must be hot-cutover with zero downtime', 'Not sure yet'] },
+      { key: 'legacy_cutover', label: 'Can production stop for the cutover?', opts: ['Yes - planned shutdown window available', 'Partial - some lines can stop', 'No - must be hot-cutover with zero downtime', 'Not sure yet'] },
     ],
   },
   {
@@ -97,8 +97,8 @@ const CHALLENGES: Challenge[] = [
     icon: '◎',
     questions: [
       { key: 'batch_scope', label: 'What are you automating?', opts: ['CIP system only', 'Batch / recipe process only', 'Both CIP + batching', 'Full process incl. filling / packaging'] },
-      { key: 'batch_current', label: 'How is it controlled today?', opts: ['Manual / semi-manual operation', 'Hardcoded PLC sequences (no recipe flexibility)', 'Existing batch management software', 'Not built yet — greenfield'] },
-      { key: 'batch_recipes', label: 'How many products / recipes run through the same equipment?', opts: ['1–5 products', '5–20 products', '20+ products', 'Varies — high changeover frequency'] },
+      { key: 'batch_current', label: 'How is it controlled today?', opts: ['Manual / semi-manual operation', 'Hardcoded PLC sequences (no recipe flexibility)', 'Existing batch management software', 'Not built yet - greenfield'] },
+      { key: 'batch_recipes', label: 'How many products / recipes run through the same equipment?', opts: ['1–5 products', '5–20 products', '20+ products', 'Varies - high changeover frequency'] },
     ],
   },
   {
@@ -108,8 +108,8 @@ const CHALLENGES: Challenge[] = [
     icon: '⇄',
     questions: [
       { key: 'erp_system', label: 'Which ERP / business system?', opts: ['SAP (any variant)', 'Microsoft Dynamics', 'MYOB / Pronto / DEAR', 'NetSuite', 'Other / not sure'] },
-      { key: 'erp_flow', label: 'What data needs to flow, and which direction?', opts: ['Production orders & schedules → down to floor', 'Consumption & inventory → up to ERP', 'Quality & compliance data → up to ERP', 'Bidirectional — all of the above'] },
-      { key: 'erp_existing', label: 'Is there an existing integration?', opts: ['No — nothing connects today', 'Partial — CSV / manual data transfer', "Yes — but it's broken or unreliable", 'Replacing a legacy integration'] },
+      { key: 'erp_flow', label: 'What data needs to flow, and which direction?', opts: ['Production orders & schedules → down to floor', 'Consumption & inventory → up to ERP', 'Quality & compliance data → up to ERP', 'Bidirectional - all of the above'] },
+      { key: 'erp_existing', label: 'Is there an existing integration?', opts: ['No - nothing connects today', 'Partial - CSV / manual data transfer', "Yes - but it's broken or unreliable", 'Replacing a legacy integration'] },
     ],
   },
   {
@@ -130,8 +130,8 @@ const CHALLENGES: Challenge[] = [
     icon: '△',
     questions: [
       { key: 'safety_driver', label: "What's driving the safety requirement?", opts: ['New machine or production line', 'Risk assessment or audit finding', 'WorkSafe / compliance requirement', 'Insurance requirement'] },
-      { key: 'safety_existing', label: 'Existing safety system?', opts: ['Yes — needs upgrading / replacing', 'Yes — needs assessment / review', 'No — designing from scratch', "Not sure what's in place"] },
-      { key: 'safety_docs', label: 'Do you have existing risk assessments or SRS documentation?', opts: ['Yes — current and complete', 'Yes — but outdated or incomplete', 'No — needs to be done from scratch', 'Not sure'] },
+      { key: 'safety_existing', label: 'Existing safety system?', opts: ['Yes - needs upgrading / replacing', 'Yes - needs assessment / review', 'No - designing from scratch', "Not sure what's in place"] },
+      { key: 'safety_docs', label: 'Do you have existing risk assessments or SRS documentation?', opts: ['Yes - current and complete', 'Yes - but outdated or incomplete', 'No - needs to be done from scratch', 'Not sure'] },
     ],
   },
   {
@@ -141,7 +141,7 @@ const CHALLENGES: Challenge[] = [
     icon: '⬡',
     questions: [
       { key: 'green_stage', label: 'What stage is the project at?', opts: ['Early concept / feasibility', 'Detailed design underway', 'Construction in progress', 'Equipment ordered or arriving'] },
-      { key: 'green_decided', label: "What's already been decided?", opts: ['Nothing locked in yet', 'Mechanical / process design done', 'Automation platform selected', 'Full design — just need controls delivery'] },
+      { key: 'green_decided', label: "What's already been decided?", opts: ['Nothing locked in yet', 'Mechanical / process design done', 'Automation platform selected', 'Full design - just need controls delivery'] },
       { key: 'green_scale', label: 'Approximate automation scope?', opts: ['Under $500K', '$500K–$2M', '$2M–$5M', '$5M+', 'Too early to say'] },
     ],
   },
@@ -152,8 +152,8 @@ const CHALLENGES: Challenge[] = [
     icon: '✓',
     questions: [
       { key: 'comm_type', label: 'What type of commissioning?', opts: ['Factory Acceptance Test (FAT)', 'Site Acceptance Test (SAT)', 'Full commissioning & handover', 'Loop checks & I/O verification only'] },
-      { key: 'comm_context', label: 'Context?', opts: ['New build — our team did the controls', "New build — another vendor's controls", 'System upgrade or migration', 'OEM/vendor handover support'] },
-      { key: 'comm_docs', label: 'Documentation status?', opts: ['Complete and current', 'Partial — needs updating', 'Minimal or non-existent', 'Not sure'] },
+      { key: 'comm_context', label: 'Context?', opts: ['New build - our team did the controls', "New build - another vendor's controls", 'System upgrade or migration', 'OEM/vendor handover support'] },
+      { key: 'comm_docs', label: 'Documentation status?', opts: ['Complete and current', 'Partial - needs updating', 'Minimal or non-existent', 'Not sure'] },
     ],
   },
   {
@@ -163,17 +163,17 @@ const CHALLENGES: Challenge[] = [
     icon: '⚙',
     questions: [
       { key: 'support_type', label: 'What kind of support?', opts: ['24/7 on-call emergency response', 'Scheduled preventive maintenance', 'System health checks & audits', 'Ad-hoc troubleshooting as needed'] },
-      { key: 'support_scope', label: 'What systems need covering?', opts: ['PLC & SCADA only', 'PLC + electrical + instrumentation', 'Full controls + IT/network', 'Everything — we have no internal controls team'] },
+      { key: 'support_scope', label: 'What systems need covering?', opts: ['PLC & SCADA only', 'PLC + electrical + instrumentation', 'Full controls + IT/network', 'Everything - we have no internal controls team'] },
       { key: 'support_sites', label: 'How many sites?', opts: ['Single site', '2–3 sites', '4+ sites / national'] },
     ],
   },
   { id: 'other', label: 'Something Else', short: "My situation doesn't fit neatly into a box", icon: '…', questions: [] },
 ]
 
-const INDUSTRIES = ['Food & Beverage', 'Dairy', 'Packaging & Processing', 'Pet Food & Animal Nutrition', 'FMCG / Consumer Goods', 'Advanced Manufacturing', 'Pharma & Life Sciences', 'Water & Utilities', 'Other']
+const INDUSTRIES = ['Food & Beverage', 'Dairy', 'FMCG', 'Pet Food', 'Packaging', 'Agricultural Processing', 'Building Products', 'Other']
 const PLATFORMS = ['Rockwell / Allen-Bradley', 'Siemens (S7 / TIA Portal)', 'Schneider / Modicon', 'Ignition (Inductive Automation)', 'Wonderware / AVEVA', 'Citect / Plant SCADA', 'Omron', 'Mitsubishi', 'Mixed / Multiple', 'Not sure', 'No existing system']
 const TIMELINES = [
-  { id: 'urgent', label: 'Urgent — weeks', sub: "Something's broken or at risk" },
+  { id: 'urgent', label: 'Urgent - weeks', sub: "Something's broken or at risk" },
   { id: 'quarter', label: 'This quarter', sub: 'Budgeted and ready to move' },
   { id: 'sixmonth', label: '3–6 months', sub: 'Planning & scoping phase' },
   { id: 'exploring', label: 'Just exploring', sub: 'Building a business case' },
@@ -542,7 +542,7 @@ export default function ProjectScopingTool() {
               )}
 
               <div>
-                <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.08em] text-[#1a1a1a]">Photos or documents <span className="font-normal text-[#7a7770]">(optional — up to 5)</span></label>
+                <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.08em] text-[#1a1a1a]">Photos or documents <span className="font-normal text-[#7a7770]">(optional - up to 5)</span></label>
                 <input
                   type="file"
                   multiple
@@ -614,7 +614,7 @@ export default function ProjectScopingTool() {
               />
 
               <div className="rounded-sm border border-[#e2e0db] bg-[#f7f6f3] px-4 py-3">
-                <p className="text-xs leading-relaxed text-[#7a7770]">Your brief appears on screen immediately. We&apos;ll follow up within one business day — no obligations.</p>
+                <p className="text-xs leading-relaxed text-[#7a7770]">Your brief appears on screen immediately. We&apos;ll follow up within one business day - no obligations.</p>
               </div>
 
               {error && <p className="text-sm text-[#c8281e]">{error}</p>}
@@ -645,7 +645,7 @@ export default function ProjectScopingTool() {
                 href="tel:0398076896"
                 className="rounded-sm bg-[#c8281e] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a8201a]"
               >
-                Call us — (03) 9807 6896
+                Call us - (03) 9807 6896
               </a>
               <button
                 onClick={resetTool}
@@ -660,7 +660,7 @@ export default function ProjectScopingTool() {
         {step === 4 && !fallbackMode && report && currentChallenge && (
           <motion.div key="step-4-report" {...stepMotion}>
             <div className="mb-7 border-b border-[#e2e0db] pb-5">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#c8281e]">Scoping Brief — {currentChallenge.label}</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#c8281e]">Scoping Brief - {currentChallenge.label}</span>
               <h3 className="mt-2 font-[var(--font-serif)] text-3xl leading-tight text-[#1a1a1a]">{report.headline}</h3>
               <p className="mt-1 text-xs text-[#7a7770]">Prepared for {contact.name} at {contact.company}</p>
             </div>
@@ -707,7 +707,7 @@ export default function ProjectScopingTool() {
             <div className="flex flex-wrap items-center gap-3">
               <span className="text-sm font-semibold text-[#1a1a1a]">Want to discuss this further?</span>
               <a
-                href={`mailto:info@metromotioncontrols.com.au?subject=${encodeURIComponent(`Scoping Enquiry — ${contact.company}`)}`}
+                href={`mailto:info@metromotioncontrols.com.au?subject=${encodeURIComponent(`Scoping Enquiry - ${contact.company}`)}`}
                 className="rounded-sm bg-[#c8281e] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a8201a]"
               >
                 Email info@metromotioncontrols.com.au
