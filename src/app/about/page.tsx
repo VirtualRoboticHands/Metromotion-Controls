@@ -15,8 +15,8 @@ const timeline = [
   { year: '2012', title: 'Founded & Chobani Partnership', desc: 'Metromotion Controls established in Melbourne. Engaged as automation partner for Chobani\'s Australian yoghurt manufacturing operations, a partnership that continues today.' },
   { year: '2015', title: 'National Expansion', desc: 'First interstate projects delivered, extending beyond Victoria to food and beverage manufacturing sites across New South Wales, South Australia, and Queensland.' },
   { year: '2017', title: 'La Casa del Formaggio & Ignition Gold Certified', desc: 'Began a long-term automation partnership with La Casa del Formaggio, supporting their cheese manufacturing operations. Achieved Ignition Gold Certified Integrator status in the same year.' },
-  { year: '2018', title: 'Lactalis Partnership', desc: 'Partnered with Lactalis Australia for automation support across their dairy processing operations nationally, covering PLC, SCADA, and control system upgrades.' },
-  { year: '2020', title: 'Remedy Drinks & 200 Projects', desc: 'Partnered with Remedy Drinks on their greenfield kombucha manufacturing facility. Surpassed 200 completed automation projects.' },
+  { year: '2018', title: 'Lactalis Partnership', desc: 'Partnered with Lactalis Australia for automation support across their dairy processing operations. A relationship that continues today across multiple sites nationally, covering PLC, SCADA, and control system engineering.' },
+  { year: '2020', title: 'Remedy Drinks Partnership', desc: 'Partnered with Remedy Drinks on their greenfield kombucha manufacturing facility. An ongoing partnership supporting their continued growth and production expansion.' },
   { year: '2026', title: '20 Engineers, National Delivery', desc: 'Team grows to 20 engineers. Delivering across 7+ industries nationally with long-term partnerships spanning food and beverage, dairy, FMCG, pet food, packaging, agricultural processing, and building products.' },
 ]
 const values = [
