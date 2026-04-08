@@ -82,7 +82,30 @@ function humanizeFilename(filename: string) {
 
 export default function HomePage() {
   const yearsInOperation = new Date().getFullYear() - 2012
-  const clientLogos = getImageFiles('images/clients').filter((file) => file !== '.gitkeep')
+  const clientFiles = getImageFiles('images/clients')
+  const fallbackClientFiles = getImageFiles('images/platforms')
+  const trustedByClients = [
+    { name: 'Chobani', files: ['chobani.png', 'chobani.jpg', 'chobani.svg'] },
+    { name: 'Lactalis', files: ['lactalis.png', 'lactalis.jpg', 'lactalis.svg'] },
+    { name: 'Remedy Drinks', files: ['remedy-drinks.png', 'remedy.png', 'remedy-drinks.jpg'] },
+    { name: 'Peters Ice Cream', files: ['peters-ice-cream.png', 'peters.png', 'peters-ice-cream.jpg'] },
+    { name: 'La Casa del Formaggio', files: ['la-casa-del-formaggio.png', 'la-casa.png', 'la-casa-del-formaggio.jpg'] },
+    { name: 'Real Pet Food', files: ['real-pet-food.png', 'real-pet-food.jpg', 'realpetfood.png'] },
+    { name: 'Austral Bricks', files: ['austral-bricks.png', 'austral-bricks.jpg', 'austral.png'] },
+    { name: 'Beak & Johnston', files: ['beak-and-johnston.png', 'beak-johnston.png', 'beak-johnston.jpg'] },
+    { name: 'Kinrise', files: ['kinrise.png', 'kinrise.jpg', 'kinrise.svg'] },
+    { name: 'Tibaldi', files: ['tibaldi.png', 'tibaldi.jpg', 'tibaldi.svg'] },
+  ]
+  const matchFile = (candidates: string[], files: string[]) =>
+    files.find((existing) => candidates.some((candidate) => candidate.toLowerCase() === existing.toLowerCase())) ?? null
+  const trustedByEntries = trustedByClients.map((client) => {
+    const fileInClients = matchFile(client.files, clientFiles)
+    if (fileInClients) return { ...client, path: `/images/clients/${fileInClients}` }
+    const fileInFallback = matchFile(client.files, fallbackClientFiles)
+    if (fileInFallback) return { ...client, path: `/images/platforms/${fileInFallback}` }
+    return { ...client, path: null }
+  })
+
   const platformFiles = getImageFiles('images/platforms')
   const platformLogoConfig = [
     { name: 'Rockwell Automation', files: ['rockwell-1.png'] },
@@ -97,12 +120,22 @@ export default function HomePage() {
   ]
   const platformLogos = platformLogoConfig
     .map((vendor) => {
-      const file = vendor.files.find((candidate) =>
-        platformFiles.some((existing) => existing.toLowerCase() === candidate.toLowerCase()),
-      )
+      const file = matchFile(vendor.files, platformFiles)
       return file ? { name: vendor.name, file } : null
     })
     .filter((vendor): vendor is { name: string; file: string } => Boolean(vendor))
+  console.info('[Logo Debug] trusted-by and platform logo path resolution', {
+    trustedByAvailableFiles: {
+      clientsDir: clientFiles,
+      platformsDirFallback: fallbackClientFiles,
+    },
+    trustedByReferencedPaths: trustedByEntries.map((client) => ({
+      name: client.name,
+      path: client.path ?? '[text fallback]',
+    })),
+    platformAvailableFiles: platformFiles,
+    platformReferencedPaths: platformLogos.map((platform) => `/images/platforms/${platform.file}`),
+  })
   const certificationBadges = ['ignitiongold.png', 'rockwell.png']
     .map((file) => resolveImagePath(file, ['images', 'images/platforms']))
     .filter((badge): badge is string => Boolean(badge))
@@ -207,19 +240,23 @@ export default function HomePage() {
         display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '20px',
       }} className="clients-strip">
         <span style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--muted2)', whiteSpace: 'nowrap', flexShrink: 0 }}>Trusted by</span>
-        {clientLogos.length > 0 && (
+        {trustedByEntries.length > 0 && (
           <div className="logo-marquee">
             <div className="logo-marquee-track">
-              {[...clientLogos, ...clientLogos].map((logo, index) => (
-                <div key={`${logo}-${index}`} className="logo-marquee-item">
-                  <Image
-                    src={`/images/clients/${logo}`}
-                    alt={`${humanizeFilename(logo)} logo`}
-                    width={180}
-                    height={40}
-                    style={{ width: 'auto', maxHeight: '40px', objectFit: 'contain' }}
-                    className="trusted-logo-image"
-                  />
+              {[...trustedByEntries, ...trustedByEntries].map((client, index) => (
+                <div key={`${client.name}-${index}`} className="logo-marquee-item">
+                  {client.path ? (
+                    <Image
+                      src={client.path}
+                      alt={`${client.name} logo`}
+                      width={180}
+                      height={40}
+                      style={{ width: 'auto', maxHeight: '40px', objectFit: 'contain' }}
+                      className="trusted-logo-image"
+                    />
+                  ) : (
+                    <span style={{ fontSize: '13px', color: 'var(--ink2)', fontWeight: 500, whiteSpace: 'nowrap' }}>{client.name}</span>
+                  )}
                 </div>
               ))}
             </div>
