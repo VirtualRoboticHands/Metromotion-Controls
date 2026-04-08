@@ -88,7 +88,7 @@ export default function AboutPage() {
 
         {/* Values */}
         <section className="section" style={{ background: 'var(--off)' }}>
-          <div className="section-label">How We Work</div>
+          <div className="section-label">Our Approach</div>
           <h2 className="section-headline">Our <em>approach</em></h2>
           <div style={{
             display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)',
