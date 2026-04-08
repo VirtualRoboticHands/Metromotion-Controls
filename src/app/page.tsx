@@ -16,14 +16,14 @@ export const metadata = buildPageMetadata({
 })
 
 const services = [
-  { num: '01', title: 'Project Management', desc: 'End to end delivery from scope and design through procurement, installation, and handover. On time and on budget.', tags: ['Scope & Schedule', 'Procurement'], icon: <><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 3v18"/><circle cx="15" cy="15" r="2"/></> },
-  { num: '02', title: 'Electrical Engineering', desc: 'Full electrical design, MCC layouts, cable schedules, panel builds and site installation using EPLAN and AutoCAD.', tags: ['EPLAN', 'AutoCAD', 'Panel Build'], icon: <><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></> },
-  { num: '03', title: 'Safety Systems', desc: 'Safety-rated control design and verification to AS 61508 / AS 62061. Keeping your people safe and machines compliant.', tags: ['AS 61508', 'SIL Assessment', 'Safety PLC'], icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/> },
-  { num: '04', title: 'PLC, HMI & SCADA', desc: 'Custom control logic, supervisory systems and intuitive operator interfaces across all major platforms.', tags: ['Allen-Bradley', 'Siemens', 'Ignition'], icon: <><rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/><path d="M7 8l3 3-3 3M13 14h4"/></> },
-  { num: '05', title: 'Commissioning', desc: 'On-site commissioning, FAT/SAT, loop checks and production ramp-up support. We stay until the line runs right.', tags: ['FAT / SAT', 'Loop Check', 'Startup'], icon: <><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></> },
-  { num: '06', title: 'Data Analytics & OEE', desc: 'Real time OEE dashboards and production visibility. Track availability, performance, and quality to find your biggest gains.', tags: ['OEE', 'Downtime', 'KPI Dashboards'], icon: <path d="M22 12h-4l-3 9L9 3l-3 9H2"/> },
-  { num: '07', title: 'OT Services & Integration', desc: 'SAP, ERP, MES, and cloud connectivity. IIoT architecture, OPC-UA, and secure industrial networking.', tags: ['SAP', 'MES', 'OPC-UA', 'IIoT'], icon: <><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></> },
-  { num: '08', title: 'Ongoing Support', desc: 'Support contracts, preventive maintenance and on-call engineering. We build systems we maintain, so we build them right.', tags: ['On-call', 'Preventive PM', 'Documentation'], icon: <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/> },
+  { num: '01', title: 'Project Management', href: '/services/industrial-automation', desc: 'End to end delivery from scope and design through procurement, installation, and handover. On time and on budget.', tags: ['Scope & Schedule', 'Procurement'], icon: <><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 3v18"/><circle cx="15" cy="15" r="2"/></> },
+  { num: '02', title: 'Electrical Engineering', href: '/services/control-panel-engineering', desc: 'Full electrical design, MCC layouts, cable schedules, panel builds and site installation using EPLAN and AutoCAD.', tags: ['EPLAN', 'AutoCAD', 'Panel Build'], icon: <><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></> },
+  { num: '03', title: 'Safety Systems', href: '/services/functional-safety', desc: 'Safety-rated control design and verification to AS 61508 / AS 62061. Keeping your people safe and machines compliant.', tags: ['AS 61508', 'SIL Assessment', 'Safety PLC'], icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/> },
+  { num: '04', title: 'PLC, HMI & SCADA', href: '/services/plc-scada-hmi', desc: 'Custom control logic, supervisory systems and intuitive operator interfaces across all major platforms.', tags: ['Allen-Bradley', 'Siemens', 'Ignition'], icon: <><rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/><path d="M7 8l3 3-3 3M13 14h4"/></> },
+  { num: '05', title: 'Commissioning', href: '/services/commissioning', desc: 'On-site commissioning, FAT/SAT, loop checks and production ramp-up support. We stay until the line runs right.', tags: ['FAT / SAT', 'Loop Check', 'Startup'], icon: <><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></> },
+  { num: '06', title: 'Data Analytics & OEE', href: '/services/industrial-data-iiot', desc: 'Real time OEE dashboards and production visibility. Track availability, performance, and quality to find your biggest gains.', tags: ['OEE', 'Downtime', 'KPI Dashboards'], icon: <path d="M22 12h-4l-3 9L9 3l-3 9H2"/> },
+  { num: '07', title: 'OT Services & Integration', href: '/services/ot-networks', desc: 'SAP, ERP, MES, and cloud connectivity. IIoT architecture, OPC-UA, and secure industrial networking.', tags: ['SAP', 'MES', 'OPC-UA', 'IIoT'], icon: <><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></> },
+  { num: '08', title: 'Ongoing Support', href: '/services/support', desc: 'Support contracts, preventive maintenance and on-call engineering. We build systems we maintain, so we build them right.', tags: ['On-call', 'Preventive PM', 'Documentation'], icon: <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/> },
 ]
 
 const industries = [
@@ -46,7 +46,7 @@ const whyCards = [
   { num: '80%', title: 'Repeat Business', desc: 'Around 80% of our work comes from existing clients. That comes from delivering what we promise and staying involved long after go-live.' },
   { num: '14+', title: 'Years Specialising', desc: 'Over a decade focused exclusively on industrial automation for food and beverage manufacturing. We know your equipment, your environment, and the pressure you\'re under.' },
   { num: 'OT+IT', title: 'Full Stack Integration', desc: 'From field devices to SAP, we connect factory systems with business systems. No third-party middleware and no vendor finger-pointing.' },
-  { num: 'Zero', title: 'Meticulous Migration Planning', desc: 'Every legacy migration is planned down to the hour. We stage cutovers around your production schedule, with rollback plans and clear commissioning gates at every step.' },
+  { num: '✓', title: 'Meticulous Migration Planning', desc: 'Every legacy migration is planned down to the hour. We stage cutovers around your production schedule, with rollback plans and clear commissioning gates at every step.' },
   { num: 'AU', title: 'National Reach', desc: 'Based in Melbourne, delivering across Australia. We\'ve worked on sites from Brisbane to Adelaide, and we travel for the right project.' },
   { num: '∞', title: 'Long-Term Partnerships', desc: 'We build systems we have to maintain. So we build them right. Our longest client relationships span the full lifetime of the company.' },
 ]
@@ -82,34 +82,30 @@ function humanizeFilename(filename: string) {
 
 export default function HomePage() {
   const yearsInOperation = new Date().getFullYear() - 2012
-  const clientNames = [
-    'Chobani',
-    'Lactalis',
-    'Remedy Drinks',
-    'Peters Ice Cream',
-    'La Casa del Formaggio',
-    'Real Pet Food',
-    'Austral Bricks',
-    'Beak & Johnston',
-    'Kinrise',
-    'Tibaldi',
+  const clientLogos = getImageFiles('images/clients').filter((file) => file !== '.gitkeep')
+  const platformFiles = getImageFiles('images/platforms')
+  const platformLogoConfig = [
+    { name: 'Rockwell Automation', files: ['rockwell-1.png'] },
+    { name: 'Siemens', files: ['siemens-logo.png'] },
+    { name: 'Ignition', files: ['ignition-1.png'] },
+    { name: 'Wonderware / AVEVA', files: ['wonderware-1.png', 'wonderware.png'] },
+    { name: 'Schneider Electric', files: ['schneider.png'] },
+    { name: 'Omron', files: ['omron.jpg'] },
+    { name: 'Citect SCADA', files: ['citect.png'] },
+    { name: 'ifm', files: ['ifm.png'] },
+    { name: 'SICK', files: ['sick.png'] },
   ]
-  const availableClientLogos = new Set(getImageFiles('images/clients'))
-  const clientList = clientNames.map((name) => {
-    const slug = name.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
-    const candidates = [`${slug}.png`, `${slug}.jpg`, `${slug}.jpeg`, `${slug}.webp`, `${slug}.svg`]
-    const logo = candidates.find((file) => availableClientLogos.has(file))
-    return { name, logo }
-  })
-  const platformLogos = getImageFiles('images/platforms').filter(
-    (file) => !['ignitiongold.png', 'rockwell.png', 'screens.png', 'elec-drawings.png'].includes(file.toLowerCase()),
-  )
+  const platformLogos = platformLogoConfig
+    .map((vendor) => {
+      const file = vendor.files.find((candidate) =>
+        platformFiles.some((existing) => existing.toLowerCase() === candidate.toLowerCase()),
+      )
+      return file ? { name: vendor.name, file } : null
+    })
+    .filter((vendor): vendor is { name: string; file: string } => Boolean(vendor))
   const certificationBadges = ['ignitiongold.png', 'rockwell.png']
     .map((file) => resolveImagePath(file, ['images', 'images/platforms']))
     .filter((badge): badge is string => Boolean(badge))
-  const workShowcaseImages = ['screens.png', 'elec-drawings.png']
-    .map((file) => resolveImagePath(file, ['images', 'images/platforms']))
-    .filter((image): image is string => Boolean(image))
   const hughRoddyImage = resolveImagePath('hugh-roddy.jpg', ['images', 'images/platforms'])
 
   return (
@@ -211,45 +207,24 @@ export default function HomePage() {
         display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '20px',
       }} className="clients-strip">
         <span style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--muted2)', whiteSpace: 'nowrap', flexShrink: 0 }}>Trusted by</span>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-            gap: '14px',
-          }}
-        >
-          {clientList.map((client) => (
-            <div
-              key={client.name}
-              style={{
-                border: '1px solid var(--border)',
-                background: 'var(--off)',
-                minHeight: '92px',
-                padding: '12px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-              }}
-            >
-              {client.logo ? (
-                <Image
-                  src={`/images/clients/${client.logo}`}
-                  alt={`${client.name} logo`}
-                  width={140}
-                  height={40}
-                  style={{ width: 'auto', height: '34px', objectFit: 'contain' }}
-                />
-              ) : (
-                <div style={{ height: '34px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} />
-              )}
-              <div style={{ fontSize: '12px', color: 'var(--muted)', textAlign: 'center', lineHeight: 1.35 }}>
-                {client.name}
-              </div>
+        {clientLogos.length > 0 && (
+          <div className="logo-marquee">
+            <div className="logo-marquee-track">
+              {[...clientLogos, ...clientLogos].map((logo, index) => (
+                <div key={`${logo}-${index}`} className="logo-marquee-item">
+                  <Image
+                    src={`/images/clients/${logo}`}
+                    alt={`${humanizeFilename(logo)} logo`}
+                    width={180}
+                    height={40}
+                    style={{ width: 'auto', maxHeight: '40px', objectFit: 'contain' }}
+                    className="trusted-logo-image"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
       </div></Reveal>
 
       {/* INTRO BAND */}
@@ -296,10 +271,11 @@ export default function HomePage() {
           background: 'var(--border)', border: '1px solid var(--border)', gap: '1px',
         }} className="services-grid">
           {services.map(svc => (
-            <div key={svc.num} className="service-card-wrapper hover-lift" style={{
+            <Link href={svc.href} key={svc.num} className="service-card-wrapper hover-lift service-card-link" style={{
               background: 'var(--white)', padding: '32px 26px',
               display: 'flex', flexDirection: 'column', gap: '13px',
-              position: 'relative', transition: 'background 0.22s',
+              position: 'relative', transition: 'background 0.22s, transform 0.22s ease, box-shadow 0.22s ease',
+              textDecoration: 'none',
             }}>
               <div style={{ fontSize: '10px', color: 'var(--muted2)', letterSpacing: '0.1em', fontWeight: 500, textTransform: 'uppercase' as const }}>{svc.num}</div>
               <div style={{
@@ -315,42 +291,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '4px', marginTop: '4px' }}>
                 {svc.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
-        {workShowcaseImages.length > 0 && (
-          <div
-            style={{
-              marginTop: '28px',
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-              gap: '16px',
-            }}
-            className="work-showcase-grid"
-          >
-            {workShowcaseImages.map((imagePath) => (
-              <div
-                key={imagePath}
-                className="hover-lift"
-                style={{
-                  background: 'var(--white)',
-                  border: '1px solid var(--border)',
-                  padding: '12px',
-                  position: 'relative',
-                  minHeight: '210px',
-                }}
-              >
-                <Image
-                  src={imagePath}
-                  alt={`${humanizeFilename(path.basename(imagePath))} from a Metromotion Controls project`}
-                  fill
-                  sizes="(max-width: 900px) 100vw, 50vw"
-                  style={{ objectFit: 'cover', padding: '12px' }}
-                />
-              </div>
-            ))}
-          </div>
-        )}
       </section></Reveal>
 
       {/* INDUSTRIES */}
@@ -507,7 +450,7 @@ export default function HomePage() {
           )}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
             <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(19px, 2.4vw, 26px)', lineHeight: 1.45, color: 'var(--ink)', fontStyle: 'italic', letterSpacing: '-0.01em' }}>
-              All the team have been an outstanding partner of Chobani since 2011. They have provided a one in a million partnership that we have not seen anywhere else in the world to date. They continue to do so on many levels.
+              All the team have been an outstanding partner of Chobani since 2012. They have provided a one in a million partnership that we have not seen anywhere else in the world to date. They continue to do so on many levels.
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <div style={{ width: '22px', height: '1px', background: 'var(--red)' }} />
@@ -556,15 +499,15 @@ export default function HomePage() {
           display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
           background: 'var(--border)', border: '1px solid var(--border)', gap: '1px', marginTop: '48px',
         }} className="platform-grid">
-          {platformLogos.map((logo) => (
-            <div key={logo} style={{
+          {platformLogos.map((platform) => (
+            <div key={platform.name} style={{
               background: 'var(--white)', padding: '24px 16px',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               minHeight: '72px',
             }}>
               <Image
-                src={`/images/platforms/${logo}`}
-                alt={`${humanizeFilename(logo)} platform logo`}
+                src={`/images/platforms/${platform.file}`}
+                alt={`${platform.name} platform logo`}
                 width={160}
                 height={36}
                 style={{ width: 'auto', height: '36px', objectFit: 'contain' }}
