@@ -56,6 +56,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       src: '/images/SupportBanner.png',
       alt: 'Automation upgrade works on legacy industrial control systems',
     },
+    support: {
+      src: '/images/SupportBanner.png',
+      alt: 'Automation support and maintenance engineers working on industrial control systems',
+    },
     'control-panel-engineering': {
       src: '/images/ElectricalEngineeringBanner.png',
       alt: 'Control panel engineering and electrical design workspace',
