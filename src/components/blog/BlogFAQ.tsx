@@ -5,7 +5,7 @@ export function BlogFAQ({ faqs }: { faqs: BlogFaq[] }) {
 
   return (
     <section className="mt-14 rounded-2xl bg-[#f7f6f3] p-8">
-      <h2 className="font-[var(--font-serif)] text-3xl text-[#1a1a1a]">Frequently asked questions</h2>
+      <h2 className="font-[var(--font-serif)] text-3xl text-[#1a1a1a]">Common questions</h2>
       <div className="mt-6 space-y-4">
         {faqs.map((faq) => (
           <details key={faq.question} className="rounded-xl border border-[#e8e4de] bg-white p-4">

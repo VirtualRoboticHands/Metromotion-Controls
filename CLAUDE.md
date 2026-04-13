@@ -112,4 +112,5 @@ Try raising Sonnet's effort before switching to Opus — it's often enough and f
 
 ## Outstanding TODO
 
-- [ ] Email notifications for contact form — send to both addresses above on submission (Supabase currently saves to DB only, no email sent)
+- [ ] Confirm `RESEND_API_KEY`, `ANTHROPIC_API_KEY`, and optional admin credentials are set in Vercel before production release
+- [ ] Deploy the current Next.js build to replace the legacy public site

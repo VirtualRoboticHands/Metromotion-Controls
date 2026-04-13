@@ -1,6 +1,11 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { defaultMetadata, siteUrl } from '@/lib/metadata'
+import {
+  buildAbsoluteAssetUrl,
+  defaultMetadata,
+  organisationLogoPath,
+  siteUrl,
+} from '@/lib/metadata'
 
 export const metadata: Metadata = defaultMetadata
 
@@ -16,7 +21,7 @@ export default function RootLayout({
         '@type': 'LocalBusiness',
         name: 'Metromotion Controls',
         url: siteUrl,
-        logo: '/logo.png',
+        logo: buildAbsoluteAssetUrl(organisationLogoPath),
         description:
           'Melbourne-based industrial automation and control systems integrator specialising in PLC programming, SCADA, HMI, IIoT and control panel engineering for manufacturers across Australia',
         address: {
@@ -36,6 +41,7 @@ export default function RootLayout({
         '@type': 'ProfessionalService',
         name: 'Metromotion Controls',
         url: siteUrl,
+        logo: buildAbsoluteAssetUrl(organisationLogoPath),
         serviceType: [
           'Industrial Automation',
           'Control Systems Integration',

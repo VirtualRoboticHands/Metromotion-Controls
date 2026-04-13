@@ -28,6 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const project = projectsBySlug[slug]
+  const relatedProjects = projects
+    .filter((candidate) => candidate.slug !== project?.slug)
+    .filter((candidate) => candidate.category === project?.category || candidate.industry === project?.industry)
+    .slice(0, 3)
 
   if (!project) {
     notFound()
@@ -42,12 +46,48 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           <h1 className="section-headline max-w-[900px]">{project.title}</h1>
           <div className="flex gap-[10px] flex-wrap mt-[18px]">
             <span className="tag">{project.category}</span>
+            <span className="tag">{project.industry}</span>
+            <span className="tag">{project.engagement}</span>
             <span className="tag">Client: {project.client}</span>
           </div>
           <p className="section-sub max-w-[850px]">{project.overview}</p>
         </section>
 
+        <section className="section bg-white border-b border-border">
+          <div className="grid gap-px border border-border bg-border md:grid-cols-4">
+            <div className="bg-off px-6 py-6">
+              <div className="text-[11px] uppercase tracking-[0.08em] text-muted2">Client</div>
+              <div className="mt-2 text-[18px] font-medium text-ink">{project.client}</div>
+            </div>
+            <div className="bg-off px-6 py-6">
+              <div className="text-[11px] uppercase tracking-[0.08em] text-muted2">Sector</div>
+              <div className="mt-2 text-[18px] font-medium text-ink">{project.industry}</div>
+            </div>
+            <div className="bg-off px-6 py-6">
+              <div className="text-[11px] uppercase tracking-[0.08em] text-muted2">Engagement</div>
+              <div className="mt-2 text-[18px] font-medium text-ink">{project.engagement}</div>
+            </div>
+            <div className="bg-off px-6 py-6">
+              <div className="text-[11px] uppercase tracking-[0.08em] text-muted2">Delivery areas</div>
+              <div className="mt-2 text-[18px] font-medium text-ink">{project.deliverables.length}</div>
+            </div>
+          </div>
+        </section>
+
         <section className="section bg-white">
+          <h2 className="font-serif text-[clamp(30px,3vw,42px)] leading-[1.1] text-ink mb-5">
+            Why this project mattered
+          </h2>
+          <div className="grid gap-4 max-w-[980px] md:grid-cols-3">
+            {project.outcomes.map((item) => (
+              <div key={item} className="border border-border bg-off px-6 py-6">
+                <p className="text-ink2 text-[15px] leading-[1.75]">{item}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section bg-off border-t border-border border-b border-border">
           <h2 className="font-serif text-[clamp(30px,3vw,42px)] leading-[1.1] text-ink mb-5">
             Scope & deliverables
           </h2>
@@ -59,7 +99,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         </section>
 
         {project.technologies && project.technologies.length > 0 && (
-          <section className="section bg-off border-t border-border border-b border-border">
+          <section className="section bg-white border-b border-border">
             <h2 className="font-serif text-[clamp(30px,3vw,42px)] leading-[1.1] text-ink mb-5">
               Platforms & technologies
             </h2>
@@ -82,6 +122,32 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             <p className="mt-4 text-white/65 text-[14px] tracking-[0.04em] uppercase">
               {project.testimonial.author} · {project.testimonial.role}
             </p>
+          </section>
+        )}
+
+        {relatedProjects.length > 0 && (
+          <section className="section bg-white border-b border-border">
+            <h2 className="font-serif text-[clamp(30px,3vw,42px)] leading-[1.1] text-ink mb-5">
+              Related case studies
+            </h2>
+            <div className="grid gap-px border border-border bg-border md:grid-cols-3">
+              {relatedProjects.map((relatedProject) => (
+                <article key={relatedProject.slug} className="bg-off px-6 py-6">
+                  <div className="text-[11px] uppercase tracking-[0.08em] text-muted2">
+                    {relatedProject.client} • {relatedProject.industry}
+                  </div>
+                  <h3 className="mt-3 font-serif text-[26px] leading-[1.1] text-ink">
+                    {relatedProject.title}
+                  </h3>
+                  <p className="mt-3 text-[14px] leading-[1.75] text-muted">
+                    {relatedProject.engagement}
+                  </p>
+                  <Link href={`/projects/${relatedProject.slug}`} className="mt-5 inline-block text-[13px] font-medium text-red no-underline">
+                    View project →
+                  </Link>
+                </article>
+              ))}
+            </div>
           </section>
         )}
 

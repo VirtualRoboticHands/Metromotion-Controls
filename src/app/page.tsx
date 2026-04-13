@@ -127,17 +127,6 @@ export default function HomePage() {
       return file ? { name: vendor.name, file } : null
     })
     .filter((vendor): vendor is { name: string; file: string } => Boolean(vendor))
-  console.info('[Logo Debug] trusted-by and platform logo path resolution', {
-    trustedByAvailableFiles: {
-      clientsDir: clientFiles,
-    },
-    trustedByReferencedPaths: trustedByEntries.map((client) => ({
-      name: client.name,
-      path: client.path ?? '[missing]',
-    })),
-    platformAvailableFiles: platformFiles,
-    platformReferencedPaths: platformLogos.map((platform) => `/images/platforms/${platform.file}`),
-  })
   const certificationBadges = ['ignitiongold.png', 'rockwell.png']
     .map((file) => resolveImagePath(file, ['images', 'images/platforms']))
     .filter((badge): badge is string => Boolean(badge))

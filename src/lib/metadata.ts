@@ -2,11 +2,12 @@ import type { Metadata } from 'next'
 
 export const siteUrl = 'https://metromotioncontrols.com.au'
 export const siteName = 'Metromotion Controls'
+export const organisationLogoPath =
+  '/images/cropped-cropped-Company-Logo-Transparent-Black1-e1604547687941.webp'
+export const defaultOgImage = '/images/shutterstock_1038399151-scaled.jpg'
 
 export const defaultMetaDescription =
   'Melbourne-based industrial automation and control systems integrator delivering PLC programming, SCADA, HMI, IIoT and panel engineering across Australia.'
-
-const defaultOgImage = '/logo.png'
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -60,6 +61,10 @@ export function buildPageMetadata({
       description,
     },
   }
+}
+
+export function buildAbsoluteAssetUrl(assetPath: string) {
+  return new URL(assetPath, siteUrl).toString()
 }
 
 export const serviceMetadataBySlug: Record<string, { title: string; description: string }> = {

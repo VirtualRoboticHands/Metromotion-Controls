@@ -11,6 +11,7 @@ import remarkGfm from 'remark-gfm'
 const blogDirectory = path.join(process.cwd(), 'content/blog')
 
 export type BlogFaq = { question: string; answer: string }
+export type BlogTakeaway = { title: string; body: string }
 
 export type BlogPostFrontmatter = {
   title: string
@@ -28,6 +29,7 @@ export type BlogPostFrontmatter = {
   readingTime?: number
   featured?: boolean
   image?: string
+  summaryPoints?: BlogTakeaway[]
   faqs?: BlogFaq[]
 }
 

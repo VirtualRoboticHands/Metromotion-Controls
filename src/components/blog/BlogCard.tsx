@@ -13,7 +13,17 @@ export function BlogCard({ post }: { post: BlogPost }) {
         </Link>
       </h3>
       <p className="mt-3 line-clamp-2 text-base text-[#4a4a4a]">{post.description}</p>
-      <p className="mt-4 text-sm text-[#7a7671]">{post.readingTime} min read · {post.publishedAt}</p>
+      {post.summaryPoints?.[0] && (
+        <div className="mt-4 rounded-xl bg-[#f7f6f3] p-4">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#7a7671]">
+            Key point
+          </p>
+          <p className="mt-2 text-sm leading-[1.6] text-[#1a1a1a]">
+            {post.summaryPoints[0].title}
+          </p>
+        </div>
+      )}
+      <p className="mt-4 text-sm text-[#7a7671]">{post.readingTime} min read | {post.publishedAt}</p>
     </article>
   )
 }

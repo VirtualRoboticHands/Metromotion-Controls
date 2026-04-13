@@ -25,6 +25,20 @@ const values = [
   { title: 'Platform Agnostic', desc: 'We recommend what\'s right for your site, not what earns us the biggest margin. Allen-Bradley, Siemens, Ignition, AVEVA. We work across all major platforms and design around your existing standards.' },
   { title: 'Long-Term Partnerships', desc: 'Our business is built on relationships that last. 80% of our clients come back, and our longest partnerships span over a decade. We want your project to succeed because that\'s how we earn the next one. That means honest scoping, transparent delivery, and no surprise variations.' },
 ]
+const selectedClients = [
+  'Chobani',
+  'Lactalis',
+  'La Casa Del Formaggio',
+  'Real Pet Food',
+  'Arnott\'s',
+  'Orora',
+  'Patties Foods',
+  'Remedy Drinks',
+]
+const certificationBadges = [
+  { src: '/images/platforms/ignitiongold.png', alt: 'Ignition Gold Certified Integrator badge' },
+  { src: '/images/platforms/rockwell.png', alt: 'Rockwell Automation certification badge' },
+]
 
 export default function AboutPage() {
   const yearsInOperation = new Date().getFullYear() - 2012
@@ -80,6 +94,44 @@ export default function AboutPage() {
                 <div className="text-[14px] text-muted leading-[1.75] font-light">{v.desc}</div>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="section bg-white border-t border-border">
+          <div className="section-label">Credentials</div>
+          <h2 className="section-headline">Trusted by teams that need <em>delivery certainty</em></h2>
+          <p className="section-sub max-w-[760px]">
+            Metromotion Controls supports project engineers, maintenance teams and operations leaders who need practical delivery, not generic capability statements.
+          </p>
+
+          <div className="mt-12 grid gap-10 lg:grid-cols-[1.6fr_1fr]">
+            <div>
+              <h3 className="text-[12px] uppercase tracking-[0.12em] text-muted2">Selected clients</h3>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {selectedClients.map((client) => (
+                  <span key={client} className="tag px-[12px] py-[7px] text-[11px]">
+                    {client}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-[12px] uppercase tracking-[0.12em] text-muted2">Certifications</h3>
+              <div className="mt-4 flex flex-wrap gap-4">
+                {certificationBadges.map((badge) => (
+                  <div key={badge.src} className="border border-border bg-off px-4 py-4">
+                    <Image
+                      src={badge.src}
+                      alt={badge.alt}
+                      width={180}
+                      height={72}
+                      style={{ width: 'auto', height: '72px', objectFit: 'contain' }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 

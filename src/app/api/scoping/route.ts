@@ -139,7 +139,6 @@ Respond with valid JSON only. No markdown, no code fences, no preamble, no expla
 
 async function generateReport(prompt: string): Promise<ScopingReport | null> {
   const apiKey = process.env.ANTHROPIC_API_KEY
-  console.log('Scoping API Anthropic env check:', { hasAnthropicApiKey: Boolean(apiKey) })
   if (!apiKey) {
     console.error('ANTHROPIC_API_KEY is missing')
     return null

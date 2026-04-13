@@ -1,4 +1,4 @@
-import { siteUrl } from '@/lib/metadata'
+import { buildAbsoluteAssetUrl, organisationLogoPath, siteUrl } from '@/lib/metadata'
 import type { BlogPostFrontmatter } from '@/lib/blog'
 
 export type ServiceFaq = {
@@ -33,6 +33,7 @@ export function buildServiceSchema({ name, description, slug }: { name: string; 
       '@type': 'Organization',
       name: 'Metromotion Controls',
       url: siteUrl,
+      logo: buildAbsoluteAssetUrl(organisationLogoPath),
     },
     areaServed: {
       '@type': 'Country',
@@ -123,7 +124,7 @@ export function buildArticleSchema(post: BlogPostFrontmatter) {
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteUrl}/images/logo.png`,
+        url: buildAbsoluteAssetUrl(organisationLogoPath),
       },
     },
     datePublished: post.publishedAt,

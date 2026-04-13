@@ -55,6 +55,9 @@ src/
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY` (for server-side operations)
+   - `RESEND_API_KEY` (contact form notifications and confirmations)
+   - `ANTHROPIC_API_KEY` (project scoping brief generation)
+   - `CONTENT_GENERATOR_USERNAME` and `CONTENT_GENERATOR_PASSWORD` (optional, to expose `/admin/generate` in production)
 5. Deploy — Vercel gives you a preview URL automatically
 
 ### Custom Domain (later)
@@ -64,31 +67,14 @@ Settings → Domains → Add `metromotioncontrols.com.au` + `www.metromotioncont
 
 ## Supabase Setup
 
-Create a table for contact form submissions:
+Apply the tracked migrations in `supabase/migrations/` rather than creating tables manually.
 
-```sql
-CREATE TABLE contact_submissions (
-  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
-  name text NOT NULL,
-  company text NOT NULL,
-  phone text,
-  email text NOT NULL,
-  challenge text NOT NULL,
-  message text,
-  submitted_at timestamptz DEFAULT now(),
-  read boolean DEFAULT false
-);
+Current site features rely on:
 
--- Enable RLS
-ALTER TABLE contact_submissions ENABLE ROW LEVEL SECURITY;
-
--- Allow inserts from anonymous users (the contact form)
-CREATE POLICY "Allow anonymous inserts"
-  ON contact_submissions
-  FOR INSERT
-  TO anon
-  WITH CHECK (true);
-```
+- `enquiries` for contact form submissions
+- `scoping_leads` for project scoping submissions and generated briefs
+- `scoping-files` storage bucket for uploaded scoping attachments
+- content in `content/` and `src/lib/` for statically generated pages
 
 ---
 
@@ -106,10 +92,12 @@ CREATE POLICY "Allow anonymous inserts"
 
 ---
 
-## Pages to Build Next
+## Current Site Coverage
 
-- [ ] Individual service pages (×8)
-- [ ] Industry landing pages (×6)
-- [ ] Blog/resources section
-- [ ] SEO schema markup
-- [ ] Scoping tool integration
+- Homepage with service overview, proof points, selected projects, and the scoping tool
+- Service index plus individual service detail pages
+- Industries index plus individual industry pages
+- Projects index plus detailed case studies
+- Blog index plus MDX article pages with metadata and schema
+- Contact page with Supabase persistence and Resend notifications
+- Internal content generator at `/admin/generate`, hidden from indexing and protected in production
