@@ -280,17 +280,6 @@ export default function HomePage() {
         </div>
       </div></Reveal>
 
-      <Reveal><section id="scope" className="section" style={{ background: 'var(--off)' }}>
-        <div style={{ marginBottom: '32px' }}>
-          <div className="section-label">Project Scoping Tool</div>
-          <h2 className="section-headline">Start <em>scoping</em> your project</h2>
-          <p className="section-sub">Answer a few questions about your automation challenge. We&apos;ll generate a scoping brief that lists system requirements, risks, and the decisions to settle before implementation starts.</p>
-        </div>
-        <div style={{ background: '#f7f6f3' }}>
-          <ProjectScopingTool />
-        </div>
-      </section></Reveal>
-
       {/* SERVICES */}
       <Reveal><section className="section" id="services" style={{ background: 'var(--off)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '48px', flexWrap: 'wrap' as const, gap: '24px' }}>
@@ -565,6 +554,18 @@ export default function HomePage() {
               <div style={{ fontSize: '13.5px', color: 'var(--muted)', lineHeight: 1.7, fontWeight: 300 }}>{w.desc}</div>
             </div>
           ))}
+        </div>
+      </section></Reveal>
+
+      {/* SCOPING TOOL */}
+      <Reveal><section id="scope" className="section" style={{ background: 'var(--off)' }}>
+        <div style={{ marginBottom: '32px' }}>
+          <div className="section-label">Project Scoping Tool</div>
+          <h2 className="section-headline">Plan your <em>project</em></h2>
+          <p className="section-sub">Tell us about your automation challenge. We&apos;ll come back with the key requirements, risks, and decisions to work through before engineering starts.</p>
+        </div>
+        <div style={{ background: '#f7f6f3' }}>
+          <ProjectScopingTool />
         </div>
       </section></Reveal>
 

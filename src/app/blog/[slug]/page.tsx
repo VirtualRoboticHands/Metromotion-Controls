@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const canonical = `${siteUrl}/blog/${post.slug}`
 
   return {
-    title: `${post.title} | ${siteName}`,
+    title: { absolute: `${post.title} | ${siteName}` },
     description: post.description,
     alternates: { canonical },
     openGraph: {
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       images: [{ url: post.image ?? '/logo.png' }],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: 'summary_large_image' as const,
       title: `${post.title} | ${siteName}`,
       description: post.description,
       images: [post.image ?? '/logo.png'],

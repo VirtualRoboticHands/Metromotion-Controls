@@ -57,7 +57,7 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p style={{ maxWidth: '620px', color: 'rgba(255,255,255,0.85)', marginTop: '14px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
-            Let us know what you&apos;re building and our engineering team will respond with practical next steps.
+            Tell us about your project and an engineer will follow up within one business day.
           </p>
         </section>
 

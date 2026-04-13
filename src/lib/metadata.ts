@@ -64,22 +64,22 @@ export function buildPageMetadata({
 
 export const serviceMetadataBySlug: Record<string, { title: string; description: string }> = {
   'industrial-automation': {
-    title: 'Industrial Automation & Control Systems',
+    title: 'Industrial Automation & Control Systems Melbourne',
     description:
       'Industrial automation and control systems for Melbourne and Australia-wide manufacturers, from concept to commissioning. Discuss your project with our engineers.',
   },
   'plc-scada-hmi': {
-    title: 'PLC, SCADA & HMI Programming',
+    title: 'PLC & SCADA Programming Melbourne',
     description:
       'PLC programming, SCADA development and HMI design for Melbourne and Australian manufacturers needing robust, standards-driven control software. Talk to our team.',
   },
   'control-panel-engineering': {
-    title: 'Control Panel Engineering & Electrical Design',
+    title: 'Control Panel Engineering Melbourne',
     description:
       'Control panel engineering and electrical design in Melbourne for compliant, build-ready industrial systems across Australia. Speak with our engineering team today.',
   },
   'systems-integration': {
-    title: 'Industrial Systems Integration',
+    title: 'Industrial Systems Integration Melbourne',
     description:
       'Industrial systems integration connecting PLCs, machines and enterprise platforms for Melbourne and Australia-wide sites. Plan your integration with our engineers.',
   },
@@ -99,7 +99,7 @@ export const serviceMetadataBySlug: Record<string, { title: string; description:
       'Functional safety and safety systems engineering for Melbourne and Australian industry, including SIL assessment and safety PLC design. Discuss compliance with us.',
   },
   'automation-upgrades': {
-    title: 'Automation Upgrades, Retrofits & Support',
+    title: 'Automation Upgrades & Retrofits Melbourne',
     description:
       'Automation upgrades and retrofits for Melbourne and Australia-wide factories, modernising legacy PLC and SCADA platforms. Plan a low-risk upgrade with us.',
   },

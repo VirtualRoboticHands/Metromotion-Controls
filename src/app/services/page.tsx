@@ -7,9 +7,9 @@ import { buildPageMetadata } from '@/lib/metadata'
 import { buildOrganisationSchema, buildServicesIndexBreadcrumbSchema } from '@/lib/schema'
 
 export const metadata = buildPageMetadata({
-  title: 'Automation Services',
+  title: 'Industrial Automation Services Melbourne',
   description:
-    'Explore industrial automation services from our Melbourne engineering team, including control systems, PLC, SCADA and commissioning across Australia. View services now.',
+    'Industrial automation services from a Melbourne engineering team: control systems, PLC, SCADA, HMI, control panel engineering and commissioning delivered across Australia.',
   path: '/services',
 })
 

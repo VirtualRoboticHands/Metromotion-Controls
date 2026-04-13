@@ -8,7 +8,7 @@ export function BlogHeader({ post }: { post: BlogPostFrontmatter }) {
           {post.category}
         </p>
         <h1 className="max-w-4xl font-[var(--font-serif)] text-4xl leading-tight text-[#1a1a1a] md:text-6xl">{post.title}</h1>
-        <p className="mt-4 text-[#4a4a4a]">{post.readingTime} min read · Published {post.publishedAt} · Updated {post.updatedAt ?? post.publishedAt}</p>
+        <p className="mt-4 text-[#4a4a4a]">{post.readingTime} min read · Published {new Date(post.publishedAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })} · Updated {new Date(post.updatedAt ?? post.publishedAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
       </div>
     </header>
   )

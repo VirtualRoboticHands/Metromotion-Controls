@@ -339,6 +339,48 @@ export const services: ServiceDetail[] = [
     ]
   },
   {
+    name: 'Automation Support & Maintenance',
+    slug: 'support',
+    shortDescription: 'Flexible support contracts, breakdown response and planned maintenance for automation environments.',
+    heroDescription: 'Expert onsite and remote automation support, available 24/7 and delivered by senior engineers with practical commissioning experience.',
+    sections: [
+      {
+        heading: '24/7 automation support',
+        body: 'Metromotion Controls provides flexible automation support models for manufacturers and process plants that cannot afford prolonged downtime. Our team supports emergency breakdown response, remote diagnostics and planned technical assistance for PLC, SCADA, HMI and OT infrastructure. We regularly work across Rockwell, Siemens, Omron, Schneider and Ignition environments, and we can integrate with your internal escalation workflow so operators and maintenance staff know exactly who to call and what information to provide. Support readiness includes secure remote access procedures, current backups, network visibility and defined response targets. This service is often used by sites that have limited in-house automation capacity on night shifts or weekends. By combining rapid fault response with strong diagnostic discipline, we help clients restore production quickly and reduce repeat failures over time.',
+      },
+      {
+        heading: 'Ongoing site maintenance',
+        body: 'Reliable automation performance depends on consistent maintenance, not only reactive callouts. We provide scheduled inspections, software health checks, alarm review and targeted optimisation to keep systems stable and maintainable. Preventative activities can include PLC backup verification, SCADA service status review, network diagnostics, historian health checks and documentation updates. Where improvement opportunities are identified, we implement practical changes such as interlock refinements, HMI usability updates and alarm rationalisation aligned with ISA-18.2 principles. A typical engagement involves monthly remote checks supported by quarterly site visits, with additional attendance during shutdown windows. This model helps operations teams detect risk early, improve resilience and avoid unplanned production impacts. We document findings and recommendations clearly so site leadership can prioritise investment based on real operational evidence.',
+      },
+      {
+        heading: 'How we deliver support',
+        body: 'Our support delivery model is designed to be practical for real industrial constraints. During onboarding we map critical assets, confirm escalation contacts, review remote access readiness and establish backup and restore expectations for controllers and servers. We then agree service routines such as monthly health checks, quarterly onsite reviews and clear response categories for urgent incidents. Each engagement includes documented findings, priority-ranked recommendations and progress tracking so improvements remain visible to both maintenance teams and leadership. When faults occur, we follow structured diagnostics that capture root cause, immediate fix and prevention actions, rather than only restoring operation and moving on. This creates a continuous improvement loop that strengthens reliability over time.',
+      },
+    ],
+    capabilities: [
+      'Breakdown site visit support in Melbourne and surrounding regions',
+      'Breakdown remote assistance over phone and secure VPN for interstate sites',
+      'PLC and HMI programming change requests for continuous improvement',
+      'Temporary onsite engineering cover during peak workload or staff shortages',
+      'Annual electrical and automation review with prioritised recommendations',
+      'Support for maintaining drawings, functional descriptions and operator documentation',
+    ],
+    faqs: [
+      {
+        question: 'What response options are available for urgent breakdowns?',
+        answer: 'We provide both onsite and remote response pathways. The best option depends on fault criticality, available site personnel and remote access readiness. We agree escalation paths and response targets during onboarding so there is no uncertainty during an incident.',
+      },
+      {
+        question: 'Can support contracts include preventative maintenance and improvement work?',
+        answer: 'Yes. Many clients combine reactive support with planned inspections, backup verification, code health checks and small optimisation tasks. This blended model helps reduce recurring faults while maintaining fast response for urgent issues.',
+      },
+      {
+        question: 'Do you support sites outside Melbourne?',
+        answer: 'Yes. We support interstate and regional sites through remote diagnostics, scheduled visits and coordinated local contractor support where needed. Our delivery model is designed to keep response practical across distributed operations.',
+      },
+    ],
+  },
+  {
     name: 'Commissioning, FAT & SAT',
     slug: 'commissioning',
     shortDescription: 'Structured testing and commissioning for dependable project handover.',
