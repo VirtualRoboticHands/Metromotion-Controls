@@ -54,7 +54,7 @@ export default function AboutPage() {
               fontSize: 'clamp(38px, 4.5vw, 60px)',
               color: 'white', lineHeight: 1.05, letterSpacing: '-0.02em',
             }}>
-              Engineers who<br/>build what they <em style={{ color: 'var(--red)', fontStyle: 'italic' }}>maintain</em>
+              Built by engineers who<br/>support what they <em style={{ color: 'var(--red)', fontStyle: 'italic' }}>build</em>
             </h1>
           </div>
           <p style={{

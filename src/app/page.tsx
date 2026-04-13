@@ -561,8 +561,8 @@ export default function HomePage() {
       <Reveal><section id="scope" className="section" style={{ background: 'var(--off)' }}>
         <div style={{ marginBottom: '32px' }}>
           <div className="section-label">Project Scoping Tool</div>
-          <h2 className="section-headline">Start <em>scoping</em> your project</h2>
-          <p className="section-sub">Answer a few questions about your automation challenge. We&apos;ll generate a scoping brief that lists system requirements, risks, and the decisions to settle before implementation starts.</p>
+          <h2 className="section-headline">Plan your <em>project</em></h2>
+          <p className="section-sub">Tell us about your automation challenge. We&apos;ll come back with the key requirements, risks, and decisions to work through before engineering starts.</p>
         </div>
         <div style={{ background: '#f7f6f3' }}>
           <ProjectScopingTool />

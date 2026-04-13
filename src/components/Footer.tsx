@@ -11,6 +11,7 @@ const footerLinks = {
     { href: '/services/functional-safety', label: 'Functional Safety & Safety Systems' },
     { href: '/services/automation-upgrades', label: 'Automation Upgrades, Retrofits & Support' },
     { href: '/services/commissioning', label: 'Commissioning, FAT & SAT' },
+    { href: '/services/support', label: 'Automation Support & Maintenance' },
   ],
   industries: [
     { href: '/industries/food-beverage', label: 'Food & Beverage' },

@@ -11,7 +11,7 @@ export const revalidate = 3600
 const POSTS_PER_PAGE = 12
 
 export const metadata: Metadata = {
-  title: 'Insights & Guides | Metromotion Controls',
+  title: { absolute: 'Insights & Guides | Metromotion Controls' },
   description:
     'Industrial automation insights and practical engineering guides from Metromotion Controls.',
   alternates: { canonical: '/blog' },
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 export default async function BlogPage({
   searchParams,
 }: {
-  searchParams: { category?: string; page?: string }
+  searchParams: Promise<{ category?: string; page?: string }>
 }) {
   const [allPosts, categories, featuredPosts] = await Promise.all([
     getAllPosts(),
@@ -41,8 +41,9 @@ export default async function BlogPage({
     getFeaturedPosts(1),
   ])
 
-  const activeCategory = searchParams.category ?? 'All'
-  const page = Number(searchParams.page ?? '1')
+  const { category, page: pageParam } = await searchParams
+  const activeCategory = category ?? 'All'
+  const page = Number(pageParam ?? '1')
 
   const filteredPosts =
     activeCategory === 'All'
