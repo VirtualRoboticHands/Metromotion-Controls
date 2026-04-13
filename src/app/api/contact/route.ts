@@ -2,13 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
-
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 const FROM = 'Metromotion Controls <noreply@metromotioncontrols.com.au>'
 const TEAM_EMAILS = ['info@metromotioncontrols.com.au', 'tommy.kim@metromotioncontrols.com.au']
 
@@ -65,7 +58,7 @@ function confirmationHtml(name: string, service: string, message: string) {
     <tr><td style="padding:8px 12px;background:#f7f6f3;font-weight:500;">Your message</td><td style="padding:8px 12px;border-left:1px solid #e5e4e0;">${message.replace(/\n/g, '<br>')}</td></tr>
   </table>
   <p style="font-size:14px;color:#666;line-height:1.65;">
-    If your matter is urgent, you can call us on <strong>(03) 9888 8888</strong> or email
+    If your matter is urgent, you can call us on <strong>(03) 9807 6896</strong> or email
     <a href="mailto:info@metromotioncontrols.com.au" style="color:#c8281e;">info@metromotioncontrols.com.au</a>.
   </p>
   <p style="font-size:13px;color:#999;margin-top:32px;border-top:1px solid #e5e4e0;padding-top:16px;">
@@ -76,6 +69,12 @@ function confirmationHtml(name: string, service: string, message: string) {
 }
 
 export async function POST(request: NextRequest) {
+  const supabaseAdmin = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+  const resend = new Resend(process.env.RESEND_API_KEY)
+
   let body: Record<string, unknown>
   try {
     body = await request.json()
