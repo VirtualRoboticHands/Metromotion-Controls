@@ -32,99 +32,68 @@ export default function AboutPage() {
   return (
     <>
       <Nav />
-      <main style={{ paddingTop: '72px' }}>
+      <main className="pt-[72px]">
         {/* Header */}
-        <section style={{
-          background: 'var(--ink)', padding: '80px 52px',
-          display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center',
-          position: 'relative', overflow: 'hidden',
-        }} className="about-header">
+        <section className="about-header relative overflow-hidden bg-ink grid grid-cols-2 gap-20 items-center px-[52px] py-[80px]">
           <Image
             src="/images/ProjectManagementBanner.png"
             alt="Project management planning session for industrial automation delivery"
             fill
             sizes="100vw"
-            style={{ objectFit: 'cover' }}
+            className="object-cover"
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
-          <div style={{ position: 'relative', zIndex: 1 }}>
-            <div className="section-label" style={{ color: 'var(--red)' }}>About Us</div>
-            <h1 style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(38px, 4.5vw, 60px)',
-              color: 'white', lineHeight: 1.05, letterSpacing: '-0.02em',
-            }}>
-              Built by engineers who<br/>support what they <em style={{ color: 'var(--red)', fontStyle: 'italic' }}>build</em>
+          <div className="absolute inset-0 bg-black/45" />
+          <div className="relative z-10">
+            <div className="section-label text-red">About Us</div>
+            <h1 className="font-serif text-[clamp(38px,4.5vw,60px)] text-white leading-[1.05] tracking-[-0.02em]">
+              Built by engineers who<br/>support what they <em className="text-red italic">build</em>
             </h1>
           </div>
-          <p style={{
-            fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.85, fontWeight: 300,
-            position: 'relative', zIndex: 1,
-          }}>
+          <p className="relative z-10 text-[15px] text-white/55 leading-[1.85] font-light">
             Metromotion Controls is a Melbourne-based industrial automation and control systems engineering company. We design, program, commission and support automation systems for food and beverage, dairy, FMCG, pet food, packaging, agricultural processing, and building products facilities across Australia. Founded in 2012, we&apos;ve grown to a team of 20 engineers delivering nationally.
           </p>
         </section>
 
         {/* Stats band */}
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-          background: 'var(--border)', borderBottom: '1px solid var(--border)', gap: '1px',
-        }} className="about-stats">
+        <div className="about-stats grid grid-cols-4 bg-border border-b border-border gap-px">
           {[
             { num: '200+', label: 'Projects delivered' },
             { num: '80%', label: 'Repeat client rate' },
             { num: '75+', label: 'Clients served' },
             { num: `${yearsInOperation}+`, label: 'Years in operation' },
           ].map(s => (
-            <div key={s.label} style={{
-              background: 'var(--white)', padding: '40px 36px',
-              display: 'flex', flexDirection: 'column', gap: '6px',
-            }}>
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '40px', color: 'var(--red)', lineHeight: 1 }}>{s.num}</div>
-              <div style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.05em', textTransform: 'uppercase' as const }}>{s.label}</div>
+            <div key={s.label} className="bg-white px-9 py-10 flex flex-col gap-[6px]">
+              <div className="font-serif text-[40px] text-red leading-none">{s.num}</div>
+              <div className="text-[12px] text-muted tracking-[0.05em] uppercase">{s.label}</div>
             </div>
           ))}
         </div>
 
         {/* Values */}
-        <section className="section" style={{ background: 'var(--off)' }}>
+        <section className="section bg-off">
           <div className="section-label">Our Approach</div>
           <h2 className="section-headline">Our <em>approach</em></h2>
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)',
-            background: 'var(--border)', border: '1px solid var(--border)', gap: '1px', marginTop: '48px',
-          }} className="values-grid">
+          <div className="values-grid grid grid-cols-2 bg-border border border-border gap-px mt-12">
             {values.map(v => (
-              <div key={v.title} style={{
-                background: 'var(--white)', padding: '40px 32px',
-                display: 'flex', flexDirection: 'column', gap: '12px',
-              }}>
-                <div style={{ fontSize: '18px', fontWeight: 600, color: 'var(--ink)' }}>{v.title}</div>
-                <div style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.75, fontWeight: 300 }}>{v.desc}</div>
+              <div key={v.title} className="bg-white px-8 py-10 flex flex-col gap-3">
+                <div className="text-[18px] font-semibold text-ink">{v.title}</div>
+                <div className="text-[14px] text-muted leading-[1.75] font-light">{v.desc}</div>
               </div>
             ))}
           </div>
         </section>
 
         {/* Timeline */}
-        <section className="section" style={{ background: 'var(--white)' }}>
+        <section className="section bg-white">
           <div className="section-label">Our History</div>
           <h2 className="section-headline">Our story <em>so far</em></h2>
-          <div style={{
-            marginTop: '48px', display: 'flex', flexDirection: 'column',
-            border: '1px solid var(--border)',
-          }}>
+          <div className="mt-12 flex flex-col border border-border">
             {timeline.map((t, i) => (
-              <div key={t.year} style={{
-                display: 'grid', gridTemplateColumns: '120px 1fr', gap: '32px',
-                padding: '32px 36px',
-                borderBottom: i < timeline.length - 1 ? '1px solid var(--border)' : 'none',
-                alignItems: 'start',
-              }} className="timeline-row">
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', color: 'var(--red)', lineHeight: 1 }}>{t.year}</div>
+              <div key={t.year} className={`timeline-row grid grid-cols-[120px_1fr] gap-8 px-9 py-8 items-start${i < timeline.length - 1 ? ' border-b border-border' : ''}`}>
+                <div className="font-serif text-[28px] text-red leading-none">{t.year}</div>
                 <div>
-                  <div style={{ fontSize: '16px', fontWeight: 600, color: 'var(--ink)', marginBottom: '6px' }}>{t.title}</div>
-                  <div style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, fontWeight: 300 }}>{t.desc}</div>
+                  <div className="text-[16px] font-semibold text-ink mb-[6px]">{t.title}</div>
+                  <div className="text-[14px] text-muted leading-[1.7] font-light">{t.desc}</div>
                 </div>
               </div>
             ))}
@@ -132,17 +101,14 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <div style={{
-          background: 'var(--ink)', padding: '80px 52px',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '20px',
-        }} className="about-cta">
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(30px, 3.5vw, 44px)', color: 'white', lineHeight: 1.1 }}>
+        <div className="about-cta bg-ink px-[52px] py-[80px] flex flex-col items-center text-center gap-5">
+          <h2 className="font-serif text-[clamp(30px,3.5vw,44px)] text-white leading-[1.1]">
             Ready to work with us?
           </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', maxWidth: '460px', lineHeight: 1.7, fontWeight: 300 }}>
+          <p className="text-[15px] text-white/45 max-w-[460px] leading-[1.7] font-light">
             Talk to an engineer, not a sales team. We&apos;ll give you a straight answer.
           </p>
-          <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none', marginTop: '8px' }}>
+          <Link href="/contact" className="btn-cta no-underline mt-2">
             Start a Conversation
           </Link>
         </div>

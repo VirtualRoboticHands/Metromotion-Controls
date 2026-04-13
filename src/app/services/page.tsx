@@ -59,85 +59,40 @@ export default function ServicesIndexPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Nav />
-      <main style={{ background: 'var(--off)', minHeight: '100vh', paddingTop: '72px' }}>
-        <section className="section" style={{ borderBottom: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
+      <main className="bg-off min-h-screen pt-[72px]">
+        <section className="section relative overflow-hidden border-b border-border">
           <Image
             src="/images/AutomationBanner-1.png"
             alt="Industrial automation services with control systems and instrumentation in operation"
             fill
             sizes="100vw"
-            style={{ objectFit: 'cover' }}
+            className="object-cover"
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
-          <div style={{ position: 'relative', zIndex: 1 }}>
-            <div className="section-label" style={{ color: 'var(--red)' }}>Services</div>
-            <h1 className="section-headline" style={{ color: 'white' }}>Automation services built for <em>industrial uptime</em></h1>
-            <p className="section-sub" style={{ maxWidth: '760px', color: 'rgba(255,255,255,0.85)' }}>
+          <div className="absolute inset-0 bg-black/45" />
+          <div className="relative z-10">
+            <div className="section-label text-red">Services</div>
+            <h1 className="section-headline text-white">Automation services built for <em>industrial uptime</em></h1>
+            <p className="section-sub max-w-[760px] text-white/85">
               Metromotion Controls is a Melbourne-based engineering team delivering control systems, integration and commissioning services across Australia.
             </p>
           </div>
         </section>
 
-        <section className="section" style={{ paddingTop: '56px', paddingBottom: '64px' }}>
+        <section className="section pt-14 pb-16">
           {/* TIER 1 — 2x2 card grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '10px',
-          }} className="services-tier1-grid">
+          <div className="services-tier1-grid grid grid-cols-2 gap-[10px]">
             {tier1Services.map((service) => (
-              <article key={service.slug} style={{
-                background: 'var(--white)',
-                border: '0.5px solid var(--border)',
-                borderRadius: '12px',
-                padding: '26px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '14px',
-                minHeight: '200px',
-              }}>
-                <div style={{
-                  width: '32px',
-                  height: '32px',
-                  background: '#fef2f1',
-                  borderRadius: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}>
+              <article key={service.slug} className="bg-white border-[0.5px] border-border rounded-xl p-[26px] flex flex-col gap-[14px] min-h-[200px]">
+                <div className="w-8 h-8 bg-[#fef2f1] rounded-lg flex items-center justify-center shrink-0">
                   {tier1Icons[service.slug]}
                 </div>
-                <h2 style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '16.5px',
-                  fontWeight: 500,
-                  lineHeight: 1.3,
-                  color: 'var(--ink)',
-                  margin: 0,
-                }}>
+                <h2 className="font-sans text-[16.5px] font-medium leading-[1.3] text-ink m-0">
                   {service.name}
                 </h2>
-                <p style={{
-                  color: 'var(--muted)',
-                  fontSize: '13px',
-                  lineHeight: 1.65,
-                  margin: 0,
-                  flex: 1,
-                  display: '-webkit-box',
-                  WebkitLineClamp: 2,
-                  WebkitBoxOrient: 'vertical' as const,
-                  overflow: 'hidden',
-                }}>
+                <p className="text-muted text-[13px] leading-[1.65] m-0 flex-1 line-clamp-2">
                   {service.shortDescription}
                 </p>
-                <Link href={`/services/${service.slug}`} style={{
-                  color: '#c8281e',
-                  fontSize: '13px',
-                  fontWeight: 500,
-                  textDecoration: 'none',
-                  marginTop: 'auto',
-                }}>
+                <Link href={`/services/${service.slug}`} className="text-red text-[13px] font-medium no-underline mt-auto">
                   View service →
                 </Link>
               </article>
@@ -145,91 +100,33 @@ export default function ServicesIndexPage() {
           </div>
 
           {/* TIER 2 — stacked rows */}
-          <div style={{
-            marginTop: '10px',
-            border: '0.5px solid var(--border)',
-            borderRadius: '12px',
-            background: 'var(--white)',
-            overflow: 'hidden',
-          }}>
+          <div className="mt-[10px] border-[0.5px] border-border rounded-xl bg-white overflow-hidden">
             {tier2Services.map((service, i) => (
-              <div key={service.slug} style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '24px',
-                padding: '18px 24px',
-                borderTop: i > 0 ? '0.5px solid var(--border)' : 'none',
-              }}>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <h3 style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '14.5px',
-                    fontWeight: 500,
-                    color: 'var(--ink)',
-                    margin: 0,
-                    lineHeight: 1.3,
-                  }}>
+              <div key={service.slug} className={`flex items-center justify-between gap-6 px-6 py-[18px]${i > 0 ? ' border-t-[0.5px] border-border' : ''}`}>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-sans text-[14.5px] font-medium text-ink m-0 leading-[1.3]">
                     {service.name}
                   </h3>
-                  <p style={{
-                    color: 'var(--muted)',
-                    fontSize: '12.5px',
-                    lineHeight: 1.55,
-                    margin: '4px 0 0',
-                  }}>
+                  <p className="text-muted text-[12.5px] leading-[1.55] mt-1 mb-0">
                     {service.shortDescription}
                   </p>
                 </div>
-                <Link href={`/services/${service.slug}`} style={{
-                  color: '#c8281e',
-                  fontSize: '13px',
-                  fontWeight: 500,
-                  textDecoration: 'none',
-                  flexShrink: 0,
-                  whiteSpace: 'nowrap',
-                }}>
+                <Link href={`/services/${service.slug}`} className="text-red text-[13px] font-medium no-underline shrink-0 whitespace-nowrap">
                   View →
                 </Link>
               </div>
             ))}
             {/* Support — not in services lib */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '24px',
-              padding: '18px 24px',
-              borderTop: '0.5px solid var(--border)',
-            }}>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <h3 style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '14.5px',
-                  fontWeight: 500,
-                  color: 'var(--ink)',
-                  margin: 0,
-                  lineHeight: 1.3,
-                }}>
+            <div className="flex items-center justify-between gap-6 px-6 py-[18px] border-t-[0.5px] border-border">
+              <div className="flex-1 min-w-0">
+                <h3 className="font-sans text-[14.5px] font-medium text-ink m-0 leading-[1.3]">
                   Automation Support &amp; Maintenance
                 </h3>
-                <p style={{
-                  color: 'var(--muted)',
-                  fontSize: '12.5px',
-                  lineHeight: 1.55,
-                  margin: '4px 0 0',
-                }}>
+                <p className="text-muted text-[12.5px] leading-[1.55] mt-1 mb-0">
                   Expert on-site and remote support available 24/7, with senior engineers who have real commissioning experience.
                 </p>
               </div>
-              <Link href="/services/support" style={{
-                color: '#c8281e',
-                fontSize: '13px',
-                fontWeight: 500,
-                textDecoration: 'none',
-                flexShrink: 0,
-                whiteSpace: 'nowrap',
-              }}>
+              <Link href="/services/support" className="text-red text-[13px] font-medium no-underline shrink-0 whitespace-nowrap">
                 View →
               </Link>
             </div>

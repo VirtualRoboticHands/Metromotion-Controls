@@ -32,44 +32,38 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="site-footer" style={{ background: 'var(--off)', borderTop: '1px solid var(--border)', padding: '64px 52px 36px' }}>
-      <div className="footer-top" style={{
-        display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '48px',
-        paddingBottom: '44px', borderBottom: '1px solid var(--border)',
-      }}>
+    <footer className="site-footer bg-off border-t border-border px-[52px] pt-16 pb-9">
+      <div className="footer-top grid grid-cols-[2fr_1fr_1fr_1fr] gap-12 pb-11 border-b border-border">
         {/* Brand */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
-          <div style={{ width: '30px', height: '30px', background: 'var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg viewBox="0 0 24 24" style={{ width: '14px', height: '14px', fill: 'none', stroke: 'white', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round' }}>
+        <div className="flex flex-col gap-[13px]">
+          <div className="w-[30px] h-[30px] bg-ink flex items-center justify-center">
+            <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-none stroke-white stroke-[1.5] [stroke-linecap:round] [stroke-linejoin:round]">
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
             </svg>
           </div>
-          <div style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: 'var(--ink)' }}>
-            Metromotion <span style={{ color: 'var(--red)' }}>Controls</span>
+          <div className="text-[12px] font-semibold tracking-[0.07em] uppercase text-ink">
+            Metromotion <span className="text-red">Controls</span>
           </div>
-          <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.65, maxWidth: '270px', fontWeight: 300 }}>
+          <p className="text-[13px] text-muted leading-[1.65] max-w-[270px] font-light">
             Industrial automation and control systems engineering for Australian food, beverage, FMCG, and industrial manufacturing.
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '4px' }}>
-            <a href="tel:0398076896" style={{ fontSize: '13px', color: 'var(--muted)', textDecoration: 'none' }}>(03) 9807 6896</a>
-            <a href="mailto:info@metromotioncontrols.com.au" style={{ fontSize: '13px', color: 'var(--muted)', textDecoration: 'none' }}>info@metromotioncontrols.com.au</a>
-            <span style={{ fontSize: '13px', color: 'var(--muted)' }}>39 Sunhill Rd, Mount Waverley VIC 3149</span>
+          <div className="flex flex-col gap-1 mt-1">
+            <a href="tel:0398076896" className="text-[13px] text-muted no-underline">(03) 9807 6896</a>
+            <a href="mailto:info@metromotioncontrols.com.au" className="text-[13px] text-muted no-underline">info@metromotioncontrols.com.au</a>
+            <span className="text-[13px] text-muted">39 Sunhill Rd, Mount Waverley VIC 3149</span>
           </div>
         </div>
 
         {/* Link columns */}
         {Object.entries(footerLinks).map(([title, links]) => (
           <div key={title}>
-            <h4 style={{
-              fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase' as const,
-              color: 'var(--ink)', fontWeight: 600, marginBottom: '16px',
-            }}>
+            <h4 className="text-[10px] tracking-[0.12em] uppercase text-ink font-semibold mb-4">
               {title}
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <ul className="list-none flex flex-col gap-2">
               {links.map(link => (
                 <li key={link.href}>
-                  <Link href={link.href} style={{ fontSize: '13px', color: 'var(--muted)', textDecoration: 'none', fontWeight: 300 }}>
+                  <Link href={link.href} className="text-[13px] text-muted no-underline font-light">
                     {link.label}
                   </Link>
                 </li>
@@ -79,19 +73,13 @@ export default function Footer() {
         ))}
       </div>
 
-      <div style={{
-        paddingTop: '24px', display: 'flex', justifyContent: 'space-between',
-        alignItems: 'center', flexWrap: 'wrap' as const, gap: '12px',
-      }}>
-        <span style={{ fontSize: '12px', color: 'var(--muted2)' }}>
+      <div className="pt-6 flex justify-between items-center flex-wrap gap-3">
+        <span className="text-[12px] text-muted2">
           © {new Date().getFullYear()} Metromotion Controls Pty Ltd. All rights reserved.
         </span>
-        <div style={{ display: 'flex', gap: '6px' }}>
+        <div className="flex gap-[6px]">
           {['AS 61508'].map(cert => (
-            <span key={cert} style={{
-              fontSize: '10px', letterSpacing: '0.06em', textTransform: 'uppercase' as const,
-              padding: '3px 9px', border: '1px solid var(--border2)', color: 'var(--muted2)', background: 'var(--white)',
-            }}>
+            <span key={cert} className="text-[10px] tracking-[0.06em] uppercase px-[9px] py-[3px] border border-border2 text-muted2 bg-white">
               {cert}
             </span>
           ))}

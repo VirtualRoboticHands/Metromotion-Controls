@@ -146,86 +146,61 @@ export default function HomePage() {
       <Nav />
 
       {/* HERO */}
-      <section style={{
-        paddingTop: '72px', display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100vh', position: 'relative', overflow: 'hidden',
-      }} className="hero-grid">
+      <section className="hero-grid pt-[72px] grid grid-cols-2 min-h-screen relative overflow-hidden">
         <Image
           src="/images/shutterstock_1038399151-scaled.jpg"
           alt="Industrial automation control cabinets and piping in a modern processing facility"
           fill
           priority
           sizes="100vw"
-          style={{ objectFit: 'cover' }}
+          className="object-cover"
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
-        <div style={{
-          padding: '80px 52px', display: 'flex', flexDirection: 'column', justifyContent: 'center',
-          borderRight: '1px solid rgba(255,255,255,0.25)', position: 'relative', zIndex: 1,
-        }} className="hero-left">
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '10px',
-            fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase' as const,
-            color: 'var(--red)', marginBottom: '32px', fontWeight: 500,
-            animation: 'fadeUp 0.5s 0.1s both',
-          }}>
-            <span style={{ width: '22px', height: '1px', background: 'var(--red)', display: 'inline-block' }} />
+        <div className="absolute inset-0 bg-black/45" />
+        <div className="hero-left px-[52px] py-[80px] flex flex-col justify-center border-r border-white/25 relative z-10">
+          <div
+            className="inline-flex items-center gap-[10px] text-[11px] tracking-[0.14em] uppercase text-red mb-8 font-medium"
+            style={{ animation: 'fadeUp 0.5s 0.1s both' }}
+          >
+            <span className="w-[22px] h-px bg-red inline-block" />
             Control Systems Integrator · Melbourne, AU
           </div>
-          <h1 style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(48px, 5.2vw, 72px)',
-            lineHeight: 1.02, letterSpacing: '-0.02em', color: 'white',
-            marginBottom: '28px',
-            animation: 'fadeUp 0.6s 0.2s both',
-          }}>
-            Automation<br/>engineering<br/>for <em style={{ color: 'var(--red)', fontStyle: 'italic' }}>Australian</em><br/>industry
+          <h1
+            className="font-serif text-[clamp(48px,5.2vw,72px)] leading-[1.02] tracking-[-0.02em] text-white mb-7"
+            style={{ animation: 'fadeUp 0.6s 0.2s both' }}
+          >
+            Automation<br/>engineering<br/>for <em className="text-red italic">Australian</em><br/>industry
           </h1>
-          <p style={{
-            fontSize: '17px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.75,
-            maxWidth: '420px', marginBottom: '44px', fontWeight: 300,
-            animation: 'fadeUp 0.6s 0.3s both',
-          }}>
-            PLC, SCADA &amp; HMI specialists trusted by <strong style={{ color: 'white', fontWeight: 500 }}>Chobani, Lactalis, La Casa del Formaggio</strong> and Australia&apos;s leading manufacturers. Delivering nationally from Melbourne since 2012.
+          <p
+            className="text-[17px] text-white/85 leading-[1.75] max-w-[420px] mb-11 font-light"
+            style={{ animation: 'fadeUp 0.6s 0.3s both' }}
+          >
+            PLC, SCADA &amp; HMI specialists trusted by <strong className="text-white font-medium">Chobani, Lactalis, La Casa del Formaggio</strong> and Australia&apos;s leading manufacturers. Delivering nationally from Melbourne since 2012.
           </p>
-          <div style={{ display: 'flex', gap: '12px', animation: 'fadeUp 0.6s 0.4s both' }}>
+          <div className="flex gap-3" style={{ animation: 'fadeUp 0.6s 0.4s both' }}>
             <Link href="/#projects" className="btn-primary">View Our Work</Link>
             <Link
               href="#scope"
-              style={{
-                background: '#c8281e',
-                color: '#fff',
-                border: '1px solid #c8281e',
-                padding: '14px 26px',
-                textDecoration: 'none',
-                fontSize: '13px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                boxShadow: '0 6px 20px rgba(0,0,0,0.35)',
-              }}
+              className="bg-red text-white border border-red px-[26px] py-[14px] no-underline text-[13px] font-medium tracking-[0.02em] shadow-[0_6px_20px_rgba(0,0,0,0.35)]"
             >
               Start a Project
             </Link>
           </div>
         </div>
 
-        <div style={{ background: 'rgba(0,0,0,0.25)', display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }} className="hero-right">
+        <div className="hero-right bg-black/25 flex flex-col relative z-10">
           {[
             { num: '200', suffix: '+', label: 'Projects delivered' },
             { num: '80', suffix: '%', label: 'Repeat client rate' },
             { num: '75', suffix: '+', label: 'Clients served' },
             { num: String(yearsInOperation), suffix: '+', label: 'Years in operation' },
           ].map((stat, i) => (
-            <div key={i} style={{
-              flex: 1, padding: '0 52px',
-              display: 'flex', flexDirection: 'column', justifyContent: 'center',
-              borderBottom: i < 3 ? '1px solid rgba(255,255,255,0.2)' : 'none',
-            }} className="hero-stat">
+            <div key={i} className={`hero-stat flex-1 px-[52px] flex flex-col justify-center${i < 3 ? ' border-b border-white/20' : ''}`}>
               <div>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '52px', color: 'white', lineHeight: 1, marginBottom: '5px' }}>
+                <div className="font-serif text-[52px] text-white leading-none mb-[5px]">
                   {stat.num}
-                  {stat.suffix && <em style={{ color: 'var(--red)', fontStyle: 'normal', fontSize: '38px' }}>{stat.suffix}</em>}
+                  {stat.suffix && <em className="text-red not-italic text-[38px]">{stat.suffix}</em>}
                 </div>
-                <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.75)', letterSpacing: '0.05em', textTransform: 'uppercase', fontWeight: 400 }}>
+                <div className="text-[12px] text-white/75 tracking-[0.05em] uppercase font-normal">
                   {stat.label}
                 </div>
               </div>
@@ -235,10 +210,7 @@ export default function HomePage() {
       </section>
 
       {/* CLIENTS STRIP */}
-      <Reveal><div style={{
-        padding: '28px 52px', borderBottom: '1px solid var(--border)', background: 'var(--white)',
-        display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '20px',
-      }} className="clients-strip">
+      <Reveal><div className="clients-strip px-[52px] py-7 border-b border-border bg-white flex flex-col items-stretch gap-5">
         {trustedByEntries.length > 0 && (
           <div className="logo-marquee">
             <div className="logo-marquee-track">
@@ -262,17 +234,14 @@ export default function HomePage() {
       </div></Reveal>
 
       {/* INTRO BAND */}
-      <Reveal><div style={{
-        background: 'var(--ink)', padding: '80px 52px',
-        display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center',
-      }} className="intro-grid">
+      <Reveal><div className="intro-grid bg-ink px-[52px] py-[80px] grid grid-cols-2 gap-20 items-center">
         <div>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(30px, 3.2vw, 44px)', color: 'white', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
-            Engineering that keeps<br/>your production <em style={{ color: 'var(--red)', fontStyle: 'italic' }}>moving</em>
+          <h2 className="font-serif text-[clamp(30px,3.2vw,44px)] text-white leading-[1.1] tracking-[-0.02em]">
+            Engineering that keeps<br/>your production <em className="text-red italic">moving</em>
           </h2>
         </div>
         <div>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.85, fontWeight: 300 }}>
+          <p className="text-[15px] text-white/55 leading-[1.85] font-light">
             Metromotion Controls is a Melbourne-based control systems integrator delivering automation engineering for manufacturers across Australia. We specialise in PLC programming, SCADA and HMI development, control panel engineering, and commissioning for production facilities that run around the clock.
             <br/><br/>
             Our core industries are food and beverage, dairy, FMCG, pet food, packaging, agricultural processing, and building products. We work across all major platforms including Allen-Bradley, Siemens, Ignition, and AVEVA, and we stay involved from first scope through to ongoing support.
@@ -281,37 +250,26 @@ export default function HomePage() {
       </div></Reveal>
 
       {/* SERVICES */}
-      <Reveal><section className="section" id="services" style={{ background: 'var(--off)' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '48px', flexWrap: 'wrap' as const, gap: '24px' }}>
+      <Reveal><section className="section bg-off" id="services">
+        <div className="flex justify-between items-end mb-12 flex-wrap gap-6">
           <div>
             <div className="section-label">What We Do</div>
             <h2 className="section-headline">What we <em>deliver</em></h2>
           </div>
           <p className="section-sub">From first brief to final commissioning, and long after. We cover the full scope so you deal with one team, not multiple vendors.</p>
         </div>
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)',
-          background: 'var(--border)', border: '1px solid var(--border)', gap: '1px',
-        }} className="services-grid">
+        <div className="services-grid grid grid-cols-5 bg-border border border-border gap-px">
           {services.map(svc => (
-            <Link href={svc.href} key={svc.num} className="service-card-wrapper hover-lift service-card-link" style={{
-              background: 'var(--white)', padding: '32px 26px',
-              display: 'flex', flexDirection: 'column', gap: '13px',
-              position: 'relative', transition: 'background 0.22s, transform 0.22s ease, box-shadow 0.22s ease',
-              textDecoration: 'none',
-            }}>
-              <div style={{ fontSize: '10px', color: 'var(--muted2)', letterSpacing: '0.1em', fontWeight: 500, textTransform: 'uppercase' as const }}>{svc.num}</div>
-              <div style={{
-                width: '38px', height: '38px', border: '1px solid var(--border)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}>
-                <svg viewBox="0 0 24 24" style={{ width: '17px', height: '17px', stroke: 'var(--red)', fill: 'none', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round' }}>
+            <Link href={svc.href} key={svc.num} className="service-card-wrapper hover-lift service-card-link bg-white px-[26px] py-8 flex flex-col gap-[13px] relative no-underline" style={{ transition: 'background 0.22s, transform 0.22s ease, box-shadow 0.22s ease' }}>
+              <div className="text-[10px] text-muted2 tracking-[0.1em] font-medium uppercase">{svc.num}</div>
+              <div className="w-[38px] h-[38px] border border-border flex items-center justify-center">
+                <svg viewBox="0 0 24 24" className="w-[17px] h-[17px] stroke-red fill-none [stroke-width:1.5] [stroke-linecap:round] [stroke-linejoin:round]">
                   {svc.icon}
                 </svg>
               </div>
-              <div style={{ fontSize: '15px', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.3 }}>{svc.title}</div>
-              <div style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.65, fontWeight: 300, flex: 1 }}>{svc.desc}</div>
-              <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '4px', marginTop: '4px' }}>
+              <div className="text-[15px] font-semibold text-ink leading-[1.3]">{svc.title}</div>
+              <div className="text-[13px] text-muted leading-[1.65] font-light flex-1">{svc.desc}</div>
+              <div className="flex flex-wrap gap-1 mt-1">
                 {svc.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
               </div>
             </Link>
@@ -320,18 +278,14 @@ export default function HomePage() {
       </section></Reveal>
 
       {/* INDUSTRIES */}
-      <Reveal><section className="section" id="industries" style={{ background: 'var(--white)' }}>
+      <Reveal><section className="section bg-white" id="industries">
         <div className="section-label">Industries</div>
         <h2 className="section-headline">Deep sector <em>expertise</em></h2>
         <p className="section-sub">Over a decade focused on Australia&apos;s most demanding manufacturing sites. We understand the equipment, compliance requirements, and uptime targets your team is measured against.</p>
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '11px', marginTop: '48px',
-        }} className="industry-grid industry-cards-grid">
+        <div className="industry-grid industry-cards-grid grid grid-cols-4 gap-[11px] mt-12">
           {industries.map(ind => (
-            <div key={ind.num} className="hover-lift" style={{
-              background: 'var(--white)', padding: '28px 22px 24px',
-              display: 'flex', flexDirection: 'column', gap: '10px', transition: 'background 0.2s',
+            <div key={ind.num} className="hover-lift bg-white px-[22px] pt-7 pb-6 flex flex-col gap-[10px]" style={{
+              transition: 'background 0.2s',
               borderTop: '3px solid #c8281e',
               borderLeft: '0.5px solid var(--border)',
               borderRight: '0.5px solid var(--border)',
@@ -341,156 +295,121 @@ export default function HomePage() {
               borderBottomLeftRadius: '8px',
               borderBottomRightRadius: '8px',
             }}>
-              <div style={{ fontSize: '12px', color: '#c8281e', fontWeight: 500, letterSpacing: '0.05em' }}>{ind.num}</div>
-              <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)', lineHeight: 1.35 }}>{ind.name}</div>
-              <div style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.65, fontWeight: 300 }}>{ind.desc}</div>
+              <div className="text-[12px] text-red font-medium tracking-[0.05em]">{ind.num}</div>
+              <div className="text-[14px] font-medium text-ink leading-[1.35]">{ind.name}</div>
+              <div className="text-[13px] text-muted leading-[1.65] font-light">{ind.desc}</div>
             </div>
           ))}
         </div>
       </section></Reveal>
 
       {/* PROJECTS */}
-      <Reveal><section className="section" id="projects" style={{ background: 'var(--off)' }}>
+      <Reveal><section className="section bg-off" id="projects">
         <div className="section-label">Case Studies</div>
         <h2 className="section-headline">Projects that <em>speak</em><br/>for themselves</h2>
 
         {/* Featured project */}
-        <div style={{
-          display: 'grid', gridTemplateColumns: '55% 45%', gap: 0,
-          border: '1px solid var(--border)', marginTop: '48px',
-        }} className="project-main">
-          <div style={{
-            background: 'var(--off2)', minHeight: '380px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            position: 'relative', overflow: 'hidden',
-            borderRight: '1px solid var(--border)',
-          }}>
-            <div style={{
-              position: 'absolute', inset: 0,
+        <div className="project-main grid gap-0 border border-border mt-12" style={{ gridTemplateColumns: '55% 45%' }}>
+          <div className="bg-off2 min-h-[380px] flex items-center justify-center relative overflow-hidden border-r border-border">
+            <div className="absolute inset-0" style={{
               backgroundImage: 'linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)',
               backgroundSize: '44px 44px',
             }} />
-            <div style={{
-              position: 'absolute', top: '20px', left: '20px',
-              background: 'var(--red)', color: 'white',
-              fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase' as const, padding: '5px 12px', fontWeight: 500,
-            }}>Featured Project</div>
-            <div style={{
-              position: 'relative', background: 'var(--white)', border: '1px solid var(--border2)',
-              padding: '11px 22px', fontSize: '12px', letterSpacing: '0.07em', textTransform: 'uppercase' as const,
-              color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: '9px',
-            }}>
-              <span style={{ width: '7px', height: '7px', background: 'var(--red)', display: 'inline-block', flexShrink: 0 }} />
+            <div className="absolute top-5 left-5 bg-red text-white text-[10px] tracking-[0.1em] uppercase px-3 py-[5px] font-medium">
+              Featured Project
+            </div>
+            <div className="relative bg-white border border-border2 px-[22px] py-[11px] text-[12px] tracking-[0.07em] uppercase text-muted flex items-center gap-[9px]">
+              <span className="w-[7px] h-[7px] bg-red inline-block shrink-0" />
               Greenfields Yoghurt Plant, Chobani
             </div>
           </div>
-          <div style={{
-            background: 'var(--white)', padding: '44px 36px',
-            display: 'flex', flexDirection: 'column', gap: '18px',
-          }}>
-            <div style={{ fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'var(--red)', fontWeight: 500 }}>
+          <div className="bg-white px-9 py-11 flex flex-col gap-[18px]">
+            <div className="text-[11px] tracking-[0.1em] uppercase text-red font-medium">
               Chobani · Food &amp; Beverage · Greenfield
             </div>
-            <div style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', lineHeight: 1.15, letterSpacing: '-0.02em', color: 'var(--ink)' }}>
+            <div className="font-serif text-[28px] leading-[1.15] tracking-[-0.02em] text-ink">
               Full-plant automation from the ground up
             </div>
-            <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.75, fontWeight: 300 }}>
+            <p className="text-[14px] text-muted leading-[1.75] font-light">
               End-to-end automation design and commissioning for a large-scale greenfields yoghurt manufacturing facility. Scope covered PLC programming, SCADA development, CIP automation, batching control, and full site integration.
             </p>
-            <div style={{
-              display: 'flex', gap: '24px', padding: '18px 0',
-              borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)',
-            }}>
+            <div className="flex gap-6 py-[18px] border-t border-border border-b border-border">
               {[
                 { val: '100', suffix: '%', label: 'On schedule' },
                 { val: 'Rockwell', suffix: '', label: 'Platform' },
                 { val: '2012', suffix: '→', label: 'Still ongoing' },
               ].map(m => (
-                <div key={m.label} style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
-                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '26px', color: 'var(--ink)', lineHeight: 1 }}>
-                    {m.val}{m.suffix && <em style={{ color: 'var(--red)', fontStyle: 'normal', fontSize: '18px' }}>{m.suffix}</em>}
+                <div key={m.label} className="flex flex-col gap-[3px]">
+                  <div className="font-serif text-[26px] text-ink leading-none">
+                    {m.val}{m.suffix && <em className="text-red not-italic text-[18px]">{m.suffix}</em>}
                   </div>
-                  <div style={{ fontSize: '10px', textTransform: 'uppercase' as const, letterSpacing: '0.07em', color: 'var(--muted)', fontWeight: 500 }}>{m.label}</div>
+                  <div className="text-[10px] uppercase tracking-[0.07em] text-muted font-medium">{m.label}</div>
                 </div>
               ))}
             </div>
-            <Link href="/contact" className="btn-primary" style={{ alignSelf: 'flex-start', marginTop: '4px' }}>
+            <Link href="/contact" className="btn-primary self-start mt-1">
               Discuss a Similar Project
             </Link>
-            <Link href="#scope" style={{ fontSize: '12px', color: 'var(--muted)', textDecoration: 'none' }}>
+            <Link href="#scope" className="text-[12px] text-muted no-underline">
               Or use the project scoping tool →
             </Link>
           </div>
         </div>
 
         {/* Case study cards */}
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
-          background: 'var(--border)', border: '1px solid var(--border)', borderTop: 'none', gap: '1px',
-        }} className="cases-grid">
+        <div className="cases-grid grid grid-cols-3 bg-border border border-border border-t-0 gap-px">
           {showcaseProjects.map(p => (
-            <Link key={p.slug} href={`/projects/${p.slug}`} className="hover-lift" style={{
-              background: 'var(--white)', padding: '26px',
-              display: 'flex', flexDirection: 'column', gap: '9px', transition: 'background 0.2s',
-              textDecoration: 'none',
-            }}>
-              <div style={{ fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'var(--red)', fontWeight: 500 }}>{p.category}</div>
-              <div style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--muted2)', fontWeight: 500 }}>{p.client}</div>
-              <div style={{ fontSize: '15px', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.3 }}>{p.title}</div>
-              <div style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6, fontWeight: 300, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as const, overflow: 'hidden' }}>{p.overview}</div>
-              <div style={{ fontSize: '12px', color: 'var(--red)', fontWeight: 500, marginTop: '4px' }}>View project →</div>
+            <Link key={p.slug} href={`/projects/${p.slug}`} className="hover-lift bg-white px-[26px] py-[26px] flex flex-col gap-[9px] no-underline" style={{ transition: 'background 0.2s' }}>
+              <div className="text-[10px] tracking-[0.1em] uppercase text-red font-medium">{p.category}</div>
+              <div className="text-[11px] tracking-[0.08em] uppercase text-muted2 font-medium">{p.client}</div>
+              <div className="text-[15px] font-semibold text-ink leading-[1.3]">{p.title}</div>
+              <div className="text-[13px] text-muted leading-[1.6] font-light line-clamp-2">{p.overview}</div>
+              <div className="text-[12px] text-red font-medium mt-1">View project →</div>
             </Link>
           ))}
         </div>
       </section></Reveal>
 
       {/* TESTIMONIALS */}
-      <Reveal><section className="section testimonials-section-dark" id="about" style={{ background: '#1a1a18', padding: '48px 40px' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <div style={{ color: '#c8281e', textTransform: 'uppercase', fontSize: '11px', letterSpacing: '2px', fontWeight: 500, marginBottom: '24px' }}>
+      <Reveal><section className="section testimonials-section-dark bg-[#1a1a18] px-10 py-12" id="about">
+        <div className="max-w-[1100px] mx-auto">
+          <div className="text-red uppercase text-[11px] tracking-[2px] font-medium mb-6">
             Client Testimonials
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <div style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 'clamp(20px, 2.2vw, 22px)', color: '#f7f6f3', lineHeight: 1.5 }}>
+          <div className="flex flex-col gap-5">
+            <div className="font-serif italic text-[clamp(20px,2.2vw,22px)] text-off leading-[1.5]">
               All the team have been an outstanding partner of Chobani since 2012. They have provided a one in a million partnership that we have not seen anywhere else in the world to date. They continue to do so on many levels.
             </div>
-            <div style={{ display: 'flex', alignItems: 'stretch', gap: '12px' }}>
-              <div style={{ width: '3px', background: '#c8281e', borderRadius: '1px', flexShrink: 0 }} />
+            <div className="flex items-stretch gap-3">
+              <div className="w-[3px] bg-red rounded-[1px] shrink-0" />
               <div>
-                <div style={{ fontSize: '14px', fontWeight: 500, color: '#f7f6f3' }}>Hugh Roddy</div>
-                <div style={{ fontSize: '12px', color: '#9c9a92' }}>Vice President Global Engineering, Chobani</div>
+                <div className="text-[14px] font-medium text-off">Hugh Roddy</div>
+                <div className="text-[12px] text-[#9c9a92]">Vice President Global Engineering, Chobani</div>
               </div>
             </div>
           </div>
 
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: '28px', paddingTop: '24px' }}>
-            <p style={{ fontSize: '14px', color: '#b8b6ac', lineHeight: 1.75, fontStyle: 'italic', fontWeight: 300 }}>
+          <div className="border-t border-white/10 mt-7 pt-6">
+            <p className="text-[14px] text-[#b8b6ac] leading-[1.75] italic font-light">
               &ldquo;Thanks again for helping us deliver another successful project on time and on budget. The automation platform that was delivered far exceeded all our expectations. Metromotion Controls will definitely be first choice for our next project.&rdquo;
             </p>
-            <div style={{ marginTop: '12px' }}>
-              <div style={{ fontSize: '14px', fontWeight: 500, color: '#d4d2c8' }}>Gary Saywell</div>
-              <div style={{ fontSize: '12px', color: '#7c7a72' }}>Project Engineer, Real Pet Food</div>
+            <div className="mt-3">
+              <div className="text-[14px] font-medium text-[#d4d2c8]">Gary Saywell</div>
+              <div className="text-[12px] text-[#7c7a72]">Project Engineer, Real Pet Food</div>
             </div>
           </div>
         </div>
       </section></Reveal>
 
       {/* PLATFORMS */}
-      <Reveal><section className="section" style={{ background: 'var(--off)' }}>
+      <Reveal><section className="section bg-off">
         <div className="section-label">Our Expertise</div>
         <h2 className="section-headline">Platform <em>agnostic</em><br/>and vendor independent</h2>
         <p className="section-sub">We work across leading automation platforms and design around your site standards, not ours.</p>
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-          background: 'var(--border)', border: '1px solid var(--border)', gap: '1px', marginTop: '48px',
-        }} className="platform-grid">
+        <div className="platform-grid grid grid-cols-4 bg-border border border-border gap-px mt-12">
           {platformLogos.map((platform) => (
-            <div key={platform.name} style={{
-              background: 'var(--white)', padding: '24px 16px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              minHeight: '94px',
-            }}>
+            <div key={platform.name} className="bg-white px-4 py-6 flex items-center justify-center min-h-[94px]">
               <Image
                 src={`/images/platforms/${platform.file}`}
                 alt={`${platform.name} platform logo`}
@@ -503,27 +422,13 @@ export default function HomePage() {
           ))}
         </div>
         {certificationBadges.length > 0 && (
-          <div style={{ marginTop: '30px' }}>
+          <div className="mt-[30px]">
             <div className="section-label">Certifications</div>
-            <div
-              style={{
-                display: 'flex',
-                gap: '16px',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-              }}
-            >
+            <div className="flex gap-4 flex-wrap items-center">
               {certificationBadges.map((badgePath) => (
                 <div
                   key={badgePath}
-                  style={{
-                    background: 'var(--white)',
-                    border: '1px solid var(--border)',
-                    padding: '14px 18px',
-                    minHeight: '106px',
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
+                  className="bg-white border border-border px-[18px] py-[14px] min-h-[106px] flex items-center"
                 >
                   <Image
                     src={badgePath}
@@ -540,55 +445,49 @@ export default function HomePage() {
       </section></Reveal>
 
       {/* WHY */}
-      <Reveal><section className="section" style={{ background: 'var(--white)' }}>
+      <Reveal><section className="section bg-white">
         <div className="section-label">Why Metromotion</div>
         <h2 className="section-headline">The difference<br/><em>experience</em> makes</h2>
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
-          background: 'var(--border)', border: '1px solid var(--border)', gap: '1px', marginTop: '48px',
-        }} className="why-grid">
+        <div className="why-grid grid grid-cols-3 bg-border border border-border gap-px mt-12">
           {whyCards.map(w => (
-            <div key={w.title} style={{ background: 'var(--white)', padding: '36px 30px', display: 'flex', flexDirection: 'column', gap: '13px' }}>
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '40px', color: 'var(--red)', lineHeight: 1 }}>{w.num}</div>
-              <div style={{ fontSize: '16px', fontWeight: 600, color: 'var(--ink)' }}>{w.title}</div>
-              <div style={{ fontSize: '13.5px', color: 'var(--muted)', lineHeight: 1.7, fontWeight: 300 }}>{w.desc}</div>
+            <div key={w.title} className="bg-white px-[30px] py-9 flex flex-col gap-[13px]">
+              <div className="font-serif text-[40px] text-red leading-none">{w.num}</div>
+              <div className="text-[16px] font-semibold text-ink">{w.title}</div>
+              <div className="text-[13.5px] text-muted leading-[1.7] font-light">{w.desc}</div>
             </div>
           ))}
         </div>
       </section></Reveal>
 
       {/* SCOPING TOOL */}
-      <Reveal><section id="scope" className="section" style={{ background: 'var(--off)' }}>
-        <div style={{ marginBottom: '32px' }}>
+      <Reveal><section id="scope" className="section bg-off">
+        <div className="mb-8">
           <div className="section-label">Project Scoping Tool</div>
           <h2 className="section-headline">Plan your <em>project</em></h2>
           <p className="section-sub">Tell us about your automation challenge. We&apos;ll come back with the key requirements, risks, and decisions to work through before engineering starts.</p>
         </div>
-        <div style={{ background: '#f7f6f3' }}>
+        <div className="bg-off">
           <ProjectScopingTool />
         </div>
       </section></Reveal>
 
       {/* CTA BAND */}
-      <div id="contact" style={{
-        background: 'var(--ink)', padding: '96px 52px',
-        display: 'grid', gridTemplateColumns: '1fr auto', gap: '60px', alignItems: 'center',
-      }} className="cta-grid">
+      <div id="contact" className="cta-grid bg-ink px-[52px] py-24 grid gap-[60px] items-center" style={{ gridTemplateColumns: '1fr auto' }}>
         <div>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(34px, 3.8vw, 52px)', color: 'white', lineHeight: 1.05, letterSpacing: '-0.02em' }}>
-            Ready to improve<br/>your <em style={{ color: 'var(--red)', fontStyle: 'italic' }}>production?</em>
+          <h2 className="font-serif text-[clamp(34px,3.8vw,52px)] text-white leading-[1.05] tracking-[-0.02em]">
+            Ready to improve<br/>your <em className="text-red italic">production?</em>
           </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', marginTop: '12px', fontWeight: 300, maxWidth: '480px', lineHeight: 1.75 }}>
+          <p className="text-[15px] text-white/45 mt-3 font-light max-w-[480px] leading-[1.75]">
             Tell us about your project and we&apos;ll come back with a straight answer on scope, approach, and what&apos;s involved. No fluff, no sales pitch.
           </p>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'row', gap: '12px', alignItems: 'center', flexWrap: 'wrap', flexShrink: 0 }}>
-          <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Start a Conversation</Link>
-          <Link href="#scope" className="btn-outline" style={{ textDecoration: 'none', color: 'white', borderColor: 'rgba(255,255,255,0.35)' }}>Scope Your Project</Link>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-            <a href="tel:0398076896" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>(03) 9807 6896</a>
-            <a href="mailto:info@metromotioncontrols.com.au" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>info@metromotioncontrols.com.au</a>
-            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)' }}>39 Sunhill Rd, Mount Waverley VIC 3149</span>
+        <div className="flex flex-row gap-3 items-center flex-wrap shrink-0">
+          <Link href="/contact" className="btn-cta no-underline">Start a Conversation</Link>
+          <Link href="#scope" className="btn-outline no-underline text-white border-white/35">Scope Your Project</Link>
+          <div className="flex flex-col gap-[5px]">
+            <a href="tel:0398076896" className="text-[13px] text-white/40 no-underline">(03) 9807 6896</a>
+            <a href="mailto:info@metromotioncontrols.com.au" className="text-[13px] text-white/40 no-underline">info@metromotioncontrols.com.au</a>
+            <span className="text-[13px] text-white/40">39 Sunhill Rd, Mount Waverley VIC 3149</span>
           </div>
         </div>
       </div>

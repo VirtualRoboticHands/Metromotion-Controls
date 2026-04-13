@@ -105,31 +105,13 @@ export default function ContactForm() {
     }
   }
 
-  const inputStyle = {
-    width: '100%',
-    padding: '14px 16px',
-    border: '1px solid var(--border2)',
-    background: 'var(--white)',
-    fontFamily: 'var(--font-sans)',
-    fontSize: '14px',
-    color: 'var(--ink)',
-    outline: 'none',
-  }
-
-  const labelStyle = {
-    display: 'block',
-    marginBottom: '8px',
-    fontSize: '11px',
-    letterSpacing: '0.08em',
-    textTransform: 'uppercase' as const,
-    color: 'var(--muted)',
-    fontWeight: 500,
-  }
+  const inputClass = "w-full px-4 py-[14px] border border-border2 bg-white font-sans text-[14px] text-ink outline-none contact-input"
+  const labelClass = "block mb-2 text-[11px] tracking-[0.08em] uppercase text-muted font-medium"
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }} noValidate>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-[22px]" noValidate>
       <div>
-        <label htmlFor="full-name" style={labelStyle}>
+        <label htmlFor="full-name" className={labelClass}>
           Full Name *
         </label>
         <input
@@ -138,13 +120,12 @@ export default function ContactForm() {
           required
           value={form.name}
           onChange={(event) => setForm({ ...form, name: event.target.value })}
-          style={inputStyle}
-          className="contact-input"
+          className={inputClass}
         />
       </div>
 
       <div>
-        <label htmlFor="company-name" style={labelStyle}>
+        <label htmlFor="company-name" className={labelClass}>
           Company Name *
         </label>
         <input
@@ -153,14 +134,13 @@ export default function ContactForm() {
           required
           value={form.company}
           onChange={(event) => setForm({ ...form, company: event.target.value })}
-          style={inputStyle}
-          className="contact-input"
+          className={inputClass}
         />
       </div>
 
-      <div className="form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+      <div className="form-row grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
-          <label htmlFor="email" style={labelStyle}>
+          <label htmlFor="email" className={labelClass}>
             Email *
           </label>
           <input
@@ -169,13 +149,12 @@ export default function ContactForm() {
             required
             value={form.email}
             onChange={(event) => setForm({ ...form, email: event.target.value })}
-            style={inputStyle}
-            className="contact-input"
+            className={inputClass}
           />
         </div>
 
         <div>
-          <label htmlFor="phone" style={labelStyle}>
+          <label htmlFor="phone" className={labelClass}>
             Phone (Optional)
           </label>
           <input
@@ -183,14 +162,13 @@ export default function ContactForm() {
             type="tel"
             value={form.phone}
             onChange={(event) => setForm({ ...form, phone: event.target.value })}
-            style={inputStyle}
-            className="contact-input"
+            className={inputClass}
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="service" style={labelStyle}>
+        <label htmlFor="service" className={labelClass}>
           How Can We Help? *
         </label>
         <select
@@ -198,8 +176,7 @@ export default function ContactForm() {
           required
           value={form.service}
           onChange={(event) => setForm({ ...form, service: event.target.value })}
-          style={{ ...inputStyle, appearance: 'none' as const, cursor: 'pointer' }}
-          className="contact-input"
+          className={`${inputClass} appearance-none cursor-pointer`}
         >
           <option value="">Select a service...</option>
           {serviceOptions.map((service) => (
@@ -211,7 +188,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" style={labelStyle}>
+        <label htmlFor="message" className={labelClass}>
           Message *
         </label>
         <textarea
@@ -220,37 +197,22 @@ export default function ContactForm() {
           rows={4}
           value={form.message}
           onChange={(event) => setForm({ ...form, message: event.target.value })}
-          style={{ ...inputStyle, resize: 'vertical' as const }}
-          className="contact-input"
+          className={`${inputClass} resize-y`}
         />
       </div>
 
       <button
         type="submit"
-        className="contact-submit-btn"
+        className="contact-submit-btn self-start border-none bg-red text-white px-[26px] py-[14px] text-[14px] font-medium tracking-[0.02em] inline-flex items-center gap-[10px]"
+        style={{ cursor: submitting ? 'not-allowed' : 'pointer', opacity: submitting ? 0.85 : 1 }}
         disabled={submitting}
-        style={{
-          alignSelf: 'flex-start',
-          border: 'none',
-          background: 'var(--red)',
-          color: 'var(--white)',
-          padding: '14px 26px',
-          fontSize: '14px',
-          fontWeight: 500,
-          letterSpacing: '0.02em',
-          cursor: submitting ? 'not-allowed' : 'pointer',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '10px',
-          opacity: submitting ? 0.85 : 1,
-        }}
       >
         {submitting && <span className="contact-spinner" aria-hidden="true" />}
         {submitting ? 'Sending...' : 'Send Enquiry'}
       </button>
 
-      {successMessage ? <p style={{ color: '#2d6a4f', fontSize: '14px' }}>{successMessage}</p> : null}
-      {errorMessage ? <p style={{ color: 'var(--red)', fontSize: '14px' }}>{errorMessage}</p> : null}
+      {successMessage ? <p className="text-[#2d6a4f] text-[14px]">{successMessage}</p> : null}
+      {errorMessage ? <p className="text-red text-[14px]">{errorMessage}</p> : null}
     </form>
   )
 }

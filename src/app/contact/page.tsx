@@ -32,96 +32,62 @@ export default function ContactPage() {
   return (
     <>
       <Nav />
-      <main style={{ paddingTop: '72px' }}>
-        <section className="contact-header" style={{ padding: '80px 52px', background: 'var(--off)', position: 'relative', overflow: 'hidden' }}>
+      <main className="pt-[72px]">
+        <section className="contact-header relative overflow-hidden bg-off px-[52px] py-[80px]">
           <Image
             src="/images/ContactUsBanner-e1623751245652.png"
             alt="Contact Metromotion Controls engineering team for industrial automation projects"
             fill
             sizes="100vw"
-            style={{ objectFit: 'cover' }}
+            className="object-cover"
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
-          <div className="section-label" style={{ color: 'var(--red)', position: 'relative', zIndex: 1 }}>Contact</div>
-          <h1
-            style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(40px, 4.4vw, 60px)',
-              lineHeight: 1.06,
-              letterSpacing: '-0.02em',
-              color: 'white',
-              position: 'relative',
-              zIndex: 1,
-            }}
-          >
+          <div className="absolute inset-0 bg-black/45" />
+          <div className="section-label relative z-10 text-red">Contact</div>
+          <h1 className="relative z-10 font-serif text-[clamp(40px,4.4vw,60px)] leading-[1.06] tracking-[-0.02em] text-white">
             Contact Us
           </h1>
-          <p style={{ maxWidth: '620px', color: 'rgba(255,255,255,0.85)', marginTop: '14px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
+          <p className="relative z-10 max-w-[620px] text-white/85 mt-[14px] leading-[1.75]">
             Tell us about your project and an engineer will follow up within one business day.
           </p>
         </section>
 
-        <section
-          className="contact-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1.2fr 1fr',
-            borderTop: '1px solid var(--border)',
-            borderBottom: '1px solid var(--border)',
-          }}
-        >
-          <div className="contact-form-col" style={{ padding: '64px 52px', borderRight: '1px solid var(--border)' }}>
-            <h2
-              style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: '30px',
-                lineHeight: 1.15,
-                color: '#1a1a1a',
-                marginBottom: '30px',
-              }}
-            >
+        <section className="contact-grid grid grid-cols-[1.2fr_1fr] border-t border-border border-b border-border">
+          <div className="contact-form-col px-[52px] py-16 border-r border-border">
+            <h2 className="font-serif text-[30px] leading-[1.15] text-[#1a1a1a] mb-[30px]">
               Send an Enquiry
             </h2>
             <ContactForm />
           </div>
 
-          <aside style={{ padding: '64px 52px', background: 'var(--off)' }}>
-            <h2
-              style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: '30px',
-                lineHeight: 1.15,
-                color: '#1a1a1a',
-                marginBottom: '28px',
-              }}
-            >
+          <aside className="px-[52px] py-16 bg-off">
+            <h2 className="font-serif text-[30px] leading-[1.15] text-[#1a1a1a] mb-7">
               Get in Touch
             </h2>
 
-            <div style={{ display: 'grid', gap: '20px', marginBottom: '28px' }}>
+            <div className="grid gap-5 mb-7">
               <div>
-                <div style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                <div className="text-[11px] tracking-[0.08em] uppercase text-muted">
                   Phone
                 </div>
-                <a href="tel:0398076896" style={{ color: 'var(--ink)', textDecoration: 'none' }}>
+                <a href="tel:0398076896" className="text-ink no-underline">
                   (03) 9807 6896
                 </a>
               </div>
 
               <div>
-                <div style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                <div className="text-[11px] tracking-[0.08em] uppercase text-muted">
                   Email
                 </div>
-                <a href="mailto:info@metromotioncontrols.com.au" style={{ color: 'var(--ink)', textDecoration: 'none' }}>
+                <a href="mailto:info@metromotioncontrols.com.au" className="text-ink no-underline">
                   info@metromotioncontrols.com.au
                 </a>
               </div>
 
               <div>
-                <div style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                <div className="text-[11px] tracking-[0.08em] uppercase text-muted">
                   Address
                 </div>
-                <p style={{ color: 'var(--ink)' }}>39 Sunhill Rd, Mount Waverley VIC 3149</p>
+                <p className="text-ink">39 Sunhill Rd, Mount Waverley VIC 3149</p>
               </div>
             </div>
 
@@ -131,7 +97,7 @@ export default function ContactPage() {
               width="100%"
               height="320"
               loading="lazy"
-              style={{ border: '1px solid var(--border)', background: 'var(--white)' }}
+              className="border border-border bg-white"
               referrerPolicy="no-referrer-when-downgrade"
             />
           </aside>
